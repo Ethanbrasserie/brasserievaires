@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brasserie de la Gare - Vaires-sur-Marne</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 pb-20">
+    
+    <!-- Modal Admin Connexion -->
+    <div id="adminPrompt" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">🔐 Connexion Administrateur</h3>
+            <input type="password" id="adminPasswordInput" placeholder="Code d'accès" 
+                   class="w-full p-3 border border-gray-300 rounded-lg mb-4">
+            <div class="flex gap-3">
+                <button onclick="closeAdminPrompt()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold">
+                    Annuler
+                </button>
+                <button onclick="loginAdmin()" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">
+                    Connexion
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Signalement -->
+    <div id="reportModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl max-h-[80vh] overflow-y-auto">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">🚨 Signaler un problème</h3>
+            <p class="text-sm text-gray-600 mb-4">
+                Vous avez trouvé un bug ou quelque chose ne fonctionne pas ? Signalez-le ici.
+            </p>
+            <textarea id="reportMessage" placeholder="Décrivez le problème rencontré..." 
+                      class="w-full p-3 border border-gray-300 rounded-lg h-32 mb-4"></textarea>
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-3 mb-4">
+                <p class="text-xs text-blue-800">
+                    <strong>📍 Où va le signalement ?</strong><br/>
+                    Le rapport est enregistré et peut être consulté par le propriétaire dans le panneau d'administration.
+                    <br/><br/>
+                    Pour une assistance immédiate, contactez le <strong>06 82 11 85 66</strong>
+                </p>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="closeReportModal()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold">
+                    Annuler
+                </button>
+                <button onclick="submitReport()" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">
+                    Envoyer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 shadow-lg">
+        <div class="flex justify-between items-center">
+            <button onclick="toggleAdminPrompt()" 
+                    class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all" 
+                    title="Connexion administrateur">
+                <span id="adminIcon">🔒</span>
+            </button>
+            <div class="flex-1">
+                <h1 class="text-2xl font-bold text-center">Brasserie de la Gare</h1>
+                <p class="text-center text-sm mt-1 opacity-90">Vaires-sur-Marne</p>
+            </div>
+            <button onclick="openReportModal()" 
+                    class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all" 
+                    title="Signaler un problème">
+                🚨
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <div class="max-w-md mx-auto p-4">
+        
+        <!-- Page Admin -->
+        <div id="page-admin" class="hidden space-y-4">
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl p-6 shadow-lg">
+                <h2 class="text-2xl font-bold mb-2">🔐 Panneau d'Administration</h2>
+                <p class="text-sm opacity-90">Gestion complète de l'application</p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">📊 Statistiques</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-purple-50 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-purple-600" id="stat-reviews">0</p>
+                        <p class="text-sm text-gray-600 mt-1">Avis clients</p>
+                    </div>
+                    <div class="bg-pink-50 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-pink-600" id="stat-photos">0</p>
+                        <p class="text-sm text-gray-600 mt-1">Photos</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-blue-600" id="stat-rating">0.0⭐</p>
+                        <p class="text-sm text-gray-600 mt-1">Note moyenne</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-green-600" id="stat-reports">0</p>
+                        <p class="text-sm text-gray-600 mt-1">Signalements</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">🛠️ Actions rapides</h3>
+                <div class="space-y-3">
+                    <button onclick="goToPage('reviews')" 
+                            class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between hover:shadow-lg transition-all">
+                        <span>💬 Gérer les avis</span>
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-reviews-count">0</span>
+                    </button>
+                    <button onclick="goToPage('gallery')" 
+                            class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between hover:shadow-lg transition-all">
+                        <span>📸 Gérer les photos</span>
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-photos-count">0</span>
+                    </button>
+                    <button onclick="viewReports()" 
+                            class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between hover:shadow-lg transition-all">
+                        <span>🚨 Voir les signalements</span>
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-reports-count">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">⚙️ Paramètres</h3>
+                <div class="space-y-3">
+                    <button onclick="deleteAllReviews()" 
+                            class="w-full bg-red-50 text-red-600 p-3 rounded-lg font-medium hover:bg-red-100 transition-all">
+                        🗑️ Supprimer tous les avis
+                    </button>
+                    <button onclick="deleteAllPhotos()" 
+                            class="w-full bg-red-50 text-red-600 p-3 rounded-lg font-medium hover:bg-red-100 transition-all">
+                        🗑️ Supprimer toutes les photos
+                    </button>
+                    <button onclick="deleteAllReports()" 
+                            class="w-full bg-orange-50 text-orange-600 p-3 rounded-lg font-medium hover:bg-orange-100 transition-all">
+                        🗑️ Effacer les signalements
+                    </button>
+                </div>
+            </div>
+
+            <button onclick="logoutAdmin()" 
+                    class="w-full bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-all">
+                🚪 Se déconnecter
+            </button>
+        </div>
+
+        <!-- Page Accueil -->
+        <div id="page-home" class="space-y-4">
+            <div class="relative h-64 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl shadow-lg flex items-end justify-center overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 via-pink-900/30 to-transparent"></div>
+                <div class="relative text-center text-white p-6 pb-8">
+                    <h2 class="text-4xl font-bold mb-2">Bienvenue</h2>
+                    <p class="text-lg">Brasserie de la Gare</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <p class="text-center text-gray-700 leading-relaxed">
+                    Bienvenue à la Brasserie de la Gare, votre adresse gourmande à Vaires-sur-Marne. 
+                    Découvrez une cuisine traditionnelle revisitée dans une ambiance conviviale et moderne.
+                </p>
+            </div>
+
+            <button onclick="goToPage('menu')" 
+                    class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all">
+                Découvrir notre carte
+            </button>
+
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="goToPage('reservation')" 
+                        class="bg-pink-100 text-pink-700 py-3 rounded-xl font-medium hover:bg-pink-200 transition-all">
+                    Réserver
+                </button>
+                <button onclick="goToPage('reviews')" 
+                        class="bg-purple-100 text-purple-700 py-3 rounded-xl font-medium hover:bg-purple-200 transition-all">
+                    Avis clients
+                </button>
+            </div>
+        </div>
+
+        <!-- Page Menu -->
+        <div id="page-menu" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Notre Carte</h2>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">🥗 Entrées</h3>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Œufs durs à la mayonnaise maison</span>
+                    <span class="text-pink-600 font-bold">6,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Avocat crevette cocktail</span>
+                    <span class="text-pink-600 font-bold">7,90€</span>
+                </div>
+                <div class="py-3 flex justify-between">
+                    <span class="font-semibold text-gray-800">Soupe à l'oignon</span>
+                    <span class="text-pink-600 font-bold">6,90€</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-2">🍔 Nos Burgers</h3>
+                <p class="text-xs text-gray-500 italic mb-4">Tous nos burgers existent en version veggie +1€</p>
+                <div class="py-3 border-b border-gray-100">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">BG</span>
+                        <span class="text-pink-600 font-bold">17€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Bœuf haché, cheddar, bacon grillé, S.T.O, oignons confits</p>
+                </div>
+                <div class="py-3 border-b border-gray-100">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">Avocado</span>
+                        <span class="text-pink-600 font-bold">17€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Filet de poulet pané, cheddar, guacamole, S.T.O</p>
+                </div>
+                <div class="py-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">Smash</span>
+                        <span class="text-pink-600 font-bold">18€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">2 steaks de 120g, cheddar, ketchup, moutarde américaine, oignons</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">🥗 Nos Salades</h3>
+                <div class="py-3 border-b border-gray-100">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">La César</span>
+                        <span class="text-pink-600 font-bold">17€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Poulet pané, croutons, tomates, Grana Padano (supp lardon +1€)</p>
+                </div>
+                <div class="py-3 border-b border-gray-100">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">L'Orientale</span>
+                        <span class="text-pink-600 font-bold">17€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Tomates cerises, avocat, pois chiche au zaatar, falafels, crème de sésame</p>
+                </div>
+                <div class="py-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">La Chèvre Miel</span>
+                        <span class="text-pink-600 font-bold">17€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Tomates cerise, pommes sautées, lardons, toast de chèvre chaud au miel</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">🍽️ Viandes et Poissons</h3>
+                <div class="py-3 border-b border-gray-100">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">Tartare de bœuf du Limousin au couteau</span>
+                        <span class="text-pink-600 font-bold">17€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Préparé, frites maison + salade</p>
+                </div>
+                <div class="py-3 border-b border-gray-100">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">Œuf à cheval</span>
+                        <span class="text-pink-600 font-bold">16€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Frites maison + salade</p>
+                </div>
+                <div class="py-3 border-b border-gray-100">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">Cuisse de poulet rôtie</span>
+                        <span class="text-pink-600 font-bold">15€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Frites maison, mayonnaise maison</p>
+                </div>
+                <div class="py-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">Fish and Chips</span>
+                        <span class="text-pink-600 font-bold">17€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Sauce tartare</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">🍰 Les Desserts</h3>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Crème brûlée vanille</span>
+                    <span class="text-pink-600 font-bold">7,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Café gourmand</span>
+                    <span class="text-pink-600 font-bold">9,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Baba au rhum</span>
+                    <span class="text-pink-600 font-bold">9€</span>
+                </div>
+                <div class="py-3 flex justify-between">
+                    <span class="font-semibold text-gray-800">Moelleux au chocolat</span>
+                    <span class="text-pink-600 font-bold">7,90€</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">🍨 Les Coupes Glacées</h3>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Café / Choco / Caramel liégeois</span>
+                    <span class="text-pink-600 font-bold">7,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Dame blanche</span>
+                    <span class="text-pink-600 font-bold">7,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Colonel</span>
+                    <span class="text-pink-600 font-bold">9€</span>
+                </div>
+                <div class="py-3 flex justify-between">
+                    <span class="font-semibold text-gray-800">Limoncello</span>
+                    <span class="text-pink-600 font-bold">9€</span>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 text-center">
+                <p class="text-gray-600 text-sm italic">⚠️ Les desserts ne sont pas disponibles en version à emporter.</p>
+            </div>
+        </div>
+
+        <!-- Page Galerie -->
+        <div id="page-gallery" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Galerie Photos</h2>
+            
+            <div id="admin-notice-gallery" class="hidden bg-green-50 border-l-4 border-green-400 p-4 rounded-lg">
+                <p class="text-sm text-green-800">✅ Mode admin : vous pouvez supprimer toutes les photos</p>
+            </div>
+
+            <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-6 text-center">
+                <p class="text-purple-700 mb-4 font-semibold">📸 Partagez vos moments</p>
+                <label class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold cursor-pointer hover:shadow-lg transition-all">
+                    ➕ Ajouter une photo
+                    <input type="file" accept="image/*" onchange="handlePhotoUpload(event)" class="hidden">
+                </label>
+            </div>
+
+            <div id="photos-container">
+                <div class="text-center py-12 text-gray-500">
+                    <div class="text-6xl mb-4">🖼️</div>
+                    <p>Aucune photo pour le moment</p>
+                    <p class="text-sm mt-2">Soyez le premier à partager une photo !</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Avis -->
+        <div id="page-reviews" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Avis Clients</h2>
+            
+            <div id="admin-notice-reviews" class="hidden bg-green-50 border-l-4 border-green-400 p-4 rounded-lg">
+                <p class="text-sm text-green-800">✅ Mode admin actif - Vous pouvez tout gérer</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="font-bold text-lg mb-4 text-gray-800">Voir tous nos avis</h3>
+                <div class="space-y-3">
+                    <a href="https://www.tripadvisor.fr/Restaurant_Review-g2587180-d20123264-Reviews-Restaurant_Brasserie_De_La_Gare-Vaires_sur_Marne_Seine_et_Marne_Ile_de_France.html" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="block bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-xl font-semibold text-center">
+                        📍 Voir sur TripAdvisor
+                    </a>
+                    <a href="https://www.google.com/search?q=BRASSERIE+DE+LA+GARE+Avis" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="block bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl font-semibold text-center">
+                        ⭐ Voir sur Google
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="font-bold text-lg mb-4 text-gray-800">Laisser un avis</h3>
+                <div class="space-y-4">
+                    <input type="text" id="review-name" placeholder="Votre nom" 
+                           class="w-full p-3 border border-gray-300 rounded-lg">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-2">Note</p>
+                        <div class="flex gap-2" id="rating-stars">
+                            <span onclick="setRating(1)" class="cursor-pointer text-3xl">⭐</span>
+                            <span onclick="setRating(2)" class="cursor-pointer text-3xl">⭐</span>
+                            <span onclick="setRating(3)" class="cursor-pointer text-3xl">⭐</span>
+                            <span onclick="setRating(4)" class="cursor-pointer text-3xl">⭐</span>
+                            <span onclick="setRating(5)" class="cursor-pointer text-3xl">⭐</span>
+                        </div>
+                    </div>
+                    <textarea id="review-comment" placeholder="Votre avis" 
+                              class="w-full p-3 border border-gray-300 rounded-lg h-32"></textarea>
+                    <button onclick="submitReview()" 
+                            class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">
+                        Publier mon avis
+                    </button>
+                </div>
+            </div>
+
+            <div id="reviews-container"></div>
+        </div>
+
+        <!-- Page Réservation -->
+<div id="page-reservation" class="hidden space-y-4">
+    <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+        Réserver une table
+    </h2>
+
+    <div class="bg-white rounded-2xl p-4 shadow-md">
+        <iframe
+            id="reservationWidget"
+            src="https://reservation.dish.co/widget/hydra-8bc9df20-349d-4191-a666-10088fc8340c?eid=hydra-8bc9df20-349d-4191-a666-10088fc8340c&tagid=hors-hydra-8bc9df20-349d-4191-a666-10088fc8340c&width=100%25&height=500&backgroundColor=rgba(0%2C0%2C0%2C0.05)&primaryButtonBackgroundColor=%23cea7a5&primaryButtonForegroundColor=%23fff&lang=fr"
+            class="w-full rounded-xl border-none"
+            style="height: 520px;"
+            loading="lazy"
+        >
+            <p>Votre navigateur ne supporte pas les iframes.</p>
+        </iframe>
+    </div>
+
+    <p class="text-center text-sm text-gray-500 italic">
+        📍 Réservation en ligne sécurisée via Dish
+    </p>
+</div>
+
+
+        <!-- Page Contact -->
+        <div id="page-contact" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Contact</h2>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-md space-y-4">
+                <a href="tel:0160202401" class="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
+                    <div class="bg-purple-600 p-3 rounded-full text-white text-2xl">📞</div>
+                    <div>
+                        <p class="text-sm text-gray-600">Téléphone</p>
+                        <p class="font-semibold text-purple-700">01 60 20 24 01</p>
+                    </div>
+                </a>
+                
+                <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
+                    <div class="bg-pink-600 p-3 rounded-full text-white text-2xl">📍</div>
+                    <div>
+                        <p class="text-sm text-gray-600">Adresse</p>
+                        <p class="font-semibold text-pink-700">3 Place du Général de Gaulle</p>
+                        <p class="text-sm text-gray-600">77360 Vaires-sur-Marne</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="font-semibold text-gray-800 mb-4">🕐 Horaires d'ouverture</h3>
+                <div class="space-y-2">
+                    <div class="flex justify-between py-2 border-b border-gray-100">
+                        <span class="font-semibold text-gray-800">Lundi</span>
+                        <span class="text-gray-600">07h00 - 20h30</span>
+                    </div>
+                    <div class="flex justify-between py-2 border-b border-gray-100">
+                        <span class="font-semibold text-gray-800">Mardi</span>
+                        <span class="text-gray-600">07h30 - 20h30</span>
+                    </div>
+                    <div class="flex justify-between py-2 border-b border-gray-100">
+                        <span class="font-semibold text-gray-800">Mercredi</span>
+                        <span class="text-gray-600">07h30 - 20h30</span>
+                    </div>
+                    <div class="flex justify-between py-2 border-b border-gray-100">
+                        <span class="font-semibold text-gray-800">Jeudi</span>
+                        <span class="text-gray-600">07h30 - 20h30</span>
+                    </div>
+                    <div class="flex justify-between py-2 border-b border-gray-100">
+                        <span class="font-semibold text-gray-800">Vendredi</span>
+                        <span class="text-gray-600">07h30 - 20h30</span>
+                    </div>
+                    <div class="flex justify-between py-2 border-b border-gray-100">
+                        <span class="font-semibold text-gray-800">Samedi</span>
+                        <span class="text-gray-600">08h00 - 16h00</span>
+                    </div>
+                    <div class="flex justify-between py-2">
+                        <span class="font-semibold text-gray-800">Dimanche</span>
+                        <span class="text-red-600 font-semibold">Fermé</span>
+                    </div>
+                </div>
+                <p class="mt-4 text-xs text-gray-500 italic bg-purple-50 p-3 rounded-lg">
+                    ⚠️ Les horaires peuvent être modifiés sans préavis.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-4 shadow-md">
+                <h3 class="font-semibold text-gray-800 mb-3">Nous trouver</h3>
+                <div class="h-48 bg-gradient-to-br from-purple-200 to-pink-200 rounded-xl flex items-center justify-center">
+                    <a href="https://www.google.com/maps/search/?api=1&query=3+Place+du+Général+de+Gaulle,+77360+Vaires-sur-Marne" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="bg-white px-6 py-3 rounded-lg font-semibold text-purple-700 shadow-md">
+                        Ouvrir dans Google Maps
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="font-semibold text-gray-800 mb-4">Suivez-nous</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="https://www.instagram.com/brasserievaires" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center justify-center gap-2 p-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl font-medium">
+                        📷 Instagram
+                    </a>
+                    <a href="https://www.facebook.com/brasserievaires" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center justify-center gap-2 p-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl font-medium">
+                        👍 Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bottom -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
+        <div class="max-w-md mx-auto flex justify-around py-2">
+            <button onclick="goToPage('home')" id="nav-home" 
+                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-purple-600 bg-purple-50">
+                <span class="text-2xl">🏠</span>
+                <span class="text-xs font-medium">Accueil</span>
+            </button>
+            <button onclick="goToPage('menu')" id="nav-menu" 
+                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
+                <span class="text-2xl">📋</span>
+                <span class="text-xs font-medium">Carte</span>
+            </button>
+            <button onclick="goToPage('gallery')" id="nav-gallery" 
+                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
+                <span class="text-2xl">📸</span>
+                <span class="text-xs font-medium">Photos</span>
+            </button>
+            <button onclick="goToPage('reviews')" id="nav-reviews" 
+                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
+                <span class="text-2xl">⭐</span>
+                <span class="text-xs font-medium">Avis</span>
+            </button>
+            <button onclick="goToPage('contact')" id="nav-contact" 
+                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
+                <span class="text-2xl">📞</span>
+                <span class="text-xs font-medium">Contact</span>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        // État de l'application
+        let appState = {
+            currentPage: 'home',
+            adminMode: false,
+            photos: [],
+            myPhotoIds: [],
+            reviews: [],
+            myReviewIds: [],
+            bugReports: [],
+            currentRating: 5
+        };
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            updateUI();
+            updateStats();
+        });
+
+        // Navigation
+        function goToPage(page) {
+            // Cacher toutes les pages
+            document.querySelectorAll('[id^="page-"]').forEach(el => el.classList.add('hidden'));
+            
+            // Afficher la page demandée
+            if (appState.adminMode && page === 'admin') {
+                document.getElementById('page-admin').classList.remove('hidden');
+                appState.currentPage = 'admin';
+            } else {
+                document.getElementById(`page-${page}`).classList.remove('hidden');
+                appState.currentPage = page;
+            }
+            
+            // Mettre à jour la navigation
+            document.querySelectorAll('[id^="nav-"]').forEach(btn => {
+                btn.classList.remove('text-purple-600', 'bg-purple-50');
+                btn.classList.add('text-gray-500');
+            });
+            
+            const activeBtn = document.getElementById(`nav-${page}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-500');
+                activeBtn.classList.add('text-purple-600', 'bg-purple-50');
+            }
+            
+            updateUI();
+        }
+
+        // Admin
+        function toggleAdminPrompt() {
+            if (appState.adminMode) {
+                goToPage('admin');
+            } else {
+                document.getElementById('adminPrompt').classList.remove('hidden');
+            }
+        }
+
+        function closeAdminPrompt() {
+            document.getElementById('adminPrompt').classList.add('hidden');
+            document.getElementById('adminPasswordInput').value = '';
+        }
+
+        function loginAdmin() {
+            const password = document.getElementById('adminPasswordInput').value;
+            if (password === 'hello7022023') {
+                appState.adminMode = true;
+                closeAdminPrompt();
+                goToPage('admin');
+                document.getElementById('adminIcon').textContent = '🔓';
+                alert('✅ Connexion réussie');
+            } else {
+                alert('❌ Code incorrect');
+                document.getElementById('adminPasswordInput').value = '';
+            }
+        }
+
+        function logoutAdmin() {
+            appState.adminMode = false;
+            document.getElementById('adminIcon').textContent = '🔒';
+            goToPage('home');
+            alert('✅ Déconnecté du mode administrateur');
+        }
+
+        // Signalements
+        function openReportModal() {
+            document.getElementById('reportModal').classList.remove('hidden');
+        }
+
+        function closeReportModal() {
+            document.getElementById('reportModal').classList.add('hidden');
+            document.getElementById('reportMessage').value = '';
+        }
+
+        function submitReport() {
+            const message = document.getElementById('reportMessage').value.trim();
+            if (!message) {
+                alert('Veuillez décrire le problème');
+                return;
+            }
+            
+            const report = {
+                type: 'Problème technique',
+                message: message,
+                page: appState.currentPage,
+                date: new Date().toLocaleString('fr-FR'),
+                contactAdmin: '0682118566'
+            };
+            
+            appState.bugReports.push(report);
+            updateStats();
+            closeReportModal();
+            alert('✅ Signalement envoyé !\n\n📱 Le rapport a été enregistré.\n\n💡 Le propriétaire peut consulter tous les signalements dans le panneau d\'administration.');
+        }
+
+        function viewReports() {
+            if (appState.bugReports.length === 0) {
+                alert('📋 Aucun signalement');
+            } else {
+                const text = '📋 Signalements :\n\n' + appState.bugReports.map((r, i) => 
+                    `${i+1}. ${r.message}\n   Page: ${r.page}\n   Date: ${r.date}\n`
+                ).join('\n');
+                alert(text);
+            }
+        }
+
+        function deleteAllReports() {
+            if (confirm('⚠️ Effacer tous les signalements ?\n\nCette action est irréversible !')) {
+                appState.bugReports = [];
+                updateStats();
+                alert('✅ Tous les signalements ont été effacés');
+            }
+        }
+
+        // Photos
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            if (file.size > 3000000) {
+                alert('Photo trop grande (max 3 Mo)');
+                event.target.value = '';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const photoId = Date.now() + Math.random();
+                const photo = {
+                    id: photoId,
+                    name: file.name,
+                    data: e.target.result,
+                    date: new Date().toLocaleDateString('fr-FR'),
+                    time: Date.now()
+                };
+                
+                appState.photos.push(photo);
+                appState.myPhotoIds.push(photoId);
+                event.target.value = '';
+                renderPhotos();
+                updateStats();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function deletePhoto(photoId) {
+            if (!confirm('Supprimer cette photo ?')) return;
+            appState.photos = appState.photos.filter(p => p.id !== photoId);
+            appState.myPhotoIds = appState.myPhotoIds.filter(id => id !== photoId);
+            renderPhotos();
+            updateStats();
+        }
+
+        function deleteAllPhotos() {
+            if (confirm('⚠️ Supprimer TOUTES les photos ?\n\nCette action est irréversible !')) {
+                appState.photos = [];
+                appState.myPhotoIds = [];
+                renderPhotos();
+                updateStats();
+                alert('✅ Toutes les photos ont été supprimées');
+            }
+        }
+
+        function renderPhotos() {
+            const container = document.getElementById('photos-container');
+            if (appState.photos.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <div class="text-6xl mb-4">🖼️</div>
+                        <p>Aucune photo pour le moment</p>
+                        <p class="text-sm mt-2">Soyez le premier à partager une photo !</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const sorted = [...appState.photos].sort((a, b) => b.time - a.time);
+            container.innerHTML = sorted.map(photo => {
+                const isMyPhoto = appState.myPhotoIds.includes(photo.id);
+                const canDelete = isMyPhoto || appState.adminMode;
+                
+                return `
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-md mb-4">
+                        <img src="${photo.data}" alt="${photo.name}" class="w-full h-64 object-cover">
+                        <div class="p-4 flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-gray-800">${photo.name.substring(0, 30)}</p>
+                                <p class="text-sm text-gray-500">${photo.date}</p>
+                            </div>
+                            ${canDelete ? `
+                                <button onclick="deletePhoto(${photo.id})" 
+                                        class="bg-red-100 text-red-600 px-4 py-2 rounded-lg font-medium hover:bg-red-200">
+                                    🗑️ Supprimer
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Avis
+        function setRating(rating) {
+            appState.currentRating = rating;
+            const stars = document.getElementById('rating-stars').children;
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].style.opacity = i < rating ? '1' : '0.3';
+            }
+        }
+
+        function submitReview() {
+            const name = document.getElementById('review-name').value.trim();
+            const comment = document.getElementById('review-comment').value.trim();
+            
+            if (!name || !comment) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            const reviewId = Date.now();
+            const review = {
+                id: reviewId,
+                name: name,
+                rating: appState.currentRating,
+                comment: comment,
+                date: new Date().toLocaleDateString('fr-FR'),
+                replies: []
+            };
+            
+            appState.reviews.push(review);
+            appState.myReviewIds.push(reviewId);
+            
+            document.getElementById('review-name').value = '';
+            document.getElementById('review-comment').value = '';
+            setRating(5);
+            
+            renderReviews();
+            updateStats();
+            alert('✅ Merci pour votre avis !');
+        }
+
+        function deleteReview(reviewId) {
+            if (!confirm('Supprimer cet avis ?')) return;
+            appState.reviews = appState.reviews.filter(r => r.id !== reviewId);
+            appState.myReviewIds = appState.myReviewIds.filter(id => id !== reviewId);
+            renderReviews();
+            updateStats();
+            alert('✅ Avis supprimé');
+        }
+
+        function deleteAllReviews() {
+            if (confirm('⚠️ Supprimer TOUS les avis ?\n\nCette action est irréversible !')) {
+                appState.reviews = [];
+                appState.myReviewIds = [];
+                renderReviews();
+                updateStats();
+                alert('✅ Tous les avis ont été supprimés');
+            }
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviews-container');
+            if (appState.reviews.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+            
+            const sorted = [...appState.reviews].reverse();
+            container.innerHTML = `
+                <div class="space-y-3">
+                    <h3 class="font-bold text-lg text-gray-800">Avis récents</h3>
+                    ${sorted.map(review => {
+                        const isMyReview = appState.myReviewIds.includes(review.id);
+                        const canDelete = isMyReview || appState.adminMode;
+                        const stars = '⭐'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+                        
+                        return `
+                            <div class="bg-white rounded-2xl p-4 shadow-md">
+                                <div class="flex justify-between items-start mb-2">
+                                    <p class="font-semibold text-gray-800">${review.name}</p>
+                                    <div class="flex gap-2 items-center">
+                                        <span>${stars}</span>
+                                        ${canDelete ? `
+                                            <button onclick="deleteReview(${review.id})" 
+                                                    class="text-red-500 text-xs hover:text-red-700 ml-2" 
+                                                    title="Supprimer">
+                                                🗑️
+                                            </button>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-2">${review.comment}</p>
+                                <p class="text-xs text-gray-400">${review.date}</p>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        // Stats et UI
+        function updateStats() {
+            document.getElementById('stat-reviews').textContent = appState.reviews.length;
+            document.getElementById('stat-photos').textContent = appState.photos.length;
+            document.getElementById('stat-reports').textContent = appState.bugReports.length;
+            document.getElementById('btn-reviews-count').textContent = appState.reviews.length;
+            document.getElementById('btn-photos-count').textContent = appState.photos.length;
+            document.getElementById('btn-reports-count').textContent = appState.bugReports.length;
+            
+            const avgRating = appState.reviews.length > 0 
+                ? (appState.reviews.reduce((sum, r) => sum + r.rating, 0) / appState.reviews.length).toFixed(1)
+                : '0.0';
+            document.getElementById('stat-rating').textContent = avgRating + '⭐';
+        }
+
+        function updateUI() {
+            // Afficher/cacher les notices admin
+            const adminNoticeGallery = document.getElementById('admin-notice-gallery');
+            const adminNoticeReviews = document.getElementById('admin-notice-reviews');
+            
+            if (appState.adminMode) {
+                adminNoticeGallery.classList.remove('hidden');
+                adminNoticeReviews.classList.remove('hidden');
+            } else {
+                adminNoticeGallery.classList.add('hidden');
+                adminNoticeReviews.classList.add('hidden');
+            }
+            
+            renderPhotos();
+            renderReviews();
+        }
+
+        // Enter pour connexion admin
+        document.getElementById('adminPasswordInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') loginAdmin();
+        });
+    </script>
+</body>
+</html
