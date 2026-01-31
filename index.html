@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brasserie de la Gare - Vaires-sur-Marne</title>
+    <link rel="icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .hidden { display: none; }
+        .tab-active { 
+            border-bottom: 4px solid #7c3aed; 
+            color: #7c3aed !important; 
+            font-weight: 800;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 pb-20">
     
-    <!-- Modal Admin Connexion -->
     <div id="adminPrompt" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl">
             <h3 class="text-xl font-bold text-gray-800 mb-4">🔐 Connexion Administrateur</h3>
@@ -27,7 +32,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal Signalement -->
     <div id="reportModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl max-h-[80vh] overflow-y-auto">
