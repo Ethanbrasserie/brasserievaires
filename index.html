@@ -190,9 +190,24 @@
             </div>
         </div>
 
-        <!-- Page Menu -->
+       <!-- Page Menu -->
         <div id="page-menu" class="hidden space-y-4">
             <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Notre Carte</h2>
+            
+            <!-- Onglets de sélection de carte -->
+            <div class="bg-white rounded-2xl p-2 shadow-md flex gap-2">
+                <button onclick="switchMenuTab('semaine')" id="tab-semaine" 
+                        class="flex-1 py-3 rounded-xl font-semibold transition-all tab-active">
+                    📋 Carte Semaine
+                </button>
+                <button onclick="switchMenuTab('samedi')" id="tab-samedi" 
+                        class="flex-1 py-3 rounded-xl font-semibold transition-all text-gray-600">
+                    ⭐ Carte Samedi
+                </button>
+            </div>
+
+            <!-- Carte Semaine -->
+            <div id="menu-semaine" class="space-y-4">
             
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-2xl font-bold text-purple-700 mb-4">🥗 Entrées</h3>
@@ -336,7 +351,145 @@
             <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 text-center">
                 <p class="text-gray-600 text-sm italic">⚠️ Les desserts ne sont pas disponibles en version à emporter.</p>
             </div>
+            
+            </div>
+
+            <!-- Carte Samedi -->
+            <div id="menu-samedi" class="hidden space-y-4">
+            
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl p-4 shadow-md text-center">
+                <p class="text-lg font-bold">⭐ Les Saveurs de La Brasserie de la Gare</p>
+                <p class="text-sm mt-1 opacity-90">Carte spéciale du samedi</p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">🎯 Les formules du midi (hors week-end)</h3>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Entrée + Plat / Plat + Dessert</span>
+                    <span class="text-pink-600 font-bold">18,90€</span>
+                </div>
+                <div class="py-3 flex justify-between">
+                    <span class="font-semibold text-gray-800">Formule gourmande : Entrée + Plat + Dessert</span>
+                    <span class="text-pink-600 font-bold">22,90€</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">👨‍🍳 Suggestion du chef</h3>
+                <div class="py-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">Bavette d'aloyau</span>
+                        <span class="text-pink-600 font-bold">20€</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Sauce poivre, frites maison & salade</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">🥗 Nos entrées</h3>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Œufs mayonnaise maison de la brasserie</span>
+                    <span class="text-pink-600 font-bold">6,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Œuf poché au chorizo</span>
+                    <span class="text-pink-600 font-bold">6,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Hareng pomme à l'huile</span>
+                    <span class="text-pink-600 font-bold">6,90€</span>
+                </div>
+                <div class="py-3 flex justify-between">
+                    <span class="font-semibold text-gray-800">Soupe à l'oignon</span>
+                    <span class="text-pink-600 font-bold">7,90€</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">🍽️ Les classiques de la brasserie</h3>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Fish and chips de la gare</span>
+                    <span class="text-pink-600 font-bold">14,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Œuf à cheval</span>
+                    <span class="text-pink-600 font-bold">16,50€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Bœuf bourguignon, coquillettes</span>
+                    <span class="text-pink-600 font-bold">18,50€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Tartare de bœuf préparé minute</span>
+                    <span class="text-pink-600 font-bold">18€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Le BG Burger</span>
+                    <span class="text-pink-600 font-bold">14,50€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">Salade César au poulet croustillant</span>
+                    <span class="text-pink-600 font-bold">14,50€</span>
+                </div>
+                <div class="py-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">Salade Seguin</span>
+                        <span class="text-pink-600 font-bold">14,50€</span>
+                    </div>
+                    <p class="text-xs text-gray-500 italic">(+4€ lardons)</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-2xl font-bold text-purple-700 mb-4">🍰 Nos desserts</h3>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">La tarte très amandine</span>
+                    <span class="text-pink-600 font-bold">6,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">La mousse au chocolat</span>
+                    <span class="text-pink-600 font-bold">6,90€</span>
+                </div>
+                <div class="py-3 border-b border-gray-100 flex justify-between">
+                    <span class="font-semibold text-gray-800">La crème brûlée à la vanille de Madagascar</span>
+                    <span class="text-pink-600 font-bold">7,90€</span>
+                </div>
+                <div class="py-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="font-semibold text-gray-800">Le café gourmand</span>
+                        <span class="text-pink-600 font-bold">9,90€</span>
+                    </div>
+                    <p class="text-xs text-gray-500 italic">(+4€ en formule)</p>
+                </div>
+            </div>
+
+            </div>
         </div>
+
+
+<!-- PARTIE JAVASCRIPT POUR LA NAVIGATION ENTRE LES ONGLETS -->
+<script>
+// Navigation entre les onglets de menu
+function switchMenuTab(tab) {
+    appState.currentMenuTab = tab;
+    
+    // Cacher tous les menus
+    document.getElementById('menu-semaine').classList.add('hidden');
+    document.getElementById('menu-samedi').classList.add('hidden');
+    
+    // Afficher le menu sélectionné
+    document.getElementById(`menu-${tab}`).classList.remove('hidden');
+    
+    // Mettre à jour les onglets
+    document.getElementById('tab-semaine').classList.remove('tab-active');
+    document.getElementById('tab-semaine').classList.add('text-gray-600');
+    document.getElementById('tab-samedi').classList.remove('tab-active');
+    document.getElementById('tab-samedi').classList.add('text-gray-600');
+    
+    document.getElementById(`tab-${tab}`).classList.add('tab-active');
+    document.getElementById(`tab-${tab}`).classList.remove('text-gray-600');
+}
+</script>
 
        <!-- Page Galerie -->
 <div id="page-gallery" class="hidden space-y-4">
