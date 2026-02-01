@@ -492,93 +492,39 @@ function switchMenuTab(tab) {
 </script>
 
        <!-- Page Galerie -->
-<div id="page-gallery" class="hidden space-y-4">
+<div id="page-gallery" class="hidden space-y-6">
     <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Galerie Photos</h2>
-    
-    <div id="admin-notice-gallery" class="hidden bg-green-50 border-l-4 border-green-400 p-4 rounded-lg">
-        <p class="text-sm text-green-800">✅ Mode admin : vous pouvez supprimer toutes les photos</p>
-    </div>  
 
-    <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-6 text-center">
-        <p class="text-purple-700 mb-4 font-semibold">📸 Partagez vos moments</p>
-        <label class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold cursor-pointer hover:shadow-lg transition-all">
-            ➕ Ajouter une photo
-            <input type="file" accept="image/*" onchange="handlePhotoUpload(event)" class="hidden">
-        </label>
-    </div>
+    <div class="space-y-4">
+        <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">📸 Nos Photos</h3>
+        <div class="grid grid-cols-2 gap-3">
+            <img src="https://i.postimg.cc/Zq7B4vbJ/Vaires-Cafe-de-la-gare-Restaurant-2016-(1).jpg" 
+                 onclick="openLightbox(this.src, 'L\'établissement')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Extérieur">
+            
+            <img src="https://i.postimg.cc/28RqkDDR/Brasserie-De-La-Gare-13082773-1113849182020596-4764936473557170360-n.jpg" 
+                 onclick="openLightbox(this.src, 'La Brasserie')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Enseigne">
+            
+            <img src="https://i.postimg.cc/0QhzJgKC/Brasserie-de-la-gare-Full-Size-Render-min-png.jpg" 
+                 onclick="openLightbox(this.src, 'Notre Salle')" class="w-full h-40 object-cover rounded-2xl cursor-pointer col-span-2" alt="Salle">
 
-    <div id="photos-container">
-        <div class="text-center py-12 text-gray-500" id="no-photos">
-            <div class="text-6xl mb-4">🖼️</div>
-            <p>Aucune photo pour le moment</p>
-            <p class="text-sm mt-2">Soyez le premier à partager une photo !</p>
+            <img src="https://i.postimg.cc/fLzthjnp/66189972.jpg" 
+                 onclick="openLightbox(this.src, 'Cuisine Maison')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Plat">
+            
+            <img src="https://i.postimg.cc/XvV7ZjHv/Brasserie-de-la-gare-353637041-743405227788034-8798944052498322968-n-jpg.jpg" 
+                 onclick="openLightbox(this.src, 'Pièce du Boucher')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Viande">
+            
+            <img src="https://i.postimg.cc/Jz8BqW6v/r6ce-french-fries-Restaurant-Brasserie-De-La-Gare-(1).jpg" 
+                 onclick="openLightbox(this.src, 'Frites Maison')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Frites">
+            
+            <img src="https://i.postimg.cc/GtYHFMkr/Brasserie-de-la-gare-IMG-5483-min-png.jpg" 
+                 onclick="openLightbox(this.src, 'Le Garden')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Burger">
         </div>
     </div>
+
+    <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">
+        🏠 Retour à l'accueil
+    </button>
 </div>
-
-<script>
-function handlePhotoUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const photosContainer = document.getElementById('photos-container');
-        const noPhotos = document.getElementById('no-photos');
-        if(noPhotos) noPhotos.remove();
-
-        const photoCard = document.createElement('div');
-        photoCard.className = "bg-white rounded-2xl p-4 shadow-md mb-4";
-
-        photoCard.innerHTML = `
-            <img src="${e.target.result}" class="rounded-lg mb-2 max-w-full h-auto" alt="Photo">
-            <div class="flex items-center justify-between mb-2">
-                <button class="like-btn bg-purple-600 text-white px-3 py-1 rounded-lg hover:bg-purple-700 transition">❤️ Like <span class="like-count">0</span></button>
-                <button class="comment-toggle-btn bg-pink-600 text-white px-3 py-1 rounded-lg hover:bg-pink-700 transition">💬 Commenter</button>
-            </div>
-            <div class="comment-section hidden">
-                <div class="comments-list mb-2"></div>
-                <input type="text" placeholder="Écrire un commentaire..." class="comment-input border rounded px-2 py-1 w-full mb-2">
-                <button class="add-comment-btn bg-purple-400 text-white px-3 py-1 rounded hover:bg-purple-500 transition w-full">Ajouter</button>
-            </div>
-        `;
-
-        photosContainer.prepend(photoCard);
-
-        // Gestion Like
-        const likeBtn = photoCard.querySelector('.like-btn');
-        const likeCount = photoCard.querySelector('.like-count');
-        likeBtn.addEventListener('click', () => {
-            likeCount.textContent = parseInt(likeCount.textContent) + 1;
-        });
-
-        // Gestion Commentaires
-        const commentToggleBtn = photoCard.querySelector('.comment-toggle-btn');
-        const commentSection = photoCard.querySelector('.comment-section');
-        commentToggleBtn.addEventListener('click', () => {
-            commentSection.classList.toggle('hidden');
-        });
-
-        const addCommentBtn = photoCard.querySelector('.add-comment-btn');
-        const commentInput = photoCard.querySelector('.comment-input');
-        const commentsList = photoCard.querySelector('.comments-list');
-
-        addCommentBtn.addEventListener('click', () => {
-            const commentText = commentInput.value.trim();
-            if(commentText === '') return;
-            const commentItem = document.createElement('div');
-            commentItem.textContent = commentText;
-            commentItem.className = "bg-gray-100 rounded px-2 py-1 mb-1 text-gray-700";
-            commentsList.appendChild(commentItem);
-            commentInput.value = '';
-        });
-    };
-    reader.readAsDataURL(file);
-
-    // Reset input pour pouvoir re-uploader la même image si nécessaire
-    event.target.value = '';
-}
-</script>
 
 
         <!-- Page Avis -->
@@ -1142,7 +1088,27 @@ function handlePhotoUpload(event) {
         document.getElementById('adminPasswordInput').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') loginAdmin();
         });
-    </script>
+    // Fonctions pour la Lightbox (Agrandissement des photos)
+function openLightbox(src, caption) {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCap = document.getElementById('lightbox-caption');
+    
+    if (lb && lbImg && lbCap) {
+        lbImg.src = src;
+        lbCap.textContent = caption;
+        lb.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Empêche de scroller la page derrière
+    }
+}
+
+function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    if (lb) {
+        lb.classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Réactive le scroll
+    }
+}</script>
 <footer class="bg-white border-t border-gray-200 pt-8 pb-24 mt-10">
     <div class="max-w-md mx-auto px-4 text-center">
         <p class="text-gray-600 text-sm mb-4">
@@ -1154,5 +1120,65 @@ function handlePhotoUpload(event) {
             <a href="#" class="hover:underline text-pink-600">Politique de confidentialité</a>
         </div>
     </div>
-</footer></body>
+</footer><div id="lightbox" class="hidden fixed inset-0 bg-black/95 z-[100] flex flex-col items-center justify-center p-4" onclick="closeLightbox()">
+    <button class="absolute top-6 right-6 text-white text-4xl">&times;</button>
+    <img id="lightbox-img" src="" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl transition-transform duration-300">
+    <p id="lightbox-caption" class="text-white mt-4 text-lg font-medium"></p>
+</div><script>
+// État de l'application
+let appState = {
+    isAdmin: false,
+    currentPage: 'home',
+    reviews: [],
+    reports: []
+};
+
+// Navigation principale
+function goToPage(pageId) {
+    // Masquer toutes les pages
+    document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
+    // Afficher la page demandée
+    const target = document.getElementById(`page-${pageId}`);
+    if(target) target.classList.remove('hidden');
+    appState.currentPage = pageId;
+    window.scrollTo(0,0);
+}
+
+// Gestion Admin
+function toggleAdminPrompt() {
+    document.getElementById('adminPrompt').classList.remove('hidden');
+}
+
+function closeAdminPrompt() {
+    document.getElementById('adminPrompt').classList.add('hidden');
+}
+
+function loginAdmin() {
+    const pass = document.getElementById('adminPasswordInput').value;
+    if(pass === "1234") { // Remplace par ton code
+        appState.isAdmin = true;
+        document.getElementById('adminIcon').innerText = "🔓";
+        document.getElementById('page-admin').classList.remove('hidden');
+        goToPage('admin');
+        closeAdminPrompt();
+        alert("Connecté avec succès !");
+    } else {
+        alert("Code incorrect");
+    }
+}
+
+// Fonctions de signalement
+function openReportModal() { document.getElementById('reportModal').classList.remove('hidden'); }
+function closeReportModal() { document.getElementById('reportModal').classList.add('hidden'); }
+
+function submitReport() {
+    const msg = document.getElementById('reportMessage').value;
+    if(msg) {
+        appState.reports.push(msg);
+        alert("Signalement envoyé. Merci !");
+        closeReportModal();
+        document.getElementById('reportMessage').value = "";
+    }
+}
+</script></body>
 </html
