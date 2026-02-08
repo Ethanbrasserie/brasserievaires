@@ -378,10 +378,10 @@
                 <h3 class="text-2xl font-bold text-purple-700 mb-4">👨‍🍳 Suggestion du chef</h3>
                 <div class="py-3">
                     <div class="flex justify-between mb-1">
-                        <span class="font-semibold text-gray-800">Bavette d'aloyau</span>
+                        <span class="font-semibold text-gray-800">Aucun contenu pour le momment.</span>
                         <span class="text-pink-600 font-bold">20€</span>
                     </div>
-                    <p class="text-sm text-gray-500">Sauce poivre, frites maison & salade</p>
+                    <p class="text-sm text-gray-500">Aucune description disponible pour le momment</p>
                 </div>
             </div>
 
@@ -802,7 +802,7 @@ function switchMenuTab(tab) {
                 closeAdminPrompt();
                 goToPage('admin');
                 document.getElementById('adminIcon').textContent = '🔓';
-                alert('✅ Connexion réussie');
+                alert('✅ Connexion réussie Bonjour Ethan');
             } else {
                 alert('❌ Code incorrect');
                 document.getElementById('adminPasswordInput').value = '';
@@ -813,7 +813,7 @@ function switchMenuTab(tab) {
             appState.adminMode = false;
             document.getElementById('adminIcon').textContent = '🔒';
             goToPage('home');
-            alert('✅ Déconnecté du mode administrateur');
+            alert('✅ Déconnecté du mode administrateur Aurevoir Ethan');
         }
 
         // Signalements
@@ -1155,7 +1155,7 @@ function closeAdminPrompt() {
 
 function loginAdmin() {
     const pass = document.getElementById('adminPasswordInput').value;
-    if(pass === "1234") { // Remplace par ton code
+    if(pass === "ETHANBRASSERIEADMIN") { // Remplace par ton code
         appState.isAdmin = true;
         document.getElementById('adminIcon').innerText = "🔓";
         document.getElementById('page-admin').classList.remove('hidden');
