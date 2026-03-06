@@ -13,8 +13,6 @@
             color: #7c3aed !important; 
             font-weight: 800;
         }
-
-        /* === JEUX PAGE STYLES === */
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             33% { transform: translateY(-12px) rotate(3deg); }
@@ -24,49 +22,14 @@
             0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(236, 72, 153, 0.2); }
             50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8), 0 0 80px rgba(236, 72, 153, 0.5); }
         }
-        @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes bounce-in {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.05); }
-            70% { transform: scale(0.9); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-        @keyframes star-twinkle {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.7); }
-        }
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-        @keyframes confetti-fall {
-            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(60px) rotate(360deg); opacity: 0; }
-        }
-
-        .jeux-hero-btn {
-            animation: pulse-glow 2s ease-in-out infinite;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .jeux-hero-btn:hover {
-            transform: scale(1.05) translateY(-3px);
-            animation: none;
-            box-shadow: 0 0 60px rgba(168, 85, 247, 1), 0 0 100px rgba(236, 72, 153, 0.7);
-        }
-        .jeux-hero-btn:active {
-            transform: scale(0.97);
-        }
-        .floating-emoji {
-            animation: float 3s ease-in-out infinite;
-            display: inline-block;
-        }
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes star-twinkle { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.7); } }
+        @keyframes wiggle { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+        .jeux-hero-btn { animation: pulse-glow 2s ease-in-out infinite; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .jeux-hero-btn:hover { transform: scale(1.05) translateY(-3px); animation: none; box-shadow: 0 0 60px rgba(168, 85, 247, 1), 0 0 100px rgba(236, 72, 153, 0.7); }
+        .jeux-hero-btn:active { transform: scale(0.97); }
+        .floating-emoji { animation: float 3s ease-in-out infinite; display: inline-block; }
         .floating-emoji:nth-child(2) { animation-delay: 0.5s; }
         .floating-emoji:nth-child(3) { animation-delay: 1s; }
         .floating-emoji:nth-child(4) { animation-delay: 1.5s; }
@@ -78,72 +41,19 @@
             background-clip: text;
             animation: shimmer 3s linear infinite;
         }
-        .star {
-            position: absolute;
-            animation: star-twinkle ease-in-out infinite;
-        }
-        .game-card {
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .game-card:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
-        }
-        .spin-icon {
-            animation: spin-slow 8s linear infinite;
-        }
-        .wiggle-icon {
-            animation: wiggle 1.5s ease-in-out infinite;
-        }
-        .confetti {
-            position: absolute;
-            font-size: 18px;
-            animation: confetti-fall 2s ease-in infinite;
-            pointer-events: none;
-        }
-
-        /* === TOGGLE SWITCH === */
-        .toggle-switch {
-            position: relative;
-            width: 52px;
-            height: 28px;
-            flex-shrink: 0;
-        }
+        .star { position: absolute; animation: star-twinkle ease-in-out infinite; }
+        .game-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .game-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2); }
+        .spin-icon { animation: spin-slow 8s linear infinite; }
+        .wiggle-icon { animation: wiggle 1.5s ease-in-out infinite; }
+        .toggle-switch { position: relative; width: 52px; height: 28px; flex-shrink: 0; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background: #d1d5db;
-            border-radius: 999px;
-            transition: 0.3s;
-        }
-        .toggle-slider::before {
-            content: '';
-            position: absolute;
-            width: 20px; height: 20px;
-            left: 4px; bottom: 4px;
-            background: white;
-            border-radius: 50%;
-            transition: 0.3s;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-        }
+        .toggle-slider { position: absolute; cursor: pointer; inset: 0; background: #d1d5db; border-radius: 999px; transition: 0.3s; }
+        .toggle-slider::before { content: ''; position: absolute; width: 20px; height: 20px; left: 4px; bottom: 4px; background: white; border-radius: 50%; transition: 0.3s; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
         input:checked + .toggle-slider { background: linear-gradient(to right, #7c3aed, #ec4899); }
         input:checked + .toggle-slider::before { transform: translateX(24px); }
-
-        .jeux-bg {
-            background: linear-gradient(135deg, #fdf4ff 0%, #fce7f3 30%, #ede9fe 60%, #fdf4ff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .jeux-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 20% 50%, rgba(168,85,247,0.08) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 20%, rgba(236,72,153,0.08) 0%, transparent 60%);
-            pointer-events: none;
-        }
+        .jeux-bg { background: linear-gradient(135deg, #fdf4ff 0%, #fce7f3 30%, #ede9fe 60%, #fdf4ff 100%); position: relative; overflow: hidden; }
+        .jeux-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(168,85,247,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(236,72,153,0.08) 0%, transparent 60%); pointer-events: none; }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 pb-20">
@@ -151,41 +61,21 @@
     <div id="adminPrompt" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl">
             <h3 class="text-xl font-bold text-gray-800 mb-4">🔐 Connexion Administrateur</h3>
-            <input type="password" id="adminPasswordInput" placeholder="Code d'accès" 
-                   class="w-full p-3 border border-gray-300 rounded-lg mb-4">
+            <input type="password" id="adminPasswordInput" placeholder="Code d'accès" class="w-full p-3 border border-gray-300 rounded-lg mb-4">
             <div class="flex gap-3">
-                <button onclick="closeAdminPrompt()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold">
-                    Annuler
-                </button>
-                <button onclick="loginAdmin()" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">
-                    Connexion
-                </button>
+                <button onclick="closeAdminPrompt()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold">Annuler</button>
+                <button onclick="loginAdmin()" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">Connexion</button>
             </div>
         </div>
     </div>
-    <!-- Modal Signalement -->
+
     <div id="reportModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl max-h-[80vh] overflow-y-auto">
             <h3 class="text-xl font-bold text-gray-800 mb-4">🚨 Signaler un problème</h3>
-            <p class="text-sm text-gray-600 mb-4">
-                Vous avez trouvé un bug ou quelque chose ne fonctionne pas ? Signalez-le ici.
-            </p>
-            <textarea id="reportMessage" placeholder="Décrivez le problème rencontré..." 
-                      class="w-full p-3 border border-gray-300 rounded-lg h-32 mb-4"></textarea>
-            <div class="bg-blue-50 border-l-4 border-blue-400 p-3 mb-4">
-                <p class="text-xs text-blue-800">
-                    <strong>📍 Où va le signalement ?</strong><br/>
-                    Le rapport est enregistré et peut être consulté par le propriétaire dans le panneau d'administration.
-                    <br/><br/>
-                </p>
-            </div>
+            <textarea id="reportMessage" placeholder="Décrivez le problème rencontré..." class="w-full p-3 border border-gray-300 rounded-lg h-32 mb-4"></textarea>
             <div class="flex gap-3">
-                <button onclick="closeReportModal()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold">
-                    Annuler
-                </button>
-                <button onclick="submitReport()" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">
-                    Envoyer
-                </button>
+                <button onclick="closeReportModal()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold">Annuler</button>
+                <button onclick="submitReport()" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">Envoyer</button>
             </div>
         </div>
     </div>
@@ -198,12 +88,7 @@
                 <h1 class="text-2xl font-bold text-center select-none">Brasserie de la Gare</h1>
                 <p class="text-center text-sm mt-1 opacity-90 select-none">Vaires-sur-Marne</p>
             </div>
-            <span id="adminIcon" style="display:none;">🔒</span>
-            <button onclick="openReportModal()" 
-                    class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all" 
-                    title="Signaler un problème">
-                🚨
-            </button>
+            <button onclick="openReportModal()" class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all">🚨</button>
         </div>
     </div>
 
@@ -229,33 +114,13 @@
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">📊 Statistiques</h3>
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-purple-50 p-4 rounded-lg text-center">
-                        <p class="text-3xl font-bold text-purple-600" id="stat-reviews">0</p>
-                        <p class="text-sm text-gray-600 mt-1">Avis clients</p>
-                    </div>
-                    <div class="bg-pink-50 p-4 rounded-lg text-center">
-                        <p class="text-3xl font-bold text-pink-600" id="stat-photos">0</p>
-                        <p class="text-sm text-gray-600 mt-1">Photos</p>
-                    </div>
-                    <div class="bg-blue-50 p-4 rounded-lg text-center">
-                        <p class="text-3xl font-bold text-blue-600" id="stat-rating">0.0⭐</p>
-                        <p class="text-sm text-gray-600 mt-1">Note moyenne</p>
-                    </div>
-                    <div class="bg-green-50 p-4 rounded-lg text-center">
-                        <p class="text-3xl font-bold text-green-600" id="stat-reports">0</p>
-                        <p class="text-sm text-gray-600 mt-1">Signalements</p>
-                    </div>
-                    <div class="bg-indigo-50 p-4 rounded-lg text-center">
-                        <p class="text-3xl font-bold text-indigo-600" id="stat-visitors">0</p>
-                        <p class="text-sm text-gray-600 mt-1">Visiteurs total</p>
-                    </div>
-                    <div class="bg-teal-50 p-4 rounded-lg text-center">
-                        <p class="text-3xl font-bold text-teal-600" id="stat-visitors-today">0</p>
-                        <p class="text-sm text-gray-600 mt-1">Visiteurs aujourd'hui</p>
-                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-purple-600" id="stat-reviews">0</p><p class="text-sm text-gray-600 mt-1">Avis clients</p></div>
+                    <div class="bg-pink-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-pink-600" id="stat-photos">0</p><p class="text-sm text-gray-600 mt-1">Photos</p></div>
+                    <div class="bg-blue-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-blue-600" id="stat-rating">0.0⭐</p><p class="text-sm text-gray-600 mt-1">Note moyenne</p></div>
+                    <div class="bg-green-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-green-600" id="stat-reports">0</p><p class="text-sm text-gray-600 mt-1">Signalements</p></div>
+                    <div class="bg-indigo-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-indigo-600" id="stat-visitors">0</p><p class="text-sm text-gray-600 mt-1">Visiteurs total</p></div>
+                    <div class="bg-teal-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-teal-600" id="stat-visitors-today">0</p><p class="text-sm text-gray-600 mt-1">Visiteurs aujourd'hui</p></div>
                 </div>
-
-                <!-- Graphique pages visitées -->
                 <div class="mt-4">
                     <p class="text-sm font-semibold text-gray-600 mb-3">📈 Pages les plus visitées</p>
                     <div id="stat-pages" class="space-y-2"></div>
@@ -265,313 +130,124 @@
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">🛠️ Actions rapides</h3>
                 <div class="space-y-3">
-                    <button onclick="goToPage('reviews')" 
-                            class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between hover:shadow-lg transition-all">
-                        <span>💬 Gérer les avis</span>
-                        <span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-reviews-count">0</span>
-                    </button>
-                    <button onclick="goToPage('gallery')" 
-                            class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between hover:shadow-lg transition-all">
-                        <span>📸 Gérer les photos</span>
-                        <span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-photos-count">0</span>
-                    </button>
-                    <button onclick="viewReports()" 
-                            class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between hover:shadow-lg transition-all">
-                        <span>🚨 Voir les signalements</span>
-                        <span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-reports-count">0</span>
-                    </button>
+                    <button onclick="goToPage('reviews')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between"><span>💬 Gérer les avis</span><span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-reviews-count">0</span></button>
+                    <button onclick="goToPage('gallery')" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between"><span>📸 Gérer les photos</span><span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-photos-count">0</span></button>
+                    <button onclick="viewReports()" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between"><span>🚨 Voir les signalements</span><span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-reports-count">0</span></button>
                 </div>
             </div>
 
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">⚙️ Paramètres</h3>
                 <div class="space-y-3">
-                    <button onclick="deleteAllReviews()" 
-                            class="w-full bg-red-50 text-red-600 p-3 rounded-lg font-medium hover:bg-red-100 transition-all">
-                        🗑️ Supprimer tous les avis
-                    </button>
-                    <button onclick="deleteAllPhotos()" 
-                            class="w-full bg-red-50 text-red-600 p-3 rounded-lg font-medium hover:bg-red-100 transition-all">
-                        🗑️ Supprimer toutes les photos
-                    </button>
-                    <button onclick="deleteAllReports()" 
-                            class="w-full bg-orange-50 text-orange-600 p-3 rounded-lg font-medium hover:bg-orange-100 transition-all">
-                        🗑️ Effacer les signalements
-                    </button>
-                    <button onclick="resetMenuToDefault()" 
-                            class="w-full bg-yellow-50 text-yellow-700 p-3 rounded-lg font-medium hover:bg-yellow-100 transition-all">
-                        🔄 Remettre la carte par défaut
-                    </button>
-                    <button onclick="resetVisitors()" 
-                            class="w-full bg-indigo-50 text-indigo-600 p-3 rounded-lg font-medium hover:bg-indigo-100 transition-all">
-                        🔄 Remettre les compteurs à zéro
-                    </button>
+                    <button onclick="deleteAllReviews()" class="w-full bg-red-50 text-red-600 p-3 rounded-lg font-medium hover:bg-red-100">🗑️ Supprimer tous les avis</button>
+                    <button onclick="deleteAllPhotos()" class="w-full bg-red-50 text-red-600 p-3 rounded-lg font-medium hover:bg-red-100">🗑️ Supprimer toutes les photos</button>
+                    <button onclick="deleteAllReports()" class="w-full bg-orange-50 text-orange-600 p-3 rounded-lg font-medium hover:bg-orange-100">🗑️ Effacer les signalements</button>
+                    <button onclick="resetMenuToDefault()" class="w-full bg-yellow-50 text-yellow-700 p-3 rounded-lg font-medium hover:bg-yellow-100">🔄 Remettre la carte par défaut</button>
+                    <button onclick="resetVisitors()" class="w-full bg-indigo-50 text-indigo-600 p-3 rounded-lg font-medium hover:bg-indigo-100">🔄 Remettre les compteurs à zéro</button>
                 </div>
             </div>
 
-            <!-- Section modifier la carte -->
+            <!-- Éditeur de carte -->
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-1">✏️ Modifier la carte</h3>
                 <p class="text-xs text-gray-400 mb-4">Modifiez les plats, prix et disponibilités en temps réel</p>
-
-                <!-- Sélecteur de carte -->
                 <div class="flex gap-2 mb-4">
-                    <button onclick="switchAdminMenuTab('semaine')" id="admin-tab-semaine"
-                            class="flex-1 py-2 rounded-xl text-sm font-bold bg-purple-600 text-white transition-all">
-                        📋 Semaine
-                    </button>
-                    <button onclick="switchAdminMenuTab('samedi')" id="admin-tab-samedi"
-                            class="flex-1 py-2 rounded-xl text-sm font-bold bg-gray-100 text-gray-500 transition-all">
-                        ⭐ Samedi
-                    </button>
+                    <button onclick="switchAdminMenuTab('semaine')" id="admin-tab-semaine" class="flex-1 py-2 rounded-xl text-sm font-bold bg-purple-600 text-white transition-all">📋 Semaine</button>
+                    <button onclick="switchAdminMenuTab('samedi')" id="admin-tab-samedi" class="flex-1 py-2 rounded-xl text-sm font-bold bg-gray-100 text-gray-500 transition-all">⭐ Samedi</button>
                 </div>
-
                 <div id="admin-menu-editor"></div>
-
-                <!-- Bouton ajouter catégorie -->
-                <button onclick="addCategory()"
-                        class="w-full mt-4 border-2 border-dashed border-purple-300 text-purple-500 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-all">
-                    ➕ Ajouter une catégorie
-                </button>
+                <button onclick="addCategory()" class="w-full mt-4 border-2 border-dashed border-purple-300 text-purple-500 py-3 rounded-xl font-semibold hover:bg-purple-50">➕ Ajouter une catégorie</button>
             </div>
 
-            <!-- Section bandeau d'annonce -->
+            <!-- Bandeau annonce -->
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-1">📢 Bandeau d'annonce</h3>
                 <p class="text-xs text-gray-400 mb-4">Affiche un message en haut du site pour tous les visiteurs</p>
                 <div class="space-y-3">
                     <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
                         <span class="font-semibold text-gray-700 text-sm">Activer le bandeau</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="annonce-toggle" onchange="toggleAnnonce(this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
+                        <label class="toggle-switch"><input type="checkbox" id="annonce-toggle" onchange="toggleAnnonce(this.checked)"><span class="toggle-slider"></span></label>
                     </div>
-                    <div>
-                        <label class="text-xs text-gray-500 font-semibold mb-1 block">Message</label>
-                        <input type="text" id="annonce-input" placeholder="Ex : Fermé ce mercredi 🎄 Joyeux Noël !"
-                               class="w-full p-3 border border-gray-200 rounded-xl text-sm"
-                               oninput="updateAnnonce()"/>
-                    </div>
+                    <div><label class="text-xs text-gray-500 font-semibold mb-1 block">Message</label><input type="text" id="annonce-input" placeholder="Ex : Fermé ce mercredi 🎄" class="w-full p-3 border border-gray-200 rounded-xl text-sm" oninput="updateAnnonce()"/></div>
                     <div>
                         <label class="text-xs text-gray-500 font-semibold mb-2 block">Emoji</label>
-                        <div class="flex gap-2 flex-wrap" id="emoji-picker">
-                            <button onclick="setAnnonceEmoji('📢')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">📢</button>
-                            <button onclick="setAnnonceEmoji('⚠️')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">⚠️</button>
-                            <button onclick="setAnnonceEmoji('🎉')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">🎉</button>
-                            <button onclick="setAnnonceEmoji('🔴')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">🔴</button>
-                            <button onclick="setAnnonceEmoji('✅')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">✅</button>
-                            <button onclick="setAnnonceEmoji('🍺')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">🍺</button>
-                            <button onclick="setAnnonceEmoji('❄️')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">❄️</button>
-                            <button onclick="setAnnonceEmoji('🎄')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">🎄</button>
+                        <div class="flex gap-2 flex-wrap">
+                            <button onclick="setAnnonceEmoji('📢')" class="text-2xl p-1 rounded-lg hover:bg-gray-100">📢</button>
+                            <button onclick="setAnnonceEmoji('⚠️')" class="text-2xl p-1 rounded-lg hover:bg-gray-100">⚠️</button>
+                            <button onclick="setAnnonceEmoji('🎉')" class="text-2xl p-1 rounded-lg hover:bg-gray-100">🎉</button>
+                            <button onclick="setAnnonceEmoji('🔴')" class="text-2xl p-1 rounded-lg hover:bg-gray-100">🔴</button>
+                            <button onclick="setAnnonceEmoji('✅')" class="text-2xl p-1 rounded-lg hover:bg-gray-100">✅</button>
+                            <button onclick="setAnnonceEmoji('🍺')" class="text-2xl p-1 rounded-lg hover:bg-gray-100">🍺</button>
+                            <button onclick="setAnnonceEmoji('❄️')" class="text-2xl p-1 rounded-lg hover:bg-gray-100">❄️</button>
+                            <button onclick="setAnnonceEmoji('🎄')" class="text-2xl p-1 rounded-lg hover:bg-gray-100">🎄</button>
                         </div>
                     </div>
                     <div>
                         <label class="text-xs text-gray-500 font-semibold mb-2 block">Couleur</label>
                         <div class="flex gap-2">
-                            <button onclick="setAnnonceCouleur('orange')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-orange-100 text-orange-700 hover:bg-orange-200">🟠 Orange</button>
-                            <button onclick="setAnnonceCouleur('red')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-red-100 text-red-700 hover:bg-red-200">🔴 Rouge</button>
-                            <button onclick="setAnnonceCouleur('green')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-green-100 text-green-700 hover:bg-green-200">🟢 Vert</button>
-                            <button onclick="setAnnonceCouleur('purple')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-purple-100 text-purple-700 hover:bg-purple-200">🟣 Violet</button>
+                            <button onclick="setAnnonceCouleur('orange')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-orange-100 text-orange-700">🟠 Orange</button>
+                            <button onclick="setAnnonceCouleur('red')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-red-100 text-red-700">🔴 Rouge</button>
+                            <button onclick="setAnnonceCouleur('green')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-green-100 text-green-700">🟢 Vert</button>
+                            <button onclick="setAnnonceCouleur('purple')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-purple-100 text-purple-700">🟣 Violet</button>
                         </div>
                     </div>
                 </div>
-                <!-- Prévisualisation -->
                 <div id="annonce-preview" class="hidden mt-4 rounded-xl px-4 py-3 flex items-center gap-3">
                     <span id="preview-emoji" class="text-2xl">📢</span>
-                    <p id="preview-texte" class="text-sm font-semibold flex-1">Aperçu du message</p>
+                    <p id="preview-texte" class="text-sm font-semibold flex-1">Aperçu</p>
                 </div>
             </div>
 
-            <!-- Section événements admin -->
+            <!-- Événements admin -->
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-1">🎉 Gérer les événements</h3>
-                <p class="text-xs text-gray-400 mb-4">Ajoutez des soirées et événements spéciaux</p>
-
-                <!-- Formulaire ajout -->
                 <div class="bg-purple-50 rounded-2xl p-4 mb-4 space-y-3">
-                    <input type="text" id="event-titre" placeholder="Titre (ex : Soirée Quiz 🎤)"
-                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
-                    <input type="date" id="event-date"
-                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
-                    <input type="text" id="event-heure" placeholder="Heure (ex : 19h00)"
-                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
-                    <textarea id="event-desc" placeholder="Description de l'événement..."
-                              class="w-full p-3 border border-gray-200 rounded-xl text-sm h-20"></textarea>
+                    <input type="text" id="event-titre" placeholder="Titre de l'événement" class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    <input type="date" id="event-date" class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    <input type="text" id="event-heure" placeholder="Heure (ex : 19h00)" class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    <textarea id="event-desc" placeholder="Description..." class="w-full p-3 border border-gray-200 rounded-xl text-sm h-20"></textarea>
                     <div class="flex gap-2">
-                        <input type="text" id="event-emoji" placeholder="Emoji (ex: 🎤)" maxlength="4"
-                               class="w-20 p-3 border border-gray-200 rounded-xl text-sm text-center text-xl"/>
-                        <button onclick="ajouterEvent()"
-                                class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold text-sm">
-                            ➕ Ajouter l'événement
-                        </button>
+                        <input type="text" id="event-emoji" placeholder="🎤" maxlength="4" class="w-20 p-3 border border-gray-200 rounded-xl text-sm text-center text-xl"/>
+                        <button onclick="ajouterEvent()" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold text-sm">➕ Ajouter</button>
                     </div>
                 </div>
-
-                <!-- Liste des événements admin -->
                 <div id="events-container-admin" class="space-y-2"></div>
             </div>
 
-            <!-- Section sondages admin -->
+            <!-- Sondages admin -->
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-1">📊 Gérer les sondages</h3>
-                <p class="text-xs text-gray-400 mb-4">Créez des sondages pour vos clients</p>
                 <div class="bg-purple-50 rounded-2xl p-4 mb-4 space-y-3">
-                    <input type="text" id="sondage-question" placeholder="Question (ex: Quel est votre plat préféré ?)"
-                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    <input type="text" id="sondage-question" placeholder="Question du sondage" class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
                     <div id="sondage-options-admin" class="space-y-2">
                         <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 1"/>
                         <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 2"/>
                         <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 3 (optionnel)"/>
                         <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 4 (optionnel)"/>
                     </div>
-                    <button onclick="ajouterSondage()"
-                            class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold text-sm">
-                        ➕ Publier le sondage
-                    </button>
+                    <button onclick="ajouterSondage()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold text-sm">➕ Publier le sondage</button>
                 </div>
                 <div id="sondages-admin" class="space-y-2"></div>
             </div>
 
-            <!-- Section visibilité des pages -->
+            <!-- Visibilité pages -->
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-1">👁️ Visibilité des pages</h3>
-                <p class="text-xs text-gray-400 mb-4">Masquez une page pour la cacher aux visiteurs (icône retirée de la nav)</p>
-                <div class="space-y-3" id="visibility-toggles">
-
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">📋</span>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-sm">Carte</p>
-                                <p class="text-xs text-gray-400">Menu semaine & samedi</p>
-                            </div>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked onchange="togglePageVisibility('menu', this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">📸</span>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-sm">Photos</p>
-                                <p class="text-xs text-gray-400">Galerie de l'établissement</p>
-                            </div>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked onchange="togglePageVisibility('gallery', this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">⭐</span>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-sm">Avis</p>
-                                <p class="text-xs text-gray-400">Avis & notes clients</p>
-                            </div>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked onchange="togglePageVisibility('reviews', this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">📊</span>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-sm">Sondage</p>
-                                <p class="text-xs text-gray-400">Sondages clients</p>
-                            </div>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked onchange="togglePageVisibility('sondage', this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">🥂</span>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-sm">Calculateur Groupe</p>
-                                <p class="text-xs text-gray-400">Estimation budget groupe</p>
-                            </div>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked onchange="togglePageVisibility('calcul', this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">🎉</span>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-sm">Événements</p>
-                                <p class="text-xs text-gray-400">Soirées & événements</p>
-                            </div>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked onchange="togglePageVisibility('events', this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">🎮</span>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-sm">Jeux</p>
-                                <p class="text-xs text-gray-400">Jeux de la brasserie</p>
-                            </div>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked onchange="togglePageVisibility('jeux', this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">📅</span>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-sm">Réservation</p>
-                                <p class="text-xs text-gray-400">Widget de réservation</p>
-                            </div>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked onchange="togglePageVisibility('reservation', this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">📞</span>
-                            <div>
-                                <p class="font-semibold text-gray-800 text-sm">Contact</p>
-                                <p class="text-xs text-gray-400">Horaires & coordonnées</p>
-                            </div>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked onchange="togglePageVisibility('contact', this.checked)">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-
+                <p class="text-xs text-gray-400 mb-4">Masquez une page pour la cacher aux visiteurs</p>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📋</span><div><p class="font-semibold text-gray-800 text-sm">Carte</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('menu', this.checked)"><span class="toggle-slider"></span></label></div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📸</span><div><p class="font-semibold text-gray-800 text-sm">Photos</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('gallery', this.checked)"><span class="toggle-slider"></span></label></div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">⭐</span><div><p class="font-semibold text-gray-800 text-sm">Avis</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('reviews', this.checked)"><span class="toggle-slider"></span></label></div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📊</span><div><p class="font-semibold text-gray-800 text-sm">Sondage</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('sondage', this.checked)"><span class="toggle-slider"></span></label></div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">🥂</span><div><p class="font-semibold text-gray-800 text-sm">Calculateur Groupe</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('calcul', this.checked)"><span class="toggle-slider"></span></label></div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">🎉</span><div><p class="font-semibold text-gray-800 text-sm">Événements</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('events', this.checked)"><span class="toggle-slider"></span></label></div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">🎮</span><div><p class="font-semibold text-gray-800 text-sm">Jeux</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('jeux', this.checked)"><span class="toggle-slider"></span></label></div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📅</span><div><p class="font-semibold text-gray-800 text-sm">Réservation</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('reservation', this.checked)"><span class="toggle-slider"></span></label></div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📞</span><div><p class="font-semibold text-gray-800 text-sm">Contact</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('contact', this.checked)"><span class="toggle-slider"></span></label></div>
                 </div>
             </div>
 
-            <button onclick="logoutAdmin()" 
-                    class="w-full bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-all">
-                🚪 Se déconnecter
-            </button>
+            <button onclick="logoutAdmin()" class="w-full bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold">🚪 Se déconnecter</button>
         </div>
 
         <!-- Page Accueil -->
@@ -583,500 +259,219 @@
                     <p class="text-lg">Brasserie de la Gare</p>
                 </div>
             </div>
-            
             <div class="bg-white rounded-2xl p-6 shadow-md">
-                <p class="text-center text-gray-700 leading-relaxed">
-                    Bienvenue à la Brasserie de la Gare, votre adresse gourmande à Vaires-sur-Marne. 
-                    Découvrez une cuisine traditionnelle revisitée dans une ambiance conviviale et moderne.
-                </p>
+                <p class="text-center text-gray-700 leading-relaxed">Bienvenue à la Brasserie de la Gare, votre adresse gourmande à Vaires-sur-Marne. Découvrez une cuisine traditionnelle revisitée dans une ambiance conviviale et moderne.</p>
             </div>
-
-            <button onclick="goToPage('menu')" 
-                    class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all">
-                Découvrir notre carte
-            </button>
-
+            <button onclick="goToPage('menu')" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold shadow-lg">Découvrir notre carte</button>
             <div class="grid grid-cols-2 gap-4">
-                <button onclick="goToPage('reservation')" 
-                        class="bg-pink-100 text-pink-700 py-3 rounded-xl font-medium hover:bg-pink-200 transition-all">
-                    Réserver
-                </button>
-                <button onclick="goToPage('reviews')" 
-                        class="bg-purple-100 text-purple-700 py-3 rounded-xl font-medium hover:bg-purple-200 transition-all">
-                    Avis clients
-                </button>
+                <button onclick="goToPage('reservation')" class="bg-pink-100 text-pink-700 py-3 rounded-xl font-medium">Réserver</button>
+                <button onclick="goToPage('reviews')" class="bg-purple-100 text-purple-700 py-3 rounded-xl font-medium">Avis clients</button>
             </div>
         </div>
 
-       <!-- Page Menu -->
+        <!-- Page Menu -->
         <div id="page-menu" class="hidden space-y-4">
             <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Notre Carte</h2>
-            
-            <!-- Onglets de sélection de carte -->
             <div class="bg-white rounded-2xl p-2 shadow-md flex gap-2">
-                <button onclick="switchMenuTab('semaine')" id="tab-semaine" 
-                        class="flex-1 py-3 rounded-xl font-semibold transition-all tab-active">
-                    📋 Carte Semaine (CHANGE SOUVENT)
-                </button>
-                <button onclick="switchMenuTab('samedi')" id="tab-samedi" 
-                        class="flex-1 py-3 rounded-xl font-semibold transition-all text-gray-600">
-                    ⭐ Carte Samedi (CHANGE EN FONCTIONS DES SEMAINES)
-                </button>
+                <button onclick="switchMenuTab('semaine')" id="tab-semaine" class="flex-1 py-3 rounded-xl font-semibold transition-all tab-active">📋 Carte Semaine</button>
+                <button onclick="switchMenuTab('samedi')" id="tab-samedi" class="flex-1 py-3 rounded-xl font-semibold transition-all text-gray-600">⭐ Carte Samedi</button>
             </div>
-
-            <!-- Carte Semaine — rendu dynamique -->
             <div id="menu-semaine" class="space-y-4">
                 <div id="render-menu-semaine"></div>
-                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 text-center">
-                    <p class="text-gray-600 text-sm italic">⚠️ Les desserts ne sont pas disponibles en version à emporter.</p>
-                </div>
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 text-center"><p class="text-gray-600 text-sm italic">⚠️ Les desserts ne sont pas disponibles en version à emporter.</p></div>
             </div>
-
-            <!-- Carte Samedi — rendu dynamique -->
             <div id="menu-samedi" class="hidden space-y-4">
-                <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl p-4 shadow-md text-center">
-                    <p class="text-lg font-bold">⭐ Les Saveurs de La Brasserie de la Gare</p>
-                    <p class="text-sm mt-1 opacity-90">Carte spéciale du samedi</p>
-                </div>
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl p-4 shadow-md text-center"><p class="text-lg font-bold">⭐ Les Saveurs de La Brasserie de la Gare</p><p class="text-sm mt-1 opacity-90">Carte spéciale du samedi</p></div>
                 <div id="render-menu-samedi"></div>
             </div>
         </div>
 
+        <script>
+        function switchMenuTab(tab) {
+            appState.currentMenuTab = tab;
+            document.getElementById('menu-semaine').classList.add('hidden');
+            document.getElementById('menu-samedi').classList.add('hidden');
+            document.getElementById(`menu-${tab}`).classList.remove('hidden');
+            document.getElementById('tab-semaine').classList.remove('tab-active');
+            document.getElementById('tab-semaine').classList.add('text-gray-600');
+            document.getElementById('tab-samedi').classList.remove('tab-active');
+            document.getElementById('tab-samedi').classList.add('text-gray-600');
+            document.getElementById(`tab-${tab}`).classList.add('tab-active');
+            document.getElementById(`tab-${tab}`).classList.remove('text-gray-600');
+        }
+        </script>
 
-<!-- PARTIE JAVASCRIPT POUR LA NAVIGATION ENTRE LES ONGLETS -->
-<script>
-// Navigation entre les onglets de menu
-function switchMenuTab(tab) {
-    appState.currentMenuTab = tab;
-    
-    // Cacher tous les menus
-    document.getElementById('menu-semaine').classList.add('hidden');
-    document.getElementById('menu-samedi').classList.add('hidden');
-    
-    // Afficher le menu sélectionné
-    document.getElementById(`menu-${tab}`).classList.remove('hidden');
-    
-    // Mettre à jour les onglets
-    document.getElementById('tab-semaine').classList.remove('tab-active');
-    document.getElementById('tab-semaine').classList.add('text-gray-600');
-    document.getElementById('tab-samedi').classList.remove('tab-active');
-    document.getElementById('tab-samedi').classList.add('text-gray-600');
-    
-    document.getElementById(`tab-${tab}`).classList.add('tab-active');
-    document.getElementById(`tab-${tab}`).classList.remove('text-gray-600');
-}
-</script>
-
-       <!-- Page Galerie -->
-<div id="page-gallery" class="hidden space-y-6">
-    <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Galerie Photos</h2>
-
-    <div class="space-y-4">
-        <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">📸 Nos Photos</h3>
-        <div class="grid grid-cols-2 gap-3">
-            <img src="https://i.postimg.cc/Zq7B4vbJ/Vaires-Cafe-de-la-gare-Restaurant-2016-(1).jpg" 
-                 onclick="openLightbox(this.src, 'L\'établissement')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Extérieur">
-            
-            <img src="https://i.postimg.cc/28RqkDDR/Brasserie-De-La-Gare-13082773-1113849182020596-4764936473557170360-n.jpg" 
-                 onclick="openLightbox(this.src, 'La Brasserie')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Enseigne">
-            
-            <img src="https://i.postimg.cc/0QhzJgKC/Brasserie-de-la-gare-Full-Size-Render-min-png.jpg" 
-                 onclick="openLightbox(this.src, 'Notre Salle')" class="w-full h-40 object-cover rounded-2xl cursor-pointer col-span-2" alt="Salle">
-
-            <img src="https://i.postimg.cc/fLzthjnp/66189972.jpg" 
-                 onclick="openLightbox(this.src, 'Cuisine Maison')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Plat">
-            
-            <img src="https://i.postimg.cc/XvV7ZjHv/Brasserie-de-la-gare-353637041-743405227788034-8798944052498322968-n-jpg.jpg" 
-                 onclick="openLightbox(this.src, 'Pièce du Boucher')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Viande">
-            
-            <img src="https://i.postimg.cc/Jz8BqW6v/r6ce-french-fries-Restaurant-Brasserie-De-La-Gare-(1).jpg" 
-                 onclick="openLightbox(this.src, 'Frites Maison')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Frites">
-            
-            <img src="https://i.postimg.cc/GtYHFMkr/Brasserie-de-la-gare-IMG-5483-min-png.jpg" 
-                 onclick="openLightbox(this.src, 'Le Garden')" class="w-full h-40 object-cover rounded-2xl cursor-pointer" alt="Burger">
+        <!-- Page Galerie -->
+        <div id="page-gallery" class="hidden space-y-6">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Galerie Photos</h2>
+            <div class="grid grid-cols-2 gap-3">
+                <img src="https://i.postimg.cc/Zq7B4vbJ/Vaires-Cafe-de-la-gare-Restaurant-2016-(1).jpg" onclick="openLightbox(this.src, 'L\'établissement')" class="w-full h-40 object-cover rounded-2xl cursor-pointer">
+                <img src="https://i.postimg.cc/28RqkDDR/Brasserie-De-La-Gare-13082773-1113849182020596-4764936473557170360-n.jpg" onclick="openLightbox(this.src, 'La Brasserie')" class="w-full h-40 object-cover rounded-2xl cursor-pointer">
+                <img src="https://i.postimg.cc/0QhzJgKC/Brasserie-de-la-gare-Full-Size-Render-min-png.jpg" onclick="openLightbox(this.src, 'Notre Salle')" class="w-full h-40 object-cover rounded-2xl cursor-pointer col-span-2">
+                <img src="https://i.postimg.cc/fLzthjnp/66189972.jpg" onclick="openLightbox(this.src, 'Cuisine Maison')" class="w-full h-40 object-cover rounded-2xl cursor-pointer">
+                <img src="https://i.postimg.cc/XvV7ZjHv/Brasserie-de-la-gare-353637041-743405227788034-8798944052498322968-n-jpg.jpg" onclick="openLightbox(this.src, 'Pièce du Boucher')" class="w-full h-40 object-cover rounded-2xl cursor-pointer">
+                <img src="https://i.postimg.cc/Jz8BqW6v/r6ce-french-fries-Restaurant-Brasserie-De-La-Gare-(1).jpg" onclick="openLightbox(this.src, 'Frites Maison')" class="w-full h-40 object-cover rounded-2xl cursor-pointer">
+                <img src="https://i.postimg.cc/GtYHFMkr/Brasserie-de-la-gare-IMG-5483-min-png.jpg" onclick="openLightbox(this.src, 'Le Garden')" class="w-full h-40 object-cover rounded-2xl cursor-pointer">
+            </div>
+            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
         </div>
-    </div>
-
-    <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">
-        🏠 Retour à l'accueil
-    </button>
-</div>
-
 
         <!-- Page Avis -->
         <div id="page-reviews" class="hidden space-y-4">
             <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Avis Clients</h2>
-            
-            <div id="admin-notice-reviews" class="hidden bg-green-50 border-l-4 border-green-400 p-4 rounded-lg">
-                <p class="text-sm text-green-800">✅ Mode admin actif - Vous pouvez tout gérer</p>
-            </div>
-            
+            <div id="admin-notice-reviews" class="hidden bg-green-50 border-l-4 border-green-400 p-4 rounded-lg"><p class="text-sm text-green-800">✅ Mode admin actif</p></div>
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="font-bold text-lg mb-4 text-gray-800">Voir tous nos avis</h3>
                 <div class="space-y-3">
-                    <a href="https://www.tripadvisor.fr/Restaurant_Review-g2587180-d20123264-Reviews-Restaurant_Brasserie_De_La_Gare-Vaires_sur_Marne_Seine_et_Marne_Ile_de_France.html" 
-                       target="_blank" rel="noopener noreferrer"
-                       class="block bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-xl font-semibold text-center">
-                        📍 Voir sur TripAdvisor
-                    </a>
-                    <a href="https://www.google.com/search?q=BRASSERIE+DE+LA+GARE+Avis" 
-                       target="_blank" rel="noopener noreferrer"
-                       class="block bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl font-semibold text-center">
-                        ⭐ Voir sur Google
-                    </a>
+                    <a href="https://www.tripadvisor.fr/Restaurant_Review-g2587180-d20123264-Reviews-Restaurant_Brasserie_De_La_Gare-Vaires_sur_Marne_Seine_et_Marne_Ile_de_France.html" target="_blank" class="block bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-xl font-semibold text-center">📍 Voir sur TripAdvisor</a>
+                    <a href="https://www.google.com/search?q=BRASSERIE+DE+LA+GARE+Avis" target="_blank" class="block bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl font-semibold text-center">⭐ Voir sur Google</a>
                 </div>
             </div>
-
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="font-bold text-lg mb-4 text-gray-800">Laisser un avis</h3>
                 <div class="space-y-4">
-                    <input type="text" id="review-name" placeholder="Votre nom" 
-                           class="w-full p-3 border border-gray-300 rounded-lg">
-                    <div>
-                        <p class="text-sm text-gray-600 mb-2">Note</p>
-                        <div class="flex gap-2" id="rating-stars">
-                            <span onclick="setRating(1)" class="cursor-pointer text-3xl">⭐</span>
-                            <span onclick="setRating(2)" class="cursor-pointer text-3xl">⭐</span>
-                            <span onclick="setRating(3)" class="cursor-pointer text-3xl">⭐</span>
-                            <span onclick="setRating(4)" class="cursor-pointer text-3xl">⭐</span>
-                            <span onclick="setRating(5)" class="cursor-pointer text-3xl">⭐</span>
-                        </div>
-                    </div>
-                    <textarea id="review-comment" placeholder="Votre avis" 
-                              class="w-full p-3 border border-gray-300 rounded-lg h-32"></textarea>
-                    <button onclick="submitReview()" 
-                            class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">
-                        Publier mon avis
-                    </button>
+                    <input type="text" id="review-name" placeholder="Votre nom" class="w-full p-3 border border-gray-300 rounded-lg">
+                    <div><p class="text-sm text-gray-600 mb-2">Note</p><div class="flex gap-2" id="rating-stars"><span onclick="setRating(1)" class="cursor-pointer text-3xl">⭐</span><span onclick="setRating(2)" class="cursor-pointer text-3xl">⭐</span><span onclick="setRating(3)" class="cursor-pointer text-3xl">⭐</span><span onclick="setRating(4)" class="cursor-pointer text-3xl">⭐</span><span onclick="setRating(5)" class="cursor-pointer text-3xl">⭐</span></div></div>
+                    <textarea id="review-comment" placeholder="Votre avis" class="w-full p-3 border border-gray-300 rounded-lg h-32"></textarea>
+                    <button onclick="submitReview()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">Publier mon avis</button>
                 </div>
             </div>
-
             <div id="reviews-container"></div>
         </div>
 
         <!-- Page Réservation -->
-<div id="page-reservation" class="hidden space-y-4">
-    <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Réserver une table</h2>
-    
-    <div class="bg-white rounded-2xl p-4 shadow-md">
-        <div id="hors-hydra-8bc9df20-349d-4191-a666-10088fc8340c" class="reservation-tool-box min-h-[500px]">
-            <iframe id="reservationWidget" 
-                    src="https://reservation.dish.co/widget/hydra-8bc9df20-349d-4191-a666-10088fc8340c?&eid=hydra-8bc9df20-349d-4191-a666-10088fc8340c&tagid=hors-hydra-8bc9df20-349d-4191-a666-10088fc8340c&width=100%25&height=500&lang=fr" 
-                    width="100%" height="600" frameborder="0">
-                <p>Votre navigateur ne supporte pas les iframes.</p>
-            </iframe>
+        <div id="page-reservation" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Réserver une table</h2>
+            <div class="bg-white rounded-2xl p-4 shadow-md">
+                <iframe src="https://reservation.dish.co/widget/hydra-8bc9df20-349d-4191-a666-10088fc8340c?&eid=hydra-8bc9df20-349d-4191-a666-10088fc8340c&tagid=hors-hydra-8bc9df20-349d-4191-a666-10088fc8340c&width=100%25&height=500&lang=fr" width="100%" height="600" frameborder="0"></iframe>
+            </div>
+            <div class="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-xl">
+                <p class="text-sm text-purple-800 font-medium mb-2">🕒 Créneaux de service :</p>
+                <p class="text-xs text-purple-700">Midi : 12h00, 12h15, 12h40 | 13h00, 13h15, 13h40 | 14h00, 14h15</p>
+            </div>
+            <button onclick="goToPage('home')" class="w-full bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold">Retour à l'accueil</button>
         </div>
-    </div>
-
-    <div class="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-xl">
-        <p class="text-sm text-purple-800 font-medium mb-2">🕒 Créneaux de service :</p>
-        <p class="text-xs text-purple-700">
-            Midi : 12h00, 12h15, 12h40 | 13h00, 13h15, 13h40 | 14h00, 14h15
-        </p>
-        <p class="text-[10px] text-gray-500 mt-2 italic">*Si un créneau n'apparaît pas dans le calendrier, c'est qu'il est complet.</p>
-    </div>
-
-    <button onclick="goToPage('home')" class="w-full bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold">
-        Retour à l'accueil
-    </button>
-</div>
-
-<script> 
-    // Chargement du script externe Dish.co
-    (function(d, t) { 
-        var e=d.createElement(t),s=d.getElementsByTagName(t)[0]; 
-        e.src = "https://reservation.dish.co/widget.js"; 
-        s.parentNode.insertBefore(e,s); 
-    }(document, 'script')); 
-</script>
-
+        <script>(function(d,t){var e=d.createElement(t),s=d.getElementsByTagName(t)[0];e.src="https://reservation.dish.co/widget.js";s.parentNode.insertBefore(e,s);}(document,'script'));</script>
 
         <!-- Page Contact -->
         <div id="page-contact" class="hidden space-y-4">
             <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Contact</h2>
-            
             <div class="bg-white rounded-2xl p-6 shadow-md space-y-4">
-                <a href="tel:0160202401" class="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
-                    <div class="bg-purple-600 p-3 rounded-full text-white text-2xl">📞</div>
-                    <div>
-                        <p class="text-sm text-gray-600">Téléphone</p>
-                        <p class="font-semibold text-purple-700">01 60 20 24 01</p>
-                    </div>
-                </a>
-                
-                <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
-                    <div class="bg-pink-600 p-3 rounded-full text-white text-2xl">📍</div>
-                    <div>
-                        <p class="text-sm text-gray-600">Adresse</p>
-                        <p class="font-semibold text-pink-700">3 Place du Général de Gaulle</p>
-                        <p class="text-sm text-gray-600">77360 Vaires-sur-Marne</p>
-                    </div>
-                </div>
+                <a href="tel:0160202401" class="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl"><div class="bg-purple-600 p-3 rounded-full text-white text-2xl">📞</div><div><p class="text-sm text-gray-600">Téléphone</p><p class="font-semibold text-purple-700">01 60 20 24 01</p></div></a>
+                <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl"><div class="bg-pink-600 p-3 rounded-full text-white text-2xl">📍</div><div><p class="text-sm text-gray-600">Adresse</p><p class="font-semibold text-pink-700">3 Place du Général de Gaulle</p><p class="text-sm text-gray-600">77360 Vaires-sur-Marne</p></div></div>
             </div>
-
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="font-semibold text-gray-800 mb-4">🕐 Horaires d'ouverture</h3>
                 <div class="space-y-2">
-                    <div class="flex justify-between py-2 border-b border-gray-100">
-                        <span class="font-semibold text-gray-800">Lundi</span>
-                        <span class="text-gray-600">07h00 - 20h30</span>
-                    </div>
-                    <div class="flex justify-between py-2 border-b border-gray-100">
-                        <span class="font-semibold text-gray-800">Mardi</span>
-                        <span class="text-gray-600">07h30 - 20h30</span>
-                    </div>
-                    <div class="flex justify-between py-2 border-b border-gray-100">
-                        <span class="font-semibold text-gray-800">Mercredi</span>
-                        <span class="text-gray-600">07h30 - 20h30</span>
-                    </div>
-                    <div class="flex justify-between py-2 border-b border-gray-100">
-                        <span class="font-semibold text-gray-800">Jeudi</span>
-                        <span class="text-gray-600">07h30 - 20h30</span>
-                    </div>
-                    <div class="flex justify-between py-2 border-b border-gray-100">
-                        <span class="font-semibold text-gray-800">Vendredi</span>
-                        <span class="text-gray-600">07h30 - 20h30</span>
-                    </div>
-                    <div class="flex justify-between py-2 border-b border-gray-100">
-                        <span class="font-semibold text-gray-800">Samedi</span>
-                        <span class="text-gray-600">08h00 - 16h00</span>
-                    </div>
-                    <div class="flex justify-between py-2">
-                        <span class="font-semibold text-gray-800">Dimanche</span>
-                        <span class="text-red-600 font-semibold">Fermé</span>
-                    </div>
-                </div>
-                <p class="mt-4 text-xs text-gray-500 italic bg-purple-50 p-3 rounded-lg">
-                    ⚠️ Les horaires peuvent être modifiés sans préavis.
-                </p>
-            </div>
-
-            <div class="bg-white rounded-2xl p-4 shadow-md">
-                <h3 class="font-semibold text-gray-800 mb-3">Nous trouver</h3>
-                <div class="h-48 bg-gradient-to-br from-purple-200 to-pink-200 rounded-xl flex items-center justify-center">
-                    <a href="https://www.google.com/maps/search/?api=1&query=3+Place+du+Général+de+Gaulle,+77360+Vaires-sur-Marne" 
-                       target="_blank" rel="noopener noreferrer"
-                       class="bg-white px-6 py-3 rounded-lg font-semibold text-purple-700 shadow-md">
-                        Ouvrir dans Google Maps
-                    </a>
+                    <div class="flex justify-between py-2 border-b border-gray-100"><span class="font-semibold text-gray-800">Lundi</span><span class="text-gray-600">07h00 - 20h30</span></div>
+                    <div class="flex justify-between py-2 border-b border-gray-100"><span class="font-semibold text-gray-800">Mardi</span><span class="text-gray-600">07h30 - 20h30</span></div>
+                    <div class="flex justify-between py-2 border-b border-gray-100"><span class="font-semibold text-gray-800">Mercredi</span><span class="text-gray-600">07h30 - 20h30</span></div>
+                    <div class="flex justify-between py-2 border-b border-gray-100"><span class="font-semibold text-gray-800">Jeudi</span><span class="text-gray-600">07h30 - 20h30</span></div>
+                    <div class="flex justify-between py-2 border-b border-gray-100"><span class="font-semibold text-gray-800">Vendredi</span><span class="text-gray-600">07h30 - 20h30</span></div>
+                    <div class="flex justify-between py-2 border-b border-gray-100"><span class="font-semibold text-gray-800">Samedi</span><span class="text-gray-600">08h00 - 16h00</span></div>
+                    <div class="flex justify-between py-2"><span class="font-semibold text-gray-800">Dimanche</span><span class="text-red-600 font-semibold">Fermé</span></div>
                 </div>
             </div>
-
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="font-semibold text-gray-800 mb-4">Suivez-nous</h3>
                 <div class="grid grid-cols-2 gap-4">
-                    <a href="https://www.instagram.com/brasserievaires" target="_blank" rel="noopener noreferrer"
-                       class="flex items-center justify-center gap-2 p-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl font-medium">
-                        📷 Instagram
-                    </a>
-                    <a href="https://www.facebook.com/brasserievaires" target="_blank" rel="noopener noreferrer"
-                       class="flex items-center justify-center gap-2 p-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl font-medium">
-                        👍 Facebook
-                    </a>
+                    <a href="https://www.instagram.com/brasserievaires" target="_blank" class="flex items-center justify-center gap-2 p-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl font-medium">📷 Instagram</a>
+                    <a href="https://www.facebook.com/brasserievaires" target="_blank" class="flex items-center justify-center gap-2 p-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl font-medium">👍 Facebook</a>
                 </div>
             </div>
         </div>
 
-        <!-- ==================== PAGE JEUX ==================== -->
+        <!-- Page Jeux -->
         <div id="page-jeux" class="hidden space-y-6">
-
-            <!-- Hero animé -->
-            <div class="jeux-bg rounded-3xl p-8 text-center relative overflow-hidden shadow-xl" style="min-height: 220px;">
-                <!-- Étoiles décoratives -->
-                <span class="star text-yellow-400 text-xl" style="top:12%; left:8%; animation-duration:2.1s;">⭐</span>
-                <span class="star text-pink-400 text-sm" style="top:20%; right:10%; animation-duration:1.7s; animation-delay:0.4s;">✨</span>
-                <span class="star text-purple-400 text-lg" style="bottom:18%; left:15%; animation-duration:2.5s; animation-delay:0.8s;">⭐</span>
-                <span class="star text-yellow-300 text-sm" style="bottom:25%; right:8%; animation-duration:1.9s; animation-delay:1.2s;">✨</span>
-                <span class="star text-pink-300 text-base" style="top:50%; left:4%; animation-duration:2.3s; animation-delay:0.2s;">🌟</span>
-
-                <!-- Emojis flottants -->
+            <div class="jeux-bg rounded-3xl p-8 text-center relative overflow-hidden shadow-xl" style="min-height:220px;">
+                <span class="star text-yellow-400 text-xl" style="top:12%;left:8%;animation-duration:2.1s;">⭐</span>
+                <span class="star text-pink-400 text-sm" style="top:20%;right:10%;animation-duration:1.7s;animation-delay:0.4s;">✨</span>
+                <span class="star text-purple-400 text-lg" style="bottom:18%;left:15%;animation-duration:2.5s;animation-delay:0.8s;">⭐</span>
                 <div class="flex justify-center gap-4 mb-4">
-                    <span class="floating-emoji text-4xl">🎮</span>
-                    <span class="floating-emoji text-4xl">🎲</span>
-                    <span class="floating-emoji text-4xl">🎯</span>
-                    <span class="floating-emoji text-4xl">🏆</span>
+                    <span class="floating-emoji text-4xl">🎮</span><span class="floating-emoji text-4xl">🎲</span><span class="floating-emoji text-4xl">🎯</span><span class="floating-emoji text-4xl">🏆</span>
                 </div>
-
                 <h2 class="text-3xl font-black mb-2 shimmer-text">Jeux de la Brasserie</h2>
                 <p class="text-gray-600 text-sm font-medium">Amusez-vous en attendant votre repas !</p>
             </div>
-
-            <!-- Carte principale avec le bouton -->
             <div class="bg-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
-                <!-- Fond décoratif -->
                 <div class="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full opacity-50"></div>
-                <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-pink-200 to-orange-200 rounded-full opacity-40"></div>
-
                 <div class="relative z-10 text-center">
-                    <div class="mb-5">
-                        <span class="text-6xl wiggle-icon inline-block">🎮</span>
-                    </div>
+                    <div class="mb-5"><span class="text-6xl wiggle-icon inline-block">🎮</span></div>
                     <h3 class="text-xl font-black text-gray-800 mb-2">Prêt à jouer ?</h3>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">
-                        Découvrez notre sélection de mini-jeux spécialement créés pour la Brasserie de la Gare. 
-                        Parfait pour patienter en famille ou entre amis !
-                    </p>
-
-                    <!-- Bouton principal -->
-                    <a href="https://ethanbrasserie.github.io/jeuxenfant/" 
-                       target="_blank" rel="noopener noreferrer"
-                       class="jeux-hero-btn block w-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white py-5 rounded-2xl font-black text-lg shadow-2xl select-none"
-                       style="letter-spacing: 0.03em;">
-                        🕹️ &nbsp; Jouer maintenant !
-                    </a>
-
+                    <a href="https://ethanbrasserie.github.io/jeuxenfant/" target="_blank" class="jeux-hero-btn block w-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white py-5 rounded-2xl font-black text-lg shadow-2xl">🕹️ &nbsp; Jouer maintenant !</a>
                     <p class="text-xs text-gray-400 mt-3">S'ouvre dans un nouvel onglet</p>
                 </div>
             </div>
-
-            <!-- Cards infos -->
             <div class="grid grid-cols-2 gap-4">
-                <div class="game-card bg-gradient-to-br from-purple-500 to-purple-700 text-white rounded-2xl p-5 text-center shadow-lg">
-                    <div class="text-3xl mb-2 spin-icon inline-block">🎲</div>
-                    <p class="font-bold text-sm">Mini-Jeux</p>
-                    <p class="text-xs opacity-80 mt-1">Amusants & variés</p>
-                </div>
-                <div class="game-card bg-gradient-to-br from-pink-500 to-rose-600 text-white rounded-2xl p-5 text-center shadow-lg">
-                    <div class="text-3xl mb-2">👨‍👩‍👧‍👦</div>
-                    <p class="font-bold text-sm">Pour tous</p>
-                    <p class="text-xs opacity-80 mt-1">Famille & amis</p>
-                </div>
-                <div class="game-card bg-gradient-to-br from-orange-400 to-pink-500 text-white rounded-2xl p-5 text-center shadow-lg">
-                    <div class="text-3xl mb-2">⚡</div>
-                    <p class="font-bold text-sm">Rapide</p>
-                    <p class="text-xs opacity-80 mt-1">Jeux courts & fun</p>
-                </div>
-                <div class="game-card bg-gradient-to-br from-violet-500 to-purple-700 text-white rounded-2xl p-5 text-center shadow-lg">
-                    <div class="text-3xl mb-2">🏆</div>
-                    <p class="font-bold text-sm">Scores</p>
-                    <p class="text-xs opacity-80 mt-1">Qui gagnera ?</p>
-                </div>
+                <div class="game-card bg-gradient-to-br from-purple-500 to-purple-700 text-white rounded-2xl p-5 text-center shadow-lg"><div class="text-3xl mb-2 spin-icon inline-block">🎲</div><p class="font-bold text-sm">Mini-Jeux</p></div>
+                <div class="game-card bg-gradient-to-br from-pink-500 to-rose-600 text-white rounded-2xl p-5 text-center shadow-lg"><div class="text-3xl mb-2">👨‍👩‍👧‍👦</div><p class="font-bold text-sm">Pour tous</p></div>
+                <div class="game-card bg-gradient-to-br from-orange-400 to-pink-500 text-white rounded-2xl p-5 text-center shadow-lg"><div class="text-3xl mb-2">⚡</div><p class="font-bold text-sm">Rapide</p></div>
+                <div class="game-card bg-gradient-to-br from-violet-500 to-purple-700 text-white rounded-2xl p-5 text-center shadow-lg"><div class="text-3xl mb-2">🏆</div><p class="font-bold text-sm">Scores</p></div>
             </div>
-
-            <!-- Bandeau fun -->
-            <div class="bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-500 rounded-2xl p-4 text-center shadow-md">
-                <p class="text-white font-bold text-sm">🎉 Bonne chance à tous les joueurs ! 🎉</p>
-                <p class="text-white/80 text-xs mt-1">Que le meilleur gagne à la Brasserie de la Gare !</p>
-            </div>
-
-            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-all">
-                🏠 Retour à l'accueil
-            </button>
+            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
         </div>
-        <!-- ==================== FIN PAGE JEUX ==================== -->
 
         <!-- Page Événements -->
         <div id="page-events" class="hidden space-y-4">
             <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Événements</h2>
             <div id="events-container-public"></div>
-            <div id="events-empty" class="text-center py-16 text-gray-400">
-                <div class="text-6xl mb-4">🎉</div>
-                <p class="font-semibold">Aucun événement pour le moment</p>
-                <p class="text-sm mt-2">Revenez bientôt !</p>
-            </div>
-            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">
-                🏠 Retour à l'accueil
-            </button>
-        </div>
-
-        <!-- Page Chat -->
-        <div id="page-chat" class="hidden space-y-4">
-            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">💬 Nous contacter</h2>
-
-            <div class="bg-white rounded-2xl p-5 shadow-md">
-                <p class="text-sm text-gray-500 mb-4 text-center">Envoyez-nous un message, nous vous répondrons dès que possible !</p>
-
-                <!-- Fil de conversation -->
-                <div id="chat-thread" class="space-y-3 mb-4 max-h-80 overflow-y-auto pr-1"></div>
-
-                <!-- Formulaire envoi -->
-                <div id="chat-form" class="space-y-3">
-                    <input type="text" id="chat-nom" placeholder="Votre prénom"
-                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
-                    <div class="flex gap-2">
-                        <textarea id="chat-msg" placeholder="Votre message…"
-                                  class="flex-1 p-3 border border-gray-200 rounded-xl text-sm resize-none h-20"></textarea>
-                        <button onclick="envoyerMessage()"
-                                class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 rounded-xl font-bold text-xl self-end pb-3 pt-3">➤</button>
-                    </div>
-                </div>
-            </div>
-
-            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">
-                🏠 Retour à l'accueil
-            </button>
+            <div id="events-empty" class="text-center py-16 text-gray-400"><div class="text-6xl mb-4">🎉</div><p class="font-semibold">Aucun événement pour le moment</p><p class="text-sm mt-2">Revenez bientôt !</p></div>
+            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
         </div>
 
         <!-- Page Sondage -->
         <div id="page-sondage" class="hidden space-y-4">
             <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">📊 Sondages</h2>
             <div id="sondages-public"></div>
-            <div id="sondages-empty" class="text-center py-16 text-gray-400">
-                <div class="text-6xl mb-4">📊</div>
-                <p class="font-semibold">Aucun sondage en cours</p>
-                <p class="text-sm mt-2">Revenez bientôt !</p>
-            </div>
+            <div id="sondages-empty" class="text-center py-16 text-gray-400"><div class="text-6xl mb-4">📊</div><p class="font-semibold">Aucun sondage en cours</p></div>
             <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
         </div>
 
-        <!-- Page Calculateur Groupe -->
+        <!-- ===== PAGE CALCULATEUR GROUPE (NOUVEAU) ===== -->
         <div id="page-calcul" class="hidden space-y-4">
             <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">🥂 Calculateur Groupe</h2>
 
             <div class="bg-white rounded-2xl p-5 shadow-md space-y-4">
-                <p class="text-sm text-gray-500 text-center">Estimez le budget pour votre groupe en quelques secondes !</p>
+                <p class="text-sm text-gray-500 text-center">Composez votre commande et estimez le budget total !</p>
 
-                <div>
-                    <label class="text-xs font-bold text-gray-600 mb-1 block">Nombre de personnes</label>
-                    <input type="number" id="calc-personnes" value="10" min="1" max="200"
-                           oninput="calculerGroupe()"
-                           class="w-full p-3 border border-gray-200 rounded-xl text-lg font-bold text-center"/>
+                <!-- Nombre de personnes -->
+                <div class="flex items-center gap-3 bg-purple-50 rounded-xl p-3">
+                    <span class="text-2xl">👥</span>
+                    <label class="text-sm font-bold text-gray-700 flex-1">Nombre de personnes</label>
+                    <input type="number" id="calc-personnes" value="2" min="1" max="200" oninput="calculerGroupe()"
+                           class="w-20 p-2 border border-gray-200 rounded-xl text-lg font-bold text-center"/>
                 </div>
 
-                <div class="space-y-2">
-                    <label class="text-xs font-bold text-gray-600 block">Formule choisie</label>
-                    <div class="space-y-2" id="calc-formules">
-                        <label class="flex items-center justify-between p-3 bg-purple-50 rounded-xl cursor-pointer">
-                            <div class="flex items-center gap-2">
-                                <input type="radio" name="formule" value="18.9" onchange="calculerGroupe()" checked class="accent-purple-600"/>
-                                <span class="text-sm font-semibold text-gray-800">Entrée + Plat ou Plat + Dessert</span>
-                            </div>
-                            <span class="text-pink-600 font-bold text-sm">18,90€/pers</span>
-                        </label>
-                        <label class="flex items-center justify-between p-3 bg-purple-50 rounded-xl cursor-pointer">
-                            <div class="flex items-center gap-2">
-                                <input type="radio" name="formule" value="22.9" onchange="calculerGroupe()" class="accent-purple-600"/>
-                                <span class="text-sm font-semibold text-gray-800">Formule gourmande complète</span>
-                            </div>
-                            <span class="text-pink-600 font-bold text-sm">22,90€/pers</span>
-                        </label>
-                        <label class="flex items-center justify-between p-3 bg-purple-50 rounded-xl cursor-pointer">
-                            <div class="flex items-center gap-2">
-                                <input type="radio" name="formule" value="17" onchange="calculerGroupe()" class="accent-purple-600"/>
-                                <span class="text-sm font-semibold text-gray-800">Plat seul (burger / salade)</span>
-                            </div>
-                            <span class="text-pink-600 font-bold text-sm">~17€/pers</span>
-                        </label>
-                    </div>
+                <!-- Onglets Semaine / Samedi -->
+                <div class="flex gap-2">
+                    <button onclick="switchCalcTab('semaine')" id="calc-tab-semaine"
+                            class="flex-1 py-2 rounded-xl text-sm font-bold bg-purple-600 text-white transition-all">📋 Semaine</button>
+                    <button onclick="switchCalcTab('samedi')" id="calc-tab-samedi"
+                            class="flex-1 py-2 rounded-xl text-sm font-bold bg-gray-100 text-gray-500 transition-all">⭐ Samedi</button>
                 </div>
 
+                <!-- Liste des plats -->
+                <div id="calc-plats-list" class="space-y-3"></div>
+
+                <!-- Boissons -->
                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                    <label class="text-xs font-bold text-gray-600">Boissons incluses ?</label>
-                    <label class="toggle-switch ml-auto">
-                        <input type="checkbox" id="calc-boissons" onchange="calculerGroupe()">
-                        <span class="toggle-slider"></span>
-                    </label>
-                    <span class="text-xs text-gray-400">+5€/pers</span>
+                    <span class="text-xl">🍺</span>
+                    <label class="text-sm font-bold text-gray-600 flex-1">Boissons (+5€/pers)</label>
+                    <label class="toggle-switch"><input type="checkbox" id="calc-boissons" onchange="calculerGroupe()"><span class="toggle-slider"></span></label>
                 </div>
 
                 <!-- Résultat -->
-                <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-5 text-white text-center">
-                    <p class="text-sm opacity-80 mb-1">Estimation totale</p>
-                    <p class="text-5xl font-black" id="calc-total">—</p>
-                    <p class="text-sm opacity-80 mt-1" id="calc-detail"></p>
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-5 text-white">
+                    <div class="text-center mb-2">
+                        <p class="text-sm opacity-80 mb-1">Estimation totale</p>
+                        <p class="text-5xl font-black" id="calc-total">0 €</p>
+                        <p class="text-sm opacity-80 mt-1" id="calc-detail">Sélectionnez des plats ci-dessus</p>
+                    </div>
+                    <div id="calc-recap" class="space-y-1 border-t border-white/20 pt-3 text-sm"></div>
                 </div>
 
-                <p class="text-xs text-gray-400 text-center italic">* Estimation indicative, prix pouvant varier selon les plats choisis.</p>
+                <button onclick="resetCalculateur()" class="w-full bg-gray-100 text-gray-600 py-2 rounded-xl text-sm font-semibold">🔄 Tout réinitialiser</button>
+                <p class="text-xs text-gray-400 text-center italic">* Estimation indicative, prix pouvant varier.</p>
             </div>
 
             <div class="bg-white rounded-2xl p-5 shadow-md text-center">
@@ -1084,7 +479,6 @@ function switchMenuTab(tab) {
                 <button onclick="goToPage('reservation')" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">📅 Réserver une table</button>
                 <a href="tel:0160202401" class="block mt-2 w-full bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold">📞 Appeler directement</a>
             </div>
-
             <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
         </div>
 
@@ -1093,185 +487,206 @@ function switchMenuTab(tab) {
     <!-- Navigation Bottom -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
         <div class="max-w-md mx-auto flex justify-around py-2">
-            <button onclick="goToPage('home')" id="nav-home" 
-                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-purple-600 bg-purple-50">
-                <span class="text-2xl">🏠</span>
-                <span class="text-xs font-medium">Accueil</span>
-            </button>
-            <button onclick="goToPage('menu')" id="nav-menu" 
-                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
-                <span class="text-2xl">📋</span>
-                <span class="text-xs font-medium">Carte</span>
-            </button>
-            <button onclick="goToPage('gallery')" id="nav-gallery" 
-                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
-                <span class="text-2xl">📸</span>
-                <span class="text-xs font-medium">Photos</span>
-            </button>
-            <button onclick="goToPage('reviews')" id="nav-reviews" 
-                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
-                <span class="text-2xl">⭐</span>
-                <span class="text-xs font-medium">Avis</span>
-            </button>
-            <button onclick="goToPage('jeux')" id="nav-jeux" 
-                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
-                <span class="text-2xl">🎮</span>
-                <span class="text-xs font-medium">Jeux</span>
-            </button>
-            <button onclick="goToPage('events')" id="nav-events" 
-                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
-                <span class="text-2xl">🎉</span>
-                <span class="text-xs font-medium">Événements</span>
-            </button>
-            <button onclick="goToPage('sondage')" id="nav-sondage" 
-                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
-                <span class="text-2xl">📊</span>
-                <span class="text-xs font-medium">Sondage</span>
-            </button>
-            <button onclick="goToPage('calcul')" id="nav-calcul" 
-                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
-                <span class="text-2xl">🥂</span>
-                <span class="text-xs font-medium">Groupe</span>
-            </button>
-            <button onclick="goToPage('contact')" id="nav-contact" 
-                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
-                <span class="text-2xl">📞</span>
-                <span class="text-xs font-medium">Contact</span>
-            </button>
+            <button onclick="goToPage('home')" id="nav-home" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-purple-600 bg-purple-50"><span class="text-2xl">🏠</span><span class="text-xs font-medium">Accueil</span></button>
+            <button onclick="goToPage('menu')" id="nav-menu" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">📋</span><span class="text-xs font-medium">Carte</span></button>
+            <button onclick="goToPage('gallery')" id="nav-gallery" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">📸</span><span class="text-xs font-medium">Photos</span></button>
+            <button onclick="goToPage('reviews')" id="nav-reviews" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">⭐</span><span class="text-xs font-medium">Avis</span></button>
+            <button onclick="goToPage('jeux')" id="nav-jeux" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">🎮</span><span class="text-xs font-medium">Jeux</span></button>
+            <button onclick="goToPage('events')" id="nav-events" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">🎉</span><span class="text-xs font-medium">Événements</span></button>
+            <button onclick="goToPage('sondage')" id="nav-sondage" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">📊</span><span class="text-xs font-medium">Sondage</span></button>
+            <button onclick="goToPage('calcul')" id="nav-calcul" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">🥂</span><span class="text-xs font-medium">Groupe</span></button>
+            <button onclick="goToPage('contact')" id="nav-contact" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">📞</span><span class="text-xs font-medium">Contact</span></button>
         </div>
     </nav>
 
     <script>
-        // État de l'application
         let appState = {
             currentPage: 'home',
             adminMode: false,
-            photos: [],
-            myPhotoIds: [],
-            reviews: [],
-            myReviewIds: [],
+            photos: [], myPhotoIds: [],
+            reviews: [], myReviewIds: [],
             bugReports: [],
             currentRating: 5,
             currentAdminMenuTab: 'semaine',
             events: [],
             sondages: [],
             annonce: { active: false, texte: '', couleur: 'orange', emoji: '📢' },
-            pageVisibility: {
-                menu: true, gallery: true, reviews: true, jeux: true,
-                events: true, sondage: true, calcul: true,
-                reservation: true, contact: true
-            },
+            pageVisibility: { menu: true, gallery: true, reviews: true, jeux: true, events: true, sondage: true, calcul: true, reservation: true, contact: true },
             menu: {
                 semaine: [
-                    {
-                        id: 's1', titre: '🥗 Entrées', plats: [
-                            { id: 's1p1', nom: 'Œufs durs à la mayonnaise maison', prix: '6,90€', desc: '', dispo: true },
-                            { id: 's1p2', nom: 'Avocat crevette cocktail', prix: '7,90€', desc: '', dispo: true },
-                            { id: 's1p3', nom: 'Soupe à l\'oignon', prix: '6,90€', desc: '', dispo: true }
-                        ]
-                    },
-                    {
-                        id: 's2', titre: '🍔 Nos Burgers', plats: [
-                            { id: 's2p1', nom: 'BG', prix: '17€', desc: 'Bœuf haché, cheddar, bacon grillé, S.T.O, oignons confits', dispo: true },
-                            { id: 's2p2', nom: 'Avocado', prix: '17€', desc: 'Filet de poulet pané, cheddar, guacamole, S.T.O', dispo: true },
-                            { id: 's2p3', nom: 'Double Burger', prix: '19€', desc: '2 steaks de 120g, cheddar, ketchup, moutarde américaine, oignons', dispo: false }
-                        ]
-                    },
-                    {
-                        id: 's3', titre: '🥗 Nos Salades', plats: [
-                            { id: 's3p1', nom: 'La César', prix: '17€', desc: 'Poulet pané, croutons, tomates, Grana Padano (supp lardon +1€)', dispo: true },
-                            { id: 's3p2', nom: 'La Orientale', prix: '17€', desc: 'Tomates cerises, avocat, pois chiche au zaatar, falafels, crème de sésame', dispo: false },
-                            { id: 's3p3', nom: 'La Chèvre Miel', prix: '17€', desc: 'Tomates cerise, pommes sautées, lardons, toast de chèvre chaud au miel', dispo: true }
-                        ]
-                    },
-                    {
-                        id: 's4', titre: '🍽️ Viandes et Poissons', plats: [
-                            { id: 's4p1', nom: 'Tartare de bœuf du Limousin au couteau', prix: '17€', desc: 'Préparé, frites maison + salade', dispo: true },
-                            { id: 's4p2', nom: 'Œuf à cheval', prix: '16€', desc: 'Frites maison + salade', dispo: true },
-                            { id: 's4p3', nom: 'Cuisse de poulet rôtie', prix: '15€', desc: 'Frites maison, mayonnaise maison — disponibilité à demander', dispo: true },
-                            { id: 's4p4', nom: 'Fish and Chips', prix: '17€', desc: 'Sauce tartare', dispo: true }
-                        ]
-                    },
-                    {
-                        id: 's5', titre: '🍰 Les Desserts', plats: [
-                            { id: 's5p1', nom: 'Crème brûlée vanille', prix: '7,90€', desc: '', dispo: true },
-                            { id: 's5p2', nom: 'Café gourmand', prix: '9,90€', desc: '', dispo: true },
-                            { id: 's5p3', nom: 'Moelleux au chocolat', prix: '7,90€', desc: '', dispo: true }
-                        ]
-                    },
-                    {
-                        id: 's6', titre: '🍨 Les Coupes Glacées', plats: [
-                            { id: 's6p1', nom: 'Café / Choco / Caramel liégeois', prix: '7,90€', desc: '', dispo: true },
-                            { id: 's6p2', nom: 'Dame blanche', prix: '7,90€', desc: '', dispo: true },
-                            { id: 's6p3', nom: 'Colonel', prix: '9€', desc: '', dispo: true },
-                            { id: 's6p4', nom: 'Limoncello', prix: '9€', desc: '', dispo: true }
-                        ]
-                    }
+                    { id: 's1', titre: '🥗 Entrées', plats: [
+                        { id: 's1p1', nom: 'Œufs durs à la mayonnaise maison', prix: '6,90€', desc: '', dispo: true },
+                        { id: 's1p2', nom: 'Avocat crevette cocktail', prix: '7,90€', desc: '', dispo: true },
+                        { id: 's1p3', nom: 'Soupe à l\'oignon', prix: '6,90€', desc: '', dispo: true }
+                    ]},
+                    { id: 's2', titre: '🍔 Nos Burgers', plats: [
+                        { id: 's2p1', nom: 'BG', prix: '17€', desc: 'Bœuf haché, cheddar, bacon grillé, S.T.O, oignons confits', dispo: true },
+                        { id: 's2p2', nom: 'Avocado', prix: '17€', desc: 'Filet de poulet pané, cheddar, guacamole, S.T.O', dispo: true },
+                        { id: 's2p3', nom: 'Double Burger', prix: '19€', desc: '2 steaks de 120g, cheddar, ketchup, moutarde américaine, oignons', dispo: false }
+                    ]},
+                    { id: 's3', titre: '🥗 Nos Salades', plats: [
+                        { id: 's3p1', nom: 'La César', prix: '17€', desc: 'Poulet pané, croutons, tomates, Grana Padano', dispo: true },
+                        { id: 's3p2', nom: 'La Orientale', prix: '17€', desc: 'Tomates cerises, avocat, pois chiche, falafels', dispo: false },
+                        { id: 's3p3', nom: 'La Chèvre Miel', prix: '17€', desc: 'Tomates cerise, pommes sautées, lardons, toast de chèvre chaud au miel', dispo: true }
+                    ]},
+                    { id: 's4', titre: '🍽️ Viandes et Poissons', plats: [
+                        { id: 's4p1', nom: 'Tartare de bœuf du Limousin au couteau', prix: '17€', desc: 'Préparé, frites maison + salade', dispo: true },
+                        { id: 's4p2', nom: 'Œuf à cheval', prix: '16€', desc: 'Frites maison + salade', dispo: true },
+                        { id: 's4p3', nom: 'Cuisse de poulet rôtie', prix: '15€', desc: 'Frites maison, mayonnaise maison — disponibilité à demander', dispo: true },
+                        { id: 's4p4', nom: 'Fish and Chips', prix: '17€', desc: 'Sauce tartare', dispo: true }
+                    ]},
+                    { id: 's5', titre: '🍰 Les Desserts', plats: [
+                        { id: 's5p1', nom: 'Crème brûlée vanille', prix: '7,90€', desc: '', dispo: true },
+                        { id: 's5p2', nom: 'Café gourmand', prix: '9,90€', desc: '', dispo: true },
+                        { id: 's5p3', nom: 'Moelleux au chocolat', prix: '7,90€', desc: '', dispo: true }
+                    ]},
+                    { id: 's6', titre: '🍨 Les Coupes Glacées', plats: [
+                        { id: 's6p1', nom: 'Café / Choco / Caramel liégeois', prix: '7,90€', desc: '', dispo: true },
+                        { id: 's6p2', nom: 'Dame blanche', prix: '7,90€', desc: '', dispo: true },
+                        { id: 's6p3', nom: 'Colonel', prix: '9€', desc: '', dispo: true },
+                        { id: 's6p4', nom: 'Limoncello', prix: '9€', desc: '', dispo: true }
+                    ]}
                 ],
                 samedi: [
-                    {
-                        id: 'sa1', titre: '🎯 Formules du midi (hors week-end)', plats: [
-                            { id: 'sa1p1', nom: 'Entrée + Plat / Plat + Dessert', prix: '18,90€', desc: '', dispo: true },
-                            { id: 'sa1p2', nom: 'Formule gourmande : Entrée + Plat + Dessert', prix: '22,90€', desc: '', dispo: true }
-                        ]
-                    },
-                    {
-                        id: 'sa2', titre: '👨‍🍳 Suggestion du chef', plats: [
-                            { id: 'sa2p1', nom: 'Aucun contenu pour le moment', prix: '20€', desc: 'Aucune description disponible', dispo: true }
-                        ]
-                    },
-                    {
-                        id: 'sa3', titre: '🥗 Nos entrées', plats: [
-                            { id: 'sa3p1', nom: 'Œufs mayonnaise maison de la brasserie', prix: '6,90€', desc: '', dispo: true },
-                            { id: 'sa3p2', nom: 'Œuf poché au chorizo', prix: '6,90€', desc: '', dispo: true },
-                            { id: 'sa3p3', nom: 'Hareng pomme à l\'huile', prix: '6,90€', desc: '', dispo: true },
-                            { id: 'sa3p4', nom: 'Soupe à l\'oignon', prix: '7,90€', desc: '', dispo: true }
-                        ]
-                    },
-                    {
-                        id: 'sa4', titre: '🍽️ Les classiques de la brasserie', plats: [
-                            { id: 'sa4p1', nom: 'Fish and chips de la gare', prix: '14,90€', desc: '', dispo: true },
-                            { id: 'sa4p2', nom: 'BOISSON NAPITAK BY ETHAN (JUSTE LE SAMEDI)', prix: 'COMBIEN VOUS VOULEZ', desc: '', dispo: true },
-                            { id: 'sa4p3', nom: 'Bœuf bourguignon, coquillettes', prix: '18,50€', desc: '', dispo: true },
-                            { id: 'sa4p4', nom: 'Tartare de bœuf préparé minute', prix: '18€', desc: '', dispo: true },
-                            { id: 'sa4p5', nom: 'Le BG Burger', prix: '14,50€', desc: '', dispo: true },
-                            { id: 'sa4p6', nom: 'Salade César au poulet croustillant', prix: '14,50€', desc: '', dispo: true },
-                            { id: 'sa4p7', nom: 'Salade Seguin', prix: '14,50€', desc: '(+4€ lardons)', dispo: true }
-                        ]
-                    },
-                    {
-                        id: 'sa5', titre: '🍰 Nos desserts', plats: [
-                            { id: 'sa5p1', nom: 'La tarte très amandine', prix: '6,90€', desc: '', dispo: true },
-                            { id: 'sa5p2', nom: 'La mousse au chocolat', prix: '6,90€', desc: '', dispo: true },
-                            { id: 'sa5p3', nom: 'La crème brûlée à la vanille de Madagascar', prix: '7,90€', desc: '', dispo: true },
-                            { id: 'sa5p4', nom: 'Le café gourmand', prix: '9,90€', desc: '(+4€ en formule)', dispo: true }
-                        ]
-                    }
+                    { id: 'sa1', titre: '🎯 Formules du midi', plats: [
+                        { id: 'sa1p1', nom: 'Entrée + Plat / Plat + Dessert', prix: '18,90€', desc: '', dispo: true },
+                        { id: 'sa1p2', nom: 'Formule gourmande : Entrée + Plat + Dessert', prix: '22,90€', desc: '', dispo: true }
+                    ]},
+                    { id: 'sa2', titre: '👨‍🍳 Suggestion du chef', plats: [
+                        { id: 'sa2p1', nom: 'Plat du chef (à demander)', prix: '20€', desc: 'Varie chaque semaine', dispo: true }
+                    ]},
+                    { id: 'sa3', titre: '🥗 Nos entrées', plats: [
+                        { id: 'sa3p1', nom: 'Œufs mayonnaise maison de la brasserie', prix: '6,90€', desc: '', dispo: true },
+                        { id: 'sa3p2', nom: 'Œuf poché au chorizo', prix: '6,90€', desc: '', dispo: true },
+                        { id: 'sa3p3', nom: 'Hareng pomme à l\'huile', prix: '6,90€', desc: '', dispo: true },
+                        { id: 'sa3p4', nom: 'Soupe à l\'oignon', prix: '7,90€', desc: '', dispo: true }
+                    ]},
+                    { id: 'sa4', titre: '🍽️ Les classiques de la brasserie', plats: [
+                        { id: 'sa4p1', nom: 'Fish and chips de la gare', prix: '14,90€', desc: '', dispo: true },
+                        { id: 'sa4p8', nom: 'Napitak by Ethan', prix: '3€', desc: '', dispo: true },
+                        { id: 'sa4p3', nom: 'Bœuf bourguignon, coquillettes', prix: '18,50€', desc: '', dispo: true },
+                        { id: 'sa4p4', nom: 'Tartare de bœuf préparé minute', prix: '18€', desc: '', dispo: true },
+                        { id: 'sa4p5', nom: 'Le BG Burger', prix: '14,50€', desc: '', dispo: true },
+                        { id: 'sa4p6', nom: 'Salade César au poulet croustillant', prix: '14,50€', desc: '', dispo: true },
+                        { id: 'sa4p7', nom: 'Salade Seguin', prix: '14,50€', desc: '(+4€ lardons)', dispo: true }
+                    ]},
+                    { id: 'sa5', titre: '🍰 Nos desserts', plats: [
+                        { id: 'sa5p1', nom: 'La tarte très amandine', prix: '6,90€', desc: '', dispo: true },
+                        { id: 'sa5p2', nom: 'La mousse au chocolat', prix: '6,90€', desc: '', dispo: true },
+                        { id: 'sa5p3', nom: 'La crème brûlée à la vanille de Madagascar', prix: '7,90€', desc: '', dispo: true },
+                        { id: 'sa5p4', nom: 'Le café gourmand', prix: '9,90€', desc: '(+4€ en formule)', dispo: true },
+                        { id: 'sa5p5', nom: 'Gaufre chantilly et coulis', prix: '4€', desc: '', dispo: true },
+                        { id: 'sa5p6', nom: 'Cookie chantilly et coulis', prix: '3€', desc: '', dispo: true }
+                    ]}
                 ]
             }
         };
 
-        // ===== RENDU DE LA CARTE =====
-        function renderMenus() {
-            renderMenuTab('semaine');
-            renderMenuTab('samedi');
+        // ===== CALCULATEUR GROUPE (NOUVEAU) =====
+        let calcTab = 'semaine';
+        let calcQuantites = {};
+
+        function switchCalcTab(tab) {
+            calcTab = tab;
+            document.getElementById('calc-tab-semaine').className = 'flex-1 py-2 rounded-xl text-sm font-bold transition-all ' + (tab === 'semaine' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-500');
+            document.getElementById('calc-tab-samedi').className = 'flex-1 py-2 rounded-xl text-sm font-bold transition-all ' + (tab === 'samedi' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-500');
+            renderCalcPlats();
         }
 
+        function parsePrix(prixStr) {
+            if (!prixStr) return 0;
+            const match = prixStr.replace(',', '.').match(/[\d.]+/);
+            return match ? parseFloat(match[0]) : 0;
+        }
+
+        function renderCalcPlats() {
+            const cats = appState.menu[calcTab];
+            const container = document.getElementById('calc-plats-list');
+            if (!container) return;
+            container.innerHTML = cats.map(cat => {
+                const platsDispos = cat.plats.filter(p => p.dispo && parsePrix(p.prix) > 0);
+                if (platsDispos.length === 0) return '';
+                return `
+                <div class="border border-gray-100 rounded-2xl overflow-hidden">
+                    <div class="bg-purple-50 px-4 py-2">
+                        <p class="font-bold text-purple-700 text-sm">${cat.titre}</p>
+                    </div>
+                    <div class="divide-y divide-gray-50">
+                        ${platsDispos.map(p => {
+                            const qty = calcQuantites[p.id] || 0;
+                            return `
+                            <div class="flex items-center gap-2 px-3 py-2">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-semibold text-gray-800 truncate">${p.nom}</p>
+                                    <p class="text-xs text-pink-600 font-bold">${p.prix}</p>
+                                </div>
+                                <div class="flex items-center gap-1 flex-shrink-0">
+                                    <button onclick="changeQty('${p.id}', -1)" class="w-7 h-7 rounded-lg bg-gray-100 text-gray-600 font-bold text-lg flex items-center justify-center hover:bg-red-100 hover:text-red-500 transition-all">−</button>
+                                    <span class="w-6 text-center font-bold text-sm ${qty > 0 ? 'text-purple-600' : 'text-gray-400'}">${qty}</span>
+                                    <button onclick="changeQty('${p.id}', 1)" class="w-7 h-7 rounded-lg bg-gray-100 text-gray-600 font-bold text-lg flex items-center justify-center hover:bg-purple-100 hover:text-purple-600 transition-all">+</button>
+                                </div>
+                            </div>`;
+                        }).join('')}
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function changeQty(platId, delta) {
+            calcQuantites[platId] = Math.max(0, (calcQuantites[platId] || 0) + delta);
+            renderCalcPlats();
+            calculerGroupe();
+        }
+
+        function calculerGroupe() {
+            const nb = parseInt(document.getElementById('calc-personnes')?.value) || 1;
+            const boissons = document.getElementById('calc-boissons')?.checked ? 5 : 0;
+            let sousTotal = 0;
+            const recap = [];
+            [...appState.menu.semaine, ...appState.menu.samedi].forEach(cat => {
+                cat.plats.forEach(p => {
+                    const qty = calcQuantites[p.id] || 0;
+                    if (qty > 0) {
+                        const prix = parsePrix(p.prix);
+                        sousTotal += prix * qty;
+                        recap.push({ nom: p.nom, qty, total: prix * qty });
+                    }
+                });
+            });
+            const boissonsTotal = boissons * nb;
+            const total = sousTotal + boissonsTotal;
+            const totalEl = document.getElementById('calc-total');
+            const detailEl = document.getElementById('calc-detail');
+            const recapEl = document.getElementById('calc-recap');
+            if (totalEl) totalEl.textContent = total.toFixed(2).replace('.', ',') + ' €';
+            if (detailEl) detailEl.textContent = recap.length === 0 && !boissons ? 'Sélectionnez des plats ci-dessus' : recap.length + ' plat(s) sélectionné(s)' + (boissons ? ` + boissons (${nb} pers)` : '');
+            if (recapEl) recapEl.innerHTML = recap.map(r =>
+                `<div class="flex justify-between opacity-90"><span class="truncate flex-1 mr-2">${r.qty}× ${r.nom}</span><span class="font-bold flex-shrink-0">${r.total.toFixed(2).replace('.', ',')}€</span></div>`
+            ).join('') + (boissons ? `<div class="flex justify-between opacity-90 border-t border-white/20 pt-1 mt-1"><span>🍺 Boissons (${nb}×5€)</span><span class="font-bold">${boissonsTotal.toFixed(2).replace('.', ',')}€</span></div>` : '');
+        }
+
+        function resetCalculateur() {
+            calcQuantites = {};
+            const b = document.getElementById('calc-boissons');
+            if (b) b.checked = false;
+            renderCalcPlats();
+            calculerGroupe();
+        }
+
+        // ===== RENDU CARTE =====
+        function renderMenus() { renderMenuTab('semaine'); renderMenuTab('samedi'); }
         function renderMenuTab(tab) {
             const container = document.getElementById(`render-menu-${tab}`);
             if (!container) return;
-            const cats = appState.menu[tab];
-            container.innerHTML = cats.map(cat => `
+            container.innerHTML = appState.menu[tab].map(cat => `
                 <div class="bg-white rounded-2xl p-6 shadow-md mb-4">
                     <h3 class="text-2xl font-bold text-purple-700 mb-4">${cat.titre}</h3>
                     ${cat.plats.map((p, i) => {
                         const last = i === cat.plats.length - 1;
-                        const indispo = !p.dispo;
-                        return `
-                        <div class="py-3 ${last ? '' : 'border-b border-gray-100'} ${indispo ? 'opacity-40' : ''}">
+                        return `<div class="py-3 ${last ? '' : 'border-b border-gray-100'} ${!p.dispo ? 'opacity-40' : ''}">
                             <div class="flex justify-between mb-1">
-                                <span class="font-semibold text-gray-800">${indispo ? '🚫 ' : ''}${p.nom}</span>
-                                <span class="text-pink-600 font-bold whitespace-nowrap ml-2">${indispo ? 'Indisponible' : p.prix}</span>
+                                <span class="font-semibold text-gray-800">${!p.dispo ? '🚫 ' : ''}${p.nom}</span>
+                                <span class="text-pink-600 font-bold whitespace-nowrap ml-2">${!p.dispo ? 'Indisponible' : p.prix}</span>
                             </div>
                             ${p.desc ? `<p class="text-sm text-gray-500">${p.desc}</p>` : ''}
                         </div>`;
@@ -1290,45 +705,30 @@ function switchMenuTab(tab) {
 
         function renderAdminMenuEditor() {
             const tab = appState.currentAdminMenuTab;
-            const cats = appState.menu[tab];
             const editor = document.getElementById('admin-menu-editor');
             if (!editor) return;
-            editor.innerHTML = cats.map((cat, ci) => `
+            editor.innerHTML = appState.menu[tab].map((cat, ci) => `
                 <div class="border border-gray-200 rounded-2xl mb-4 overflow-hidden">
-                    <!-- Header catégorie -->
                     <div class="bg-purple-50 px-4 py-3 flex items-center justify-between">
-                        <input type="text" value="${cat.titre}"
-                               onchange="updateCatTitle('${tab}', ${ci}, this.value)"
-                               class="font-bold text-purple-700 bg-transparent border-none outline-none flex-1 text-sm"/>
+                        <input type="text" value="${cat.titre}" onchange="updateCatTitle('${tab}', ${ci}, this.value)" class="font-bold text-purple-700 bg-transparent border-none outline-none flex-1 text-sm"/>
                         <div class="flex gap-2 ml-2">
-                            <button onclick="addPlat('${tab}', ${ci})"
-                                    class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-lg font-semibold">+ Plat</button>
-                            <button onclick="deleteCat('${tab}', ${ci})"
-                                    class="text-xs bg-red-100 text-red-500 px-2 py-1 rounded-lg font-semibold">🗑️</button>
+                            <button onclick="addPlat('${tab}', ${ci})" class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-lg font-semibold">+ Plat</button>
+                            <button onclick="deleteCat('${tab}', ${ci})" class="text-xs bg-red-100 text-red-500 px-2 py-1 rounded-lg font-semibold">🗑️</button>
                         </div>
                     </div>
-                    <!-- Plats -->
                     <div class="divide-y divide-gray-100">
                         ${cat.plats.map((p, pi) => `
                         <div class="p-3 ${!p.dispo ? 'bg-red-50' : ''}">
                             <div class="flex items-center gap-2 mb-2">
-                                <!-- Toggle dispo -->
-                                <label class="toggle-switch" style="width:40px;height:22px;" title="${p.dispo ? 'Disponible' : 'Indisponible'}">
+                                <label class="toggle-switch" style="width:40px;height:22px;">
                                     <input type="checkbox" ${p.dispo ? 'checked' : ''} onchange="updatePlat('${tab}', ${ci}, ${pi}, 'dispo', this.checked)" style="opacity:0;width:0;height:0;">
-                                    <span class="toggle-slider" style="border-radius:999px;"></span>
+                                    <span class="toggle-slider"></span>
                                 </label>
-                                <input type="text" value="${p.nom}" placeholder="Nom du plat"
-                                       onchange="updatePlat('${tab}', ${ci}, ${pi}, 'nom', this.value)"
-                                       class="flex-1 border border-gray-200 rounded-lg px-2 py-1 text-sm font-semibold text-gray-800 min-w-0"/>
-                                <input type="text" value="${p.prix}" placeholder="Prix"
-                                       onchange="updatePlat('${tab}', ${ci}, ${pi}, 'prix', this.value)"
-                                       class="w-20 border border-gray-200 rounded-lg px-2 py-1 text-sm text-pink-600 font-bold text-right"/>
-                                <button onclick="deletePlat('${tab}', ${ci}, ${pi})"
-                                        class="text-red-400 hover:text-red-600 text-lg leading-none flex-shrink-0">×</button>
+                                <input type="text" value="${p.nom}" onchange="updatePlat('${tab}', ${ci}, ${pi}, 'nom', this.value)" class="flex-1 border border-gray-200 rounded-lg px-2 py-1 text-sm font-semibold text-gray-800 min-w-0"/>
+                                <input type="text" value="${p.prix}" onchange="updatePlat('${tab}', ${ci}, ${pi}, 'prix', this.value)" class="w-20 border border-gray-200 rounded-lg px-2 py-1 text-sm text-pink-600 font-bold text-right"/>
+                                <button onclick="deletePlat('${tab}', ${ci}, ${pi})" class="text-red-400 hover:text-red-600 text-lg">×</button>
                             </div>
-                            <input type="text" value="${p.desc}" placeholder="Description (optionnel)"
-                                   onchange="updatePlat('${tab}', ${ci}, ${pi}, 'desc', this.value)"
-                                   class="w-full border border-gray-100 rounded-lg px-2 py-1 text-xs text-gray-500"/>
+                            <input type="text" value="${p.desc}" onchange="updatePlat('${tab}', ${ci}, ${pi}, 'desc', this.value)" class="w-full border border-gray-100 rounded-lg px-2 py-1 text-xs text-gray-500" placeholder="Description"/>
                         </div>
                         `).join('')}
                     </div>
@@ -1336,191 +736,81 @@ function switchMenuTab(tab) {
             `).join('');
         }
 
-        function updateCatTitle(tab, ci, val) {
-            appState.menu[tab][ci].titre = val;
-            saveMenu();
-            renderMenuTab(tab);
-        }
+        function updateCatTitle(tab, ci, val) { appState.menu[tab][ci].titre = val; saveMenu(); renderMenuTab(tab); }
+        function updatePlat(tab, ci, pi, field, val) { appState.menu[tab][ci].plats[pi][field] = val; saveMenu(); renderMenuTab(tab); }
+        function deletePlat(tab, ci, pi) { if (!confirm('Supprimer ce plat ?')) return; appState.menu[tab][ci].plats.splice(pi, 1); saveMenu(); renderAdminMenuEditor(); renderMenuTab(tab); }
+        function deleteCat(tab, ci) { if (!confirm('Supprimer cette catégorie ?')) return; appState.menu[tab].splice(ci, 1); saveMenu(); renderAdminMenuEditor(); renderMenuTab(tab); }
+        function addPlat(tab, ci) { appState.menu[tab][ci].plats.push({ id: 'p'+Date.now(), nom: 'Nouveau plat', prix: '0€', desc: '', dispo: true }); saveMenu(); renderAdminMenuEditor(); renderMenuTab(tab); }
+        function addCategory() { const tab = appState.currentAdminMenuTab; appState.menu[tab].push({ id: 'cat'+Date.now(), titre: '🍽️ Nouvelle catégorie', plats: [] }); saveMenu(); renderAdminMenuEditor(); renderMenuTab(tab); }
+        function resetMenuToDefault() { if (!confirm('⚠️ Remettre la carte d\'origine ?')) return; localStorage.removeItem(STORAGE_KEY); location.reload(); }
 
-        function updatePlat(tab, ci, pi, field, val) {
-            appState.menu[tab][ci].plats[pi][field] = val;
-            saveMenu();
-            renderMenuTab(tab);
-        }
-
-        function deletePlat(tab, ci, pi) {
-            if (!confirm('Supprimer ce plat ?')) return;
-            appState.menu[tab][ci].plats.splice(pi, 1);
-            saveMenu();
-            renderAdminMenuEditor();
-            renderMenuTab(tab);
-        }
-
-        function deleteCat(tab, ci) {
-            if (!confirm('Supprimer cette catégorie et tous ses plats ?')) return;
-            appState.menu[tab].splice(ci, 1);
-            saveMenu();
-            renderAdminMenuEditor();
-            renderMenuTab(tab);
-        }
-
-        function addPlat(tab, ci) {
-            const id = 'p' + Date.now();
-            appState.menu[tab][ci].plats.push({ id, nom: 'Nouveau plat', prix: '0€', desc: '', dispo: true });
-            saveMenu();
-            renderAdminMenuEditor();
-            renderMenuTab(tab);
-        }
-
-        function addCategory() {
-            const tab = appState.currentAdminMenuTab;
-            const id = 'cat' + Date.now();
-            appState.menu[tab].push({ id, titre: '🍽️ Nouvelle catégorie', plats: [] });
-            saveMenu();
-            renderAdminMenuEditor();
-            renderMenuTab(tab);
-        }
-
-        function resetMenuToDefault() {
-            if (!confirm('⚠️ Remettre la carte d\'origine ?\n\nToutes vos modifications seront perdues !')) return;
-            localStorage.removeItem(STORAGE_KEY);
-            location.reload();
-        }
-
-        let secretTapCount = 0;
-        let secretTapTimer = null;
+        // Secret tap
+        let secretTapCount = 0, secretTapTimer = null;
         function handleSecretTap() {
             secretTapCount++;
             clearTimeout(secretTapTimer);
             secretTapTimer = setTimeout(() => { secretTapCount = 0; }, 1500);
-            if (secretTapCount >= 7) {
-                secretTapCount = 0;
-                if (appState.adminMode) {
-                    goToPage('admin');
-                } else {
-                    document.getElementById('adminPrompt').classList.remove('hidden');
-                }
-            }
+            if (secretTapCount >= 7) { secretTapCount = 0; appState.adminMode ? goToPage('admin') : document.getElementById('adminPrompt').classList.remove('hidden'); }
         }
-
 
         function togglePageVisibility(page, visible) {
             appState.pageVisibility[page] = visible;
             const navBtn = document.getElementById(`nav-${page}`);
-            if (navBtn) {
-                if (visible) {
-                    navBtn.classList.remove('hidden-nav');
-                    navBtn.style.display = '';
-                } else {
-                    navBtn.style.display = 'none';
-                    // Si on est sur la page cachée, retourner à l'accueil
-                    if (appState.currentPage === page) {
-                        goToPage('home');
-                    }
-                }
-            }
+            if (navBtn) { navBtn.style.display = visible ? '' : 'none'; if (!visible && appState.currentPage === page) goToPage('home'); }
         }
 
-        // ===== SAUVEGARDE LOCALE =====
+        // Storage
         const STORAGE_KEY = 'brasserie_menu_v1';
         const STORAGE_ANNONCE = 'brasserie_annonce_v1';
         const STORAGE_EVENTS = 'brasserie_events_v1';
         const STORAGE_VISITORS = 'brasserie_visitors_v1';
+        const STORAGE_SONDAGES = 'brasserie_sondages_v1';
 
-        function saveMenu() {
-            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.menu)); } catch(e) {}
-        }
-        function loadMenu() {
-            try { const s = localStorage.getItem(STORAGE_KEY); if (s) appState.menu = JSON.parse(s); } catch(e) {}
-        }
-        function saveAnnonce() {
-            try { localStorage.setItem(STORAGE_ANNONCE, JSON.stringify(appState.annonce)); } catch(e) {}
-        }
-        function loadAnnonce() {
-            try { const s = localStorage.getItem(STORAGE_ANNONCE); if (s) appState.annonce = JSON.parse(s); } catch(e) {}
-        }
-        function saveEvents() {
-            try { localStorage.setItem(STORAGE_EVENTS, JSON.stringify(appState.events)); } catch(e) {}
-        }
-        function loadEvents() {
-            try { const s = localStorage.getItem(STORAGE_EVENTS); if (s) appState.events = JSON.parse(s); } catch(e) {}
-        }
+        function saveMenu() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.menu)); } catch(e) {} }
+        function loadMenu() { try { const s = localStorage.getItem(STORAGE_KEY); if (s) appState.menu = JSON.parse(s); } catch(e) {} }
+        function saveAnnonce() { try { localStorage.setItem(STORAGE_ANNONCE, JSON.stringify(appState.annonce)); } catch(e) {} }
+        function loadAnnonce() { try { const s = localStorage.getItem(STORAGE_ANNONCE); if (s) appState.annonce = JSON.parse(s); } catch(e) {} }
+        function saveEvents() { try { localStorage.setItem(STORAGE_EVENTS, JSON.stringify(appState.events)); } catch(e) {} }
+        function loadEvents() { try { const s = localStorage.getItem(STORAGE_EVENTS); if (s) appState.events = JSON.parse(s); } catch(e) {} }
+        function saveSondages() { try { localStorage.setItem(STORAGE_SONDAGES, JSON.stringify(appState.sondages)); } catch(e) {} }
+        function loadSondages() { try { const s = localStorage.getItem(STORAGE_SONDAGES); if (s) appState.sondages = JSON.parse(s); } catch(e) {} }
 
-        // ===== COMPTEUR VISITEURS =====
+        // Visiteurs
         let visitorData = { total: 0, today: 0, lastDate: '', pages: {} };
-
-        function loadVisitors() {
-            try {
-                const s = localStorage.getItem(STORAGE_VISITORS);
-                if (s) visitorData = JSON.parse(s);
-            } catch(e) {}
-        }
-
-        function saveVisitors() {
-            try { localStorage.setItem(STORAGE_VISITORS, JSON.stringify(visitorData)); } catch(e) {}
-        }
-
+        function loadVisitors() { try { const s = localStorage.getItem(STORAGE_VISITORS); if (s) visitorData = JSON.parse(s); } catch(e) {} }
+        function saveVisitors() { try { localStorage.setItem(STORAGE_VISITORS, JSON.stringify(visitorData)); } catch(e) {} }
         function trackVisit() {
             const today = new Date().toLocaleDateString('fr-FR');
-            if (visitorData.lastDate !== today) {
-                visitorData.today = 0;
-                visitorData.lastDate = today;
-            }
-            // Ne compter qu'une fois par session
-            if (!sessionStorage.getItem('brasserie_visited')) {
-                visitorData.total++;
-                visitorData.today++;
-                sessionStorage.setItem('brasserie_visited', '1');
-                saveVisitors();
-            }
+            if (visitorData.lastDate !== today) { visitorData.today = 0; visitorData.lastDate = today; }
+            if (!sessionStorage.getItem('brasserie_visited')) { visitorData.total++; visitorData.today++; sessionStorage.setItem('brasserie_visited', '1'); saveVisitors(); }
         }
-
-        function trackPage(page) {
-            if (!visitorData.pages[page]) visitorData.pages[page] = 0;
-            visitorData.pages[page]++;
-            saveVisitors();
-        }
-
+        function trackPage(page) { if (!visitorData.pages[page]) visitorData.pages[page] = 0; visitorData.pages[page]++; saveVisitors(); }
         function renderVisitorStats() {
             document.getElementById('stat-visitors').textContent = visitorData.total.toLocaleString('fr-FR');
             document.getElementById('stat-visitors-today').textContent = visitorData.today.toLocaleString('fr-FR');
-
             const pagesEl = document.getElementById('stat-pages');
             if (!pagesEl) return;
-            const pages = visitorData.pages;
-            const sorted = Object.entries(pages).sort((a, b) => b[1] - a[1]).slice(0, 6);
+            const sorted = Object.entries(visitorData.pages).sort((a, b) => b[1] - a[1]).slice(0, 6);
             if (sorted.length === 0) { pagesEl.innerHTML = '<p class="text-xs text-gray-400">Aucune donnée</p>'; return; }
             const max = sorted[0][1] || 1;
-            const labels = { home: '🏠 Accueil', menu: '📋 Carte', gallery: '📸 Photos', reviews: '⭐ Avis', jeux: '🎮 Jeux', events: '🎉 Événements', contact: '📞 Contact', reservation: '📅 Réservation' };
+            const labels = { home: '🏠 Accueil', menu: '📋 Carte', gallery: '📸 Photos', reviews: '⭐ Avis', jeux: '🎮 Jeux', events: '🎉 Événements', contact: '📞 Contact', reservation: '📅 Réservation', calcul: '🥂 Groupe', sondage: '📊 Sondage' };
             pagesEl.innerHTML = sorted.map(([page, count]) => `
                 <div class="flex items-center gap-2">
                     <span class="text-xs text-gray-500 w-28 truncate">${labels[page] || page}</span>
-                    <div class="flex-1 bg-gray-100 rounded-full h-3 overflow-hidden">
-                        <div class="h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all"
-                             style="width:${Math.round((count/max)*100)}%"></div>
-                    </div>
+                    <div class="flex-1 bg-gray-100 rounded-full h-3 overflow-hidden"><div class="h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500" style="width:${Math.round((count/max)*100)}%"></div></div>
                     <span class="text-xs font-bold text-gray-600 w-6 text-right">${count}</span>
                 </div>
             `).join('');
         }
+        function resetVisitors() { if (!confirm('⚠️ Remettre les compteurs à zéro ?')) return; visitorData = { total: 0, today: 0, lastDate: '', pages: {} }; saveVisitors(); renderVisitorStats(); updateStats(); alert('✅ Compteurs remis à zéro'); }
 
-        function resetVisitors() {
-            if (!confirm('⚠️ Remettre les compteurs à zéro ?')) return;
-            visitorData = { total: 0, today: 0, lastDate: '', pages: {} };
-            saveVisitors();
-            renderVisitorStats();
-            updateStats();
-            alert('✅ Compteurs remis à zéro');
-        }
-
-        // ===== BANDEAU ANNONCE =====
+        // Annonce
         const couleurs = {
             orange: { bg: 'bg-orange-100', text: 'text-orange-800', border: 'border-orange-300' },
-            red:    { bg: 'bg-red-100',    text: 'text-red-800',    border: 'border-red-300' },
-            green:  { bg: 'bg-green-100',  text: 'text-green-800',  border: 'border-green-300' },
+            red: { bg: 'bg-red-100', text: 'text-red-800', border: 'border-red-300' },
+            green: { bg: 'bg-green-100', text: 'text-green-800', border: 'border-green-300' },
             purple: { bg: 'bg-purple-100', text: 'text-purple-800', border: 'border-purple-300' }
         };
-
         function renderAnnonce() {
             const a = appState.annonce;
             const bandeau = document.getElementById('annonce-bandeau');
@@ -1533,39 +823,11 @@ function switchMenuTab(tab) {
             document.getElementById('annonce-texte').textContent = a.texte;
             bandeau.classList.remove('hidden');
         }
-
-        function fermerAnnonce() {
-            document.getElementById('annonce-bandeau').classList.add('hidden');
-        }
-
-        function toggleAnnonce(checked) {
-            appState.annonce.active = checked;
-            saveAnnonce();
-            renderAnnonce();
-            updateAnnoncePreview();
-        }
-
-        function updateAnnonce() {
-            appState.annonce.texte = document.getElementById('annonce-input').value;
-            saveAnnonce();
-            renderAnnonce();
-            updateAnnoncePreview();
-        }
-
-        function setAnnonceEmoji(emoji) {
-            appState.annonce.emoji = emoji;
-            saveAnnonce();
-            renderAnnonce();
-            updateAnnoncePreview();
-        }
-
-        function setAnnonceCouleur(couleur) {
-            appState.annonce.couleur = couleur;
-            saveAnnonce();
-            renderAnnonce();
-            updateAnnoncePreview();
-        }
-
+        function fermerAnnonce() { document.getElementById('annonce-bandeau').classList.add('hidden'); }
+        function toggleAnnonce(checked) { appState.annonce.active = checked; saveAnnonce(); renderAnnonce(); updateAnnoncePreview(); }
+        function updateAnnonce() { appState.annonce.texte = document.getElementById('annonce-input').value; saveAnnonce(); renderAnnonce(); updateAnnoncePreview(); }
+        function setAnnonceEmoji(emoji) { appState.annonce.emoji = emoji; saveAnnonce(); renderAnnonce(); updateAnnoncePreview(); }
+        function setAnnonceCouleur(couleur) { appState.annonce.couleur = couleur; saveAnnonce(); renderAnnonce(); updateAnnoncePreview(); }
         function updateAnnoncePreview() {
             const a = appState.annonce;
             const preview = document.getElementById('annonce-preview');
@@ -1575,10 +837,9 @@ function switchMenuTab(tab) {
             document.getElementById('preview-emoji').textContent = a.emoji || '📢';
             const pt = document.getElementById('preview-texte');
             pt.className = `text-sm font-semibold flex-1 ${c.text}`;
-            pt.textContent = a.texte || 'Aperçu du message';
+            pt.textContent = a.texte;
             preview.classList.remove('hidden');
         }
-
         function syncAnnonceAdmin() {
             const a = appState.annonce;
             const toggle = document.getElementById('annonce-toggle');
@@ -1588,16 +849,15 @@ function switchMenuTab(tab) {
             updateAnnoncePreview();
         }
 
-        // ===== ÉVÉNEMENTS =====
+        // Événements
         function ajouterEvent() {
             const titre = document.getElementById('event-titre').value.trim();
-            const date  = document.getElementById('event-date').value;
+            const date = document.getElementById('event-date').value;
             const heure = document.getElementById('event-heure').value.trim();
-            const desc  = document.getElementById('event-desc').value.trim();
+            const desc = document.getElementById('event-desc').value.trim();
             const emoji = document.getElementById('event-emoji').value.trim() || '🎉';
             if (!titre || !date) { alert('Remplis au moins le titre et la date !'); return; }
-            const ev = { id: Date.now(), titre, date, heure, desc, emoji };
-            appState.events.push(ev);
+            appState.events.push({ id: Date.now(), titre, date, heure, desc, emoji });
             appState.events.sort((a, b) => new Date(a.date) - new Date(b.date));
             saveEvents();
             document.getElementById('event-titre').value = '';
@@ -1608,111 +868,95 @@ function switchMenuTab(tab) {
             renderEvents();
             alert('✅ Événement ajouté !');
         }
-
-        function supprimerEvent(id) {
-            if (!confirm('Supprimer cet événement ?')) return;
-            appState.events = appState.events.filter(e => e.id !== id);
-            saveEvents();
-            renderEvents();
-        }
-
+        function supprimerEvent(id) { if (!confirm('Supprimer cet événement ?')) return; appState.events = appState.events.filter(e => e.id !== id); saveEvents(); renderEvents(); }
+        function formatDate(dateStr) { return new Date(dateStr + 'T00:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); }
         function renderEvents() {
-            const evs = appState.events;
             const today = new Date(); today.setHours(0,0,0,0);
-
-            // Page publique
+            const futurs = appState.events.filter(e => new Date(e.date) >= today);
+            const passes = appState.events.filter(e => new Date(e.date) < today);
             const pub = document.getElementById('events-container-public');
             const empty = document.getElementById('events-empty');
-            const futurs = evs.filter(e => new Date(e.date) >= today);
-            const passes = evs.filter(e => new Date(e.date) < today);
-
             if (pub) {
-                if (evs.length === 0) {
-                    pub.innerHTML = '';
-                    if (empty) empty.classList.remove('hidden');
-                } else {
+                if (appState.events.length === 0) { pub.innerHTML = ''; if (empty) empty.classList.remove('hidden'); }
+                else {
                     if (empty) empty.classList.add('hidden');
                     let html = '';
-                    if (futurs.length > 0) {
-                        html += `<h3 class="font-bold text-gray-700 text-lg mb-3">📅 À venir</h3>`;
-                        html += futurs.map(e => renderEventCard(e, false)).join('');
-                    }
-                    if (passes.length > 0) {
-                        html += `<h3 class="font-bold text-gray-400 text-base mb-3 mt-4">🗂️ Passés</h3>`;
-                        html += passes.map(e => renderEventCard(e, true)).join('');
-                    }
+                    if (futurs.length > 0) { html += '<h3 class="font-bold text-gray-700 text-lg mb-3">📅 À venir</h3>'; html += futurs.map(e => renderEventCard(e, false)).join(''); }
+                    if (passes.length > 0) { html += '<h3 class="font-bold text-gray-400 text-base mb-3 mt-4">🗂️ Passés</h3>'; html += passes.map(e => renderEventCard(e, true)).join(''); }
                     pub.innerHTML = html;
                 }
             }
-
-            // Admin
             const adm = document.getElementById('events-container-admin');
             if (adm) {
-                if (evs.length === 0) {
-                    adm.innerHTML = '<p class="text-gray-400 text-sm text-center py-4">Aucun événement</p>';
-                } else {
-                    adm.innerHTML = evs.map(e => `
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                            <div class="flex items-center gap-2 min-w-0">
-                                <span class="text-xl">${e.emoji}</span>
-                                <div class="min-w-0">
-                                    <p class="font-semibold text-gray-800 text-sm truncate">${e.titre}</p>
-                                    <p class="text-xs text-gray-400">${formatDate(e.date)}${e.heure ? ' · ' + e.heure : ''}</p>
-                                </div>
-                            </div>
-                            <button onclick="supprimerEvent(${e.id})" class="ml-2 text-red-400 hover:text-red-600 text-lg flex-shrink-0">🗑️</button>
-                        </div>
-                    `).join('');
-                }
+                adm.innerHTML = appState.events.length === 0
+                    ? '<p class="text-gray-400 text-sm text-center py-4">Aucun événement</p>'
+                    : appState.events.map(e => `<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-2 min-w-0"><span class="text-xl">${e.emoji}</span><div><p class="font-semibold text-gray-800 text-sm truncate">${e.titre}</p><p class="text-xs text-gray-400">${formatDate(e.date)}${e.heure ? ' · ' + e.heure : ''}</p></div></div><button onclick="supprimerEvent(${e.id})" class="ml-2 text-red-400 text-lg">🗑️</button></div>`).join('');
             }
         }
-
         function renderEventCard(e, passe) {
-            const dateStr = formatDate(e.date);
-            return `
-                <div class="bg-white rounded-2xl p-5 shadow-md mb-3 ${passe ? 'opacity-50' : ''} border-l-4 ${passe ? 'border-gray-300' : 'border-purple-500'}">
-                    <div class="flex items-start gap-3">
-                        <span class="text-4xl">${e.emoji}</span>
-                        <div class="flex-1">
-                            <h4 class="font-black text-gray-800 text-lg leading-tight">${e.titre}</h4>
-                            <div class="flex items-center gap-2 mt-1 flex-wrap">
-                                <span class="text-xs font-semibold px-2 py-1 rounded-full ${passe ? 'bg-gray-100 text-gray-500' : 'bg-purple-100 text-purple-700'}">📅 ${dateStr}</span>
-                                ${e.heure ? `<span class="text-xs font-semibold px-2 py-1 rounded-full bg-pink-100 text-pink-700">🕐 ${e.heure}</span>` : ''}
-                            </div>
-                            ${e.desc ? `<p class="text-sm text-gray-600 mt-2 leading-relaxed">${e.desc}</p>` : ''}
-                        </div>
-                    </div>
-                </div>
-            `;
+            return `<div class="bg-white rounded-2xl p-5 shadow-md mb-3 ${passe ? 'opacity-50' : ''} border-l-4 ${passe ? 'border-gray-300' : 'border-purple-500'}"><div class="flex items-start gap-3"><span class="text-4xl">${e.emoji}</span><div class="flex-1"><h4 class="font-black text-gray-800 text-lg">${e.titre}</h4><div class="flex items-center gap-2 mt-1 flex-wrap"><span class="text-xs font-semibold px-2 py-1 rounded-full ${passe ? 'bg-gray-100 text-gray-500' : 'bg-purple-100 text-purple-700'}">📅 ${formatDate(e.date)}</span>${e.heure ? `<span class="text-xs font-semibold px-2 py-1 rounded-full bg-pink-100 text-pink-700">🕐 ${e.heure}</span>` : ''}</div>${e.desc ? `<p class="text-sm text-gray-600 mt-2">${e.desc}</p>` : ''}</div></div></div>`;
         }
 
-        function formatDate(dateStr) {
-            const d = new Date(dateStr + 'T00:00:00');
-            return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        // Sondages
+        function ajouterSondage() {
+            const question = document.getElementById('sondage-question').value.trim();
+            const opts = [...document.querySelectorAll('.sondage-opt')].map(i => i.value.trim()).filter(Boolean);
+            if (!question || opts.length < 2) { alert('Question et au moins 2 options requises !'); return; }
+            appState.sondages.push({ id: Date.now(), question, options: opts, votes: opts.map(() => 0) });
+            saveSondages();
+            document.getElementById('sondage-question').value = '';
+            document.querySelectorAll('.sondage-opt').forEach(i => i.value = '');
+            renderSondages();
+            alert('✅ Sondage publié !');
+        }
+        function voterSondage(sondageId, optionIdx) {
+            const s = appState.sondages.find(s => s.id === sondageId);
+            if (!s) return;
+            const key = 'voted_' + sondageId;
+            if (sessionStorage.getItem(key)) { alert('Vous avez déjà voté !'); return; }
+            s.votes[optionIdx]++;
+            sessionStorage.setItem(key, '1');
+            saveSondages();
+            renderSondages();
+        }
+        function supprimerSondage(id) { if (!confirm('Supprimer ce sondage ?')) return; appState.sondages = appState.sondages.filter(s => s.id !== id); saveSondages(); renderSondages(); }
+        function renderSondages() {
+            const pub = document.getElementById('sondages-public');
+            const empty = document.getElementById('sondages-empty');
+            const adm = document.getElementById('sondages-admin');
+            if (pub) {
+                if (appState.sondages.length === 0) { pub.innerHTML = ''; if (empty) empty.classList.remove('hidden'); }
+                else {
+                    if (empty) empty.classList.add('hidden');
+                    pub.innerHTML = appState.sondages.map(s => {
+                        const totalVotes = s.votes.reduce((a, b) => a + b, 0);
+                        const voted = sessionStorage.getItem('voted_' + s.id);
+                        return `<div class="bg-white rounded-2xl p-5 shadow-md"><h3 class="font-bold text-gray-800 mb-4">${s.question}</h3><div class="space-y-2">${s.options.map((opt, i) => {
+                            const pct = totalVotes > 0 ? Math.round((s.votes[i]/totalVotes)*100) : 0;
+                            return voted ? `<div class="rounded-xl overflow-hidden border border-gray-100"><div class="flex justify-between px-3 py-2 text-sm"><span class="font-medium text-gray-700">${opt}</span><span class="font-bold text-purple-600">${pct}%</span></div><div class="h-2 bg-gray-100"><div class="h-2 bg-gradient-to-r from-purple-500 to-pink-500" style="width:${pct}%"></div></div></div>` : `<button onclick="voterSondage(${s.id}, ${i})" class="w-full text-left p-3 rounded-xl border-2 border-gray-100 hover:border-purple-400 hover:bg-purple-50 transition-all text-sm font-semibold text-gray-700">${opt}</button>`;
+                        }).join('')}</div><p class="text-xs text-gray-400 mt-3 text-right">${totalVotes} vote${totalVotes !== 1 ? 's' : ''}</p></div>`;
+                    }).join('');
+                }
+            }
+            if (adm) {
+                adm.innerHTML = appState.sondages.length === 0
+                    ? '<p class="text-gray-400 text-sm text-center py-4">Aucun sondage</p>'
+                    : appState.sondages.map(s => { const total = s.votes.reduce((a,b)=>a+b,0); return `<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div><p class="font-semibold text-gray-800 text-sm truncate">${s.question}</p><p class="text-xs text-gray-400">${total} vote(s)</p></div><button onclick="supprimerSondage(${s.id})" class="ml-2 text-red-400 text-lg">🗑️</button></div>`; }).join('');
+            }
         }
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', () => {
-            loadMenu();
-            loadAnnonce();
-            loadEvents();
-            loadVisitors();
-            loadSondages();
+            loadMenu(); loadAnnonce(); loadEvents(); loadVisitors(); loadSondages();
             trackVisit();
-            updateUI();
-            updateStats();
-            renderMenus();
-            renderAnnonce();
-            renderEvents();
-            renderSondages();
+            updateUI(); updateStats();
+            renderMenus(); renderAnnonce(); renderEvents(); renderSondages();
+            renderCalcPlats(); calculerGroupe();
         });
 
         // Navigation
         function goToPage(page) {
-            // Cacher toutes les pages
             document.querySelectorAll('[id^="page-"]').forEach(el => el.classList.add('hidden'));
-            
-            // Afficher la page demandée
             if (appState.adminMode && page === 'admin') {
                 document.getElementById('page-admin').classList.remove('hidden');
                 appState.currentPage = 'admin';
@@ -1720,300 +964,90 @@ function switchMenuTab(tab) {
                 document.getElementById(`page-${page}`).classList.remove('hidden');
                 appState.currentPage = page;
             }
-            
-            // Mettre à jour la navigation
-            document.querySelectorAll('[id^="nav-"]').forEach(btn => {
-                btn.classList.remove('text-purple-600', 'bg-purple-50');
-                btn.classList.add('text-gray-500');
-            });
-            
+            document.querySelectorAll('[id^="nav-"]').forEach(btn => { btn.classList.remove('text-purple-600', 'bg-purple-50'); btn.classList.add('text-gray-500'); });
             const activeBtn = document.getElementById(`nav-${page}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('text-gray-500');
-                activeBtn.classList.add('text-purple-600', 'bg-purple-50');
-            }
-            
+            if (activeBtn) { activeBtn.classList.remove('text-gray-500'); activeBtn.classList.add('text-purple-600', 'bg-purple-50'); }
             updateUI();
             if (page !== 'admin') trackPage(page);
+            if (page === 'calcul') { renderCalcPlats(); calculerGroupe(); }
         }
 
         // Admin
-        function toggleAdminPrompt() {
-            if (appState.adminMode) {
-                goToPage('admin');
-            } else {
-                document.getElementById('adminPrompt').classList.remove('hidden');
-            }
-        }
-
-        function closeAdminPrompt() {
-            document.getElementById('adminPrompt').classList.add('hidden');
-            document.getElementById('adminPasswordInput').value = '';
-        }
-
+        function closeAdminPrompt() { document.getElementById('adminPrompt').classList.add('hidden'); document.getElementById('adminPasswordInput').value = ''; }
         function loginAdmin() {
             const password = document.getElementById('adminPasswordInput').value;
             if (password === 'hello7022023') {
                 appState.adminMode = true;
                 closeAdminPrompt();
                 goToPage('admin');
-                document.getElementById('adminIcon').textContent = '🔓';
                 renderAdminMenuEditor();
                 syncAnnonceAdmin();
                 renderEvents();
                 renderSondages();
                 alert('✅ Connexion réussie Bonjour Ethan');
-            } else {
-                alert('❌ Code incorrect');
-                document.getElementById('adminPasswordInput').value = '';
-            }
+            } else { alert('❌ Code incorrect'); document.getElementById('adminPasswordInput').value = ''; }
         }
+        function logoutAdmin() { appState.adminMode = false; goToPage('home'); alert('✅ Déconnecté — Aurevoir Ethan'); }
 
-        function logoutAdmin() {
-            appState.adminMode = false;
-            document.getElementById('adminIcon').textContent = '🔒';
-            goToPage('home');
-            alert('✅ Déconnecté du mode administrateur Aurevoir Ethan');
-        }
-
-        // Signalements
-        function openReportModal() {
-            document.getElementById('reportModal').classList.remove('hidden');
-        }
-
-        function closeReportModal() {
-            document.getElementById('reportModal').classList.add('hidden');
-            document.getElementById('reportMessage').value = '';
-        }
-
+        function openReportModal() { document.getElementById('reportModal').classList.remove('hidden'); }
+        function closeReportModal() { document.getElementById('reportModal').classList.add('hidden'); document.getElementById('reportMessage').value = ''; }
         function submitReport() {
             const message = document.getElementById('reportMessage').value.trim();
-            if (!message) {
-                alert('Veuillez décrire le problème');
-                return;
-            }
-            
-            const report = {
-                type: 'Problème technique',
-                message: message,
-                page: appState.currentPage,
-                date: new Date().toLocaleString('fr-FR'),
-                contactAdmin: '0682118566'
-            };
-            
-            appState.bugReports.push(report);
-            updateStats();
-            closeReportModal();
-            alert('✅ Signalement envoyé !\n\n📱 Le rapport a été enregistré.\n\n💡 Le propriétaire peut consulter tous les signalements dans le panneau d\'administration.');
+            if (!message) { alert('Veuillez décrire le problème'); return; }
+            appState.bugReports.push({ message, page: appState.currentPage, date: new Date().toLocaleString('fr-FR') });
+            updateStats(); closeReportModal();
+            alert('✅ Signalement envoyé !');
         }
-
-        function viewReports() {
-            if (appState.bugReports.length === 0) {
-                alert('📋 Aucun signalement');
-            } else {
-                const text = '📋 Signalements :\n\n' + appState.bugReports.map((r, i) => 
-                    `${i+1}. ${r.message}\n   Page: ${r.page}\n   Date: ${r.date}\n`
-                ).join('\n');
-                alert(text);
-            }
-        }
-
-        function deleteAllReports() {
-            if (confirm('⚠️ Effacer tous les signalements ?\n\nCette action est irréversible !')) {
-                appState.bugReports = [];
-                updateStats();
-                alert('✅ Tous les signalements ont été effacés');
-            }
-        }
+        function viewReports() { alert(appState.bugReports.length === 0 ? 'Aucun signalement' : appState.bugReports.map((r,i) => `${i+1}. ${r.message}\n   Page: ${r.page}\n   Date: ${r.date}`).join('\n\n')); }
+        function deleteAllReports() { if (confirm('⚠️ Effacer tous les signalements ?')) { appState.bugReports = []; updateStats(); alert('✅ Effacés'); } }
 
         // Photos
         function handlePhotoUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
-            
-            if (file.size > 3000000) {
-                alert('Photo trop grande (max 3 Mo)');
-                event.target.value = '';
-                return;
-            }
-            
+            if (file.size > 3000000) { alert('Photo trop grande (max 3 Mo)'); event.target.value = ''; return; }
             const reader = new FileReader();
-            reader.onload = (e) => {
-                const photoId = Date.now() + Math.random();
-                const photo = {
-                    id: photoId,
-                    name: file.name,
-                    data: e.target.result,
-                    date: new Date().toLocaleDateString('fr-FR'),
-                    time: Date.now()
-                };
-                
-                appState.photos.push(photo);
-                appState.myPhotoIds.push(photoId);
-                event.target.value = '';
-                renderPhotos();
-                updateStats();
-            };
+            reader.onload = (e) => { const photoId = Date.now() + Math.random(); appState.photos.push({ id: photoId, name: file.name, data: e.target.result, date: new Date().toLocaleDateString('fr-FR'), time: Date.now() }); appState.myPhotoIds.push(photoId); event.target.value = ''; renderPhotos(); updateStats(); };
             reader.readAsDataURL(file);
         }
-
-        function deletePhoto(photoId) {
-            if (!confirm('Supprimer cette photo ?')) return;
-            appState.photos = appState.photos.filter(p => p.id !== photoId);
-            appState.myPhotoIds = appState.myPhotoIds.filter(id => id !== photoId);
-            renderPhotos();
-            updateStats();
-        }
-
-        function deleteAllPhotos() {
-            if (confirm('⚠️ Supprimer TOUTES les photos ?\n\nCette action est irréversible !')) {
-                appState.photos = [];
-                appState.myPhotoIds = [];
-                renderPhotos();
-                updateStats();
-                alert('✅ Toutes les photos ont été supprimées');
-            }
-        }
-
+        function deletePhoto(photoId) { if (!confirm('Supprimer cette photo ?')) return; appState.photos = appState.photos.filter(p => p.id !== photoId); appState.myPhotoIds = appState.myPhotoIds.filter(id => id !== photoId); renderPhotos(); updateStats(); }
+        function deleteAllPhotos() { if (confirm('⚠️ Supprimer TOUTES les photos ?')) { appState.photos = []; appState.myPhotoIds = []; renderPhotos(); updateStats(); alert('✅ Supprimées'); } }
         function renderPhotos() {
             const container = document.getElementById('photos-container');
             if (!container) return;
-            if (appState.photos.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 text-gray-500">
-                        <div class="text-6xl mb-4">🖼️</div>
-                        <p>Aucune photo pour le moment</p>
-                        <p class="text-sm mt-2">Soyez le premier à partager une photo !</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            const sorted = [...appState.photos].sort((a, b) => b.time - a.time);
-            container.innerHTML = sorted.map(photo => {
-                const isMyPhoto = appState.myPhotoIds.includes(photo.id);
-                const canDelete = isMyPhoto || appState.adminMode;
-                
-                return `
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-md mb-4">
-                        <img src="${photo.data}" alt="${photo.name}" class="w-full h-64 object-cover">
-                        <div class="p-4 flex justify-between items-center">
-                            <div>
-                                <p class="font-semibold text-gray-800">${photo.name.substring(0, 30)}</p>
-                                <p class="text-sm text-gray-500">${photo.date}</p>
-                            </div>
-                            ${canDelete ? `
-                                <button onclick="deletePhoto(${photo.id})" 
-                                        class="bg-red-100 text-red-600 px-4 py-2 rounded-lg font-medium hover:bg-red-200">
-                                    🗑️ Supprimer
-                                </button>
-                            ` : ''}
-                        </div>
-                    </div>
-                `;
+            if (appState.photos.length === 0) { container.innerHTML = '<div class="text-center py-12 text-gray-500"><div class="text-6xl mb-4">🖼️</div><p>Aucune photo pour le moment</p></div>'; return; }
+            container.innerHTML = [...appState.photos].sort((a,b)=>b.time-a.time).map(photo => {
+                const canDelete = appState.myPhotoIds.includes(photo.id) || appState.adminMode;
+                return `<div class="bg-white rounded-2xl overflow-hidden shadow-md mb-4"><img src="${photo.data}" class="w-full h-64 object-cover"><div class="p-4 flex justify-between items-center"><div><p class="font-semibold text-gray-800">${photo.name.substring(0,30)}</p><p class="text-sm text-gray-500">${photo.date}</p></div>${canDelete ? `<button onclick="deletePhoto(${photo.id})" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg font-medium">🗑️ Supprimer</button>` : ''}</div></div>`;
             }).join('');
         }
 
         // Avis
-        function setRating(rating) {
-            appState.currentRating = rating;
-            const stars = document.getElementById('rating-stars').children;
-            for (let i = 0; i < stars.length; i++) {
-                stars[i].style.opacity = i < rating ? '1' : '0.3';
-            }
-        }
-
+        function setRating(rating) { appState.currentRating = rating; const stars = document.getElementById('rating-stars').children; for (let i=0;i<stars.length;i++) stars[i].style.opacity = i < rating ? '1' : '0.3'; }
         function submitReview() {
             const name = document.getElementById('review-name').value.trim();
             const comment = document.getElementById('review-comment').value.trim();
-            
-            if (!name || !comment) {
-                alert('Veuillez remplir tous les champs');
-                return;
-            }
-            
+            if (!name || !comment) { alert('Veuillez remplir tous les champs'); return; }
             const reviewId = Date.now();
-            const review = {
-                id: reviewId,
-                name: name,
-                rating: appState.currentRating,
-                comment: comment,
-                date: new Date().toLocaleDateString('fr-FR'),
-                replies: []
-            };
-            
-            appState.reviews.push(review);
+            appState.reviews.push({ id: reviewId, name, rating: appState.currentRating, comment, date: new Date().toLocaleDateString('fr-FR') });
             appState.myReviewIds.push(reviewId);
-            
             document.getElementById('review-name').value = '';
             document.getElementById('review-comment').value = '';
-            setRating(5);
-            
-            renderReviews();
-            updateStats();
+            setRating(5); renderReviews(); updateStats();
             alert('✅ Merci pour votre avis !');
         }
-
-        function deleteReview(reviewId) {
-            if (!confirm('Supprimer cet avis ?')) return;
-            appState.reviews = appState.reviews.filter(r => r.id !== reviewId);
-            appState.myReviewIds = appState.myReviewIds.filter(id => id !== reviewId);
-            renderReviews();
-            updateStats();
-            alert('✅ Avis supprimé');
-        }
-
-        function deleteAllReviews() {
-            if (confirm('⚠️ Supprimer TOUS les avis ?\n\nCette action est irréversible !')) {
-                appState.reviews = [];
-                appState.myReviewIds = [];
-                renderReviews();
-                updateStats();
-                alert('✅ Tous les avis ont été supprimés');
-            }
-        }
-
+        function deleteReview(reviewId) { if (!confirm('Supprimer cet avis ?')) return; appState.reviews = appState.reviews.filter(r => r.id !== reviewId); appState.myReviewIds = appState.myReviewIds.filter(id => id !== reviewId); renderReviews(); updateStats(); }
+        function deleteAllReviews() { if (confirm('⚠️ Supprimer TOUS les avis ?')) { appState.reviews = []; appState.myReviewIds = []; renderReviews(); updateStats(); alert('✅ Supprimés'); } }
         function renderReviews() {
             const container = document.getElementById('reviews-container');
-            if (appState.reviews.length === 0) {
-                container.innerHTML = '';
-                return;
-            }
-            
-            const sorted = [...appState.reviews].reverse();
-            container.innerHTML = `
-                <div class="space-y-3">
-                    <h3 class="font-bold text-lg text-gray-800">Avis récents</h3>
-                    ${sorted.map(review => {
-                        const isMyReview = appState.myReviewIds.includes(review.id);
-                        const canDelete = isMyReview || appState.adminMode;
-                        const stars = '⭐'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
-                        
-                        return `
-                            <div class="bg-white rounded-2xl p-4 shadow-md">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="font-semibold text-gray-800">${review.name}</p>
-                                    <div class="flex gap-2 items-center">
-                                        <span>${stars}</span>
-                                        ${canDelete ? `
-                                            <button onclick="deleteReview(${review.id})" 
-                                                    class="text-red-500 text-xs hover:text-red-700 ml-2" 
-                                                    title="Supprimer">
-                                                🗑️
-                                            </button>
-                                        ` : ''}
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 text-sm mb-2">${review.comment}</p>
-                                <p class="text-xs text-gray-400">${review.date}</p>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            `;
+            if (appState.reviews.length === 0) { container.innerHTML = ''; return; }
+            container.innerHTML = `<div class="space-y-3"><h3 class="font-bold text-lg text-gray-800">Avis récents</h3>${[...appState.reviews].reverse().map(review => {
+                const canDelete = appState.myReviewIds.includes(review.id) || appState.adminMode;
+                const stars = '⭐'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+                return `<div class="bg-white rounded-2xl p-4 shadow-md"><div class="flex justify-between items-start mb-2"><p class="font-semibold text-gray-800">${review.name}</p><div class="flex gap-2 items-center"><span>${stars}</span>${canDelete ? `<button onclick="deleteReview(${review.id})" class="text-red-500 text-xs ml-2">🗑️</button>` : ''}</div></div><p class="text-gray-600 text-sm mb-2">${review.comment}</p><p class="text-xs text-gray-400">${review.date}</p></div>`;
+            }).join('')}</div>`;
         }
 
-        // Stats et UI
         function updateStats() {
             document.getElementById('stat-reviews').textContent = appState.reviews.length;
             document.getElementById('stat-photos').textContent = appState.photos.length;
@@ -2021,270 +1055,44 @@ function switchMenuTab(tab) {
             document.getElementById('btn-reviews-count').textContent = appState.reviews.length;
             document.getElementById('btn-photos-count').textContent = appState.photos.length;
             document.getElementById('btn-reports-count').textContent = appState.bugReports.length;
-            
-            const avgRating = appState.reviews.length > 0 
-                ? (appState.reviews.reduce((sum, r) => sum + r.rating, 0) / appState.reviews.length).toFixed(1)
-                : '0.0';
+            const avgRating = appState.reviews.length > 0 ? (appState.reviews.reduce((sum,r) => sum + r.rating, 0) / appState.reviews.length).toFixed(1) : '0.0';
             document.getElementById('stat-rating').textContent = avgRating + '⭐';
             renderVisitorStats();
         }
 
         function updateUI() {
-            // Afficher/cacher les notices admin
-            const adminNoticeGallery = document.getElementById('admin-notice-gallery');
-            const adminNoticeReviews = document.getElementById('admin-notice-reviews');
-            
-            if (adminNoticeGallery) {
-                if (appState.adminMode) {
-                    adminNoticeGallery.classList.remove('hidden');
-                } else {
-                    adminNoticeGallery.classList.add('hidden');
-                }
-            }
-            if (adminNoticeReviews) {
-                if (appState.adminMode) {
-                    adminNoticeReviews.classList.remove('hidden');
-                } else {
-                    adminNoticeReviews.classList.add('hidden');
-                }
-            }
-            
-            renderPhotos();
-            renderReviews();
+            const anrg = document.getElementById('admin-notice-gallery');
+            const anrr = document.getElementById('admin-notice-reviews');
+            if (anrg) anrg.classList.toggle('hidden', !appState.adminMode);
+            if (anrr) anrr.classList.toggle('hidden', !appState.adminMode);
+            renderPhotos(); renderReviews();
         }
 
-        // Enter pour connexion admin
-        document.getElementById('adminPasswordInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') loginAdmin();
-        });
+        document.getElementById('adminPasswordInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') loginAdmin(); });
 
-    // Fonctions pour la Lightbox (Agrandissement des photos)
-function openLightbox(src, caption) {
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightbox-img');
-    const lbCap = document.getElementById('lightbox-caption');
-    
-    if (lb && lbImg && lbCap) {
-        lbImg.src = src;
-        lbCap.textContent = caption;
-        lb.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-
-function closeLightbox() {
-    const lb = document.getElementById('lightbox');
-    if (lb) {
-        lb.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-    }
-}
-
-// ===== CALCULATEUR GROUPE =====
-function calculerGroupe() {
-    const nb = parseInt(document.getElementById('calc-personnes').value) || 0;
-    const formule = parseFloat(document.querySelector('input[name="formule"]:checked')?.value || 18.9);
-    const boissons = document.getElementById('calc-boissons')?.checked ? 5 : 0;
-    const prixPerso = formule + boissons;
-    const total = nb * prixPerso;
-    document.getElementById('calc-total').textContent = total.toFixed(0) + ' €';
-    document.getElementById('calc-detail').textContent = `${nb} pers × ${prixPerso.toFixed(2)}€/pers`;
-}
-
-// ===== SONDAGES =====
-const STORAGE_SONDAGES = 'brasserie_sondages_v1';
-
-function saveSondages() {
-    try { localStorage.setItem(STORAGE_SONDAGES, JSON.stringify(appState.sondages)); } catch(e) {}
-}
-function loadSondages() {
-    try { const s = localStorage.getItem(STORAGE_SONDAGES); if (s) appState.sondages = JSON.parse(s); } catch(e) {}
-}
-
-function ajouterSondage() {
-    const question = document.getElementById('sondage-question').value.trim();
-    const opts = [...document.querySelectorAll('.sondage-opt')].map(i => i.value.trim()).filter(Boolean);
-    if (!question || opts.length < 2) { alert('Question et au moins 2 options requises !'); return; }
-    const s = { id: Date.now(), question, options: opts, votes: opts.map(() => 0) };
-    appState.sondages.push(s);
-    saveSondages();
-    document.getElementById('sondage-question').value = '';
-    document.querySelectorAll('.sondage-opt').forEach(i => i.value = '');
-    renderSondages();
-    alert('✅ Sondage publié !');
-}
-
-function voterSondage(sondageId, optionIdx) {
-    const s = appState.sondages.find(s => s.id === sondageId);
-    if (!s) return;
-    const key = 'voted_' + sondageId;
-    if (sessionStorage.getItem(key)) { alert('Vous avez déjà voté pour ce sondage !'); return; }
-    s.votes[optionIdx]++;
-    sessionStorage.setItem(key, '1');
-    saveSondages();
-    renderSondages();
-}
-
-function supprimerSondage(id) {
-    if (!confirm('Supprimer ce sondage ?')) return;
-    appState.sondages = appState.sondages.filter(s => s.id !== id);
-    saveSondages();
-    renderSondages();
-}
-
-function renderSondages() {
-    const pub = document.getElementById('sondages-public');
-    const empty = document.getElementById('sondages-empty');
-    const adm = document.getElementById('sondages-admin');
-
-    if (pub) {
-        if (appState.sondages.length === 0) {
-            pub.innerHTML = '';
-            if (empty) empty.classList.remove('hidden');
-        } else {
-            if (empty) empty.classList.add('hidden');
-            pub.innerHTML = appState.sondages.map(s => {
-                const totalVotes = s.votes.reduce((a, b) => a + b, 0);
-                const voted = sessionStorage.getItem('voted_' + s.id);
-                return `
-                <div class="bg-white rounded-2xl p-5 shadow-md">
-                    <h3 class="font-bold text-gray-800 mb-4">${s.question}</h3>
-                    <div class="space-y-2">
-                        ${s.options.map((opt, i) => {
-                            const pct = totalVotes > 0 ? Math.round((s.votes[i]/totalVotes)*100) : 0;
-                            return voted ? `
-                                <div class="rounded-xl overflow-hidden border border-gray-100">
-                                    <div class="flex justify-between px-3 py-2 text-sm">
-                                        <span class="font-medium text-gray-700">${opt}</span>
-                                        <span class="font-bold text-purple-600">${pct}%</span>
-                                    </div>
-                                    <div class="h-2 bg-gray-100"><div class="h-2 bg-gradient-to-r from-purple-500 to-pink-500" style="width:${pct}%"></div></div>
-                                </div>` : `
-                                <button onclick="voterSondage(${s.id}, ${i})"
-                                        class="w-full text-left p-3 rounded-xl border-2 border-gray-100 hover:border-purple-400 hover:bg-purple-50 transition-all text-sm font-semibold text-gray-700">
-                                    ${opt}
-                                </button>`;
-                        }).join('')}
-                    </div>
-                    <p class="text-xs text-gray-400 mt-3 text-right">${totalVotes} vote${totalVotes !== 1 ? 's' : ''}</p>
-                </div>`;
-            }).join('');
+        function openLightbox(src, caption) {
+            const lb = document.getElementById('lightbox');
+            if (lb) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox-caption').textContent = caption; lb.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
         }
-    }
-
-    if (adm) {
-        adm.innerHTML = appState.sondages.length === 0
-            ? '<p class="text-gray-400 text-sm text-center py-4">Aucun sondage</p>'
-            : appState.sondages.map(s => {
-                const total = s.votes.reduce((a,b) => a+b, 0);
-                return `
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                    <div class="min-w-0">
-                        <p class="font-semibold text-gray-800 text-sm truncate">${s.question}</p>
-                        <p class="text-xs text-gray-400">${total} vote${total !== 1 ? 's' : ''} · ${s.options.length} options</p>
-                    </div>
-                    <button onclick="supprimerSondage(${s.id})" class="ml-2 text-red-400 hover:text-red-600 text-lg">🗑️</button>
-                </div>`;
-            }).join('');
-    }
-}
-
-// ===== TRADUCTION =====
-const langues = [
-    { code: 'fr', flag: '🇫🇷', label: 'Français' },
-    { code: 'en', flag: '🇬🇧', label: 'English' },
-    { code: 'es', flag: '🇪🇸', label: 'Español' },
-    { code: 'de', flag: '🇩🇪', label: 'Deutsch' },
-    { code: 'it', flag: '🇮🇹', label: 'Italiano' },
-    { code: 'pt', flag: '🇵🇹', label: 'Português' },
-    { code: 'ar', flag: '🇸🇦', label: 'العربية' },
-    { code: 'zh', flag: '🇨🇳', label: '中文' },
-    { code: 'ja', flag: '🇯🇵', label: '日本語' },
-    { code: 'ru', flag: '🇷🇺', label: 'Русский' },
-    { code: 'nl', flag: '🇳🇱', label: 'Nederlands' },
-    { code: 'pl', flag: '🇵🇱', label: 'Polski' },
-    { code: 'tr', flag: '🇹🇷', label: 'Türkçe' },
-    { code: 'ro', flag: '🇷🇴', label: 'Română' },
-    { code: 'uk', flag: '🇺🇦', label: 'Українська' },
-];
-
-let langMenuOpen = false;
-let currentLang = 'fr';
-
-function initLangMenu() {
-    const list = document.getElementById('lang-list');
-    list.innerHTML = langues.map(l => `
-        <button onclick="setLangue('${l.code}', '${l.flag}', '${l.label}')"
-                class="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-purple-50 text-sm font-medium text-gray-700 transition-all ${l.code === currentLang ? 'bg-purple-50 text-purple-700' : ''}">
-            <span class="text-xl">${l.flag}</span>
-            <span>${l.label}</span>
-        </button>
-    `).join('');
-}
-
-function toggleLangMenu() {
-    langMenuOpen = !langMenuOpen;
-    const menu = document.getElementById('lang-menu');
-    if (langMenuOpen) {
-        initLangMenu();
-        menu.classList.remove('hidden');
-    } else {
-        menu.classList.add('hidden');
-    }
-}
-
-function setLangue(code, flag, label) {
-    currentLang = code;
-    document.getElementById('lang-flag').textContent = flag;
-    document.getElementById('lang-label').textContent = code.toUpperCase();
-    document.getElementById('lang-menu').classList.add('hidden');
-    langMenuOpen = false;
-
-    if (code === 'fr') {
-        // Retirer la traduction Google si elle était active
-        const frame = document.getElementById('google-translate-frame');
-        if (frame) frame.remove();
-        return;
-    }
-
-    // Utiliser Google Translate via meta redirect trick
-    const pageUrl = encodeURIComponent(window.location.href.split('?')[0]);
-    const gtUrl = `https://translate.google.com/translate?sl=fr&tl=${code}&u=${pageUrl}`;
-    
-    // Ouvrir dans un nouvel onglet car Google Translate ne fonctionne pas en iframe cross-origin
-    if (confirm(`Ouvrir la page traduite en ${label} dans un nouvel onglet ?`)) {
-        window.open(gtUrl, '_blank');
-    }
-}
-
-// Init calculateur au chargement
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(calculerGroupe, 100);
-    loadSondages();
-    renderSondages();
-});
-
+        function closeLightbox() { const lb = document.getElementById('lightbox'); if (lb) { lb.classList.add('hidden'); document.body.style.overflow = 'auto'; } }
     </script>
 
-<footer class="bg-white border-t border-gray-200 pt-8 pb-24 mt-10">
-    <div class="max-w-md mx-auto px-4 text-center">
-        <p class="text-gray-600 text-sm mb-4">
-            © 2026 brasserievaires. Tous droits réservés.
-        </p>
-        <div class="flex justify-center gap-4 text-xs text-purple-600 font-medium">
-            <a href="#" class="hover:underline text-pink-600">Mentions légales</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:underline text-pink-600">Politique de confidentialité</a>
+    <footer class="bg-white border-t border-gray-200 pt-8 pb-24 mt-10">
+        <div class="max-w-md mx-auto px-4 text-center">
+            <p class="text-gray-600 text-sm mb-4">© 2026 brasserievaires. Tous droits réservés.</p>
+            <div class="flex justify-center gap-4 text-xs text-purple-600 font-medium">
+                <a href="#" class="hover:underline text-pink-600">Mentions légales</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="hover:underline text-pink-600">Politique de confidentialité</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<div id="lightbox" class="hidden fixed inset-0 bg-black/95 z-[100] flex flex-col items-center justify-center p-4" onclick="closeLightbox()">
-    <button class="absolute top-6 right-6 text-white text-4xl">&times;</button>
-    <img id="lightbox-img" src="" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl transition-transform duration-300">
-    <p id="lightbox-caption" class="text-white mt-4 text-lg font-medium"></p>
-</div>
+    <div id="lightbox" class="hidden fixed inset-0 bg-black/95 z-[100] flex flex-col items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white text-4xl">&times;</button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl">
+        <p id="lightbox-caption" class="text-white mt-4 text-lg font-medium"></p>
+    </div>
 
 </body>
 </html>
