@@ -207,6 +207,15 @@
         </div>
     </div>
 
+    <!-- Bandeau d'annonce -->
+    <div id="annonce-bandeau" class="hidden max-w-md mx-auto px-4 pt-3">
+        <div id="annonce-box" class="rounded-2xl px-4 py-3 flex items-center gap-3 shadow-md">
+            <span id="annonce-emoji" class="text-2xl flex-shrink-0">📢</span>
+            <p id="annonce-texte" class="text-sm font-semibold flex-1"></p>
+            <button onclick="fermerAnnonce()" class="text-lg opacity-60 hover:opacity-100 flex-shrink-0">✕</button>
+        </div>
+    </div>
+
     <!-- Contenu Principal -->
     <div class="max-w-md mx-auto p-4">
         
@@ -236,6 +245,20 @@
                         <p class="text-3xl font-bold text-green-600" id="stat-reports">0</p>
                         <p class="text-sm text-gray-600 mt-1">Signalements</p>
                     </div>
+                    <div class="bg-indigo-50 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-indigo-600" id="stat-visitors">0</p>
+                        <p class="text-sm text-gray-600 mt-1">Visiteurs total</p>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-teal-600" id="stat-visitors-today">0</p>
+                        <p class="text-sm text-gray-600 mt-1">Visiteurs aujourd'hui</p>
+                    </div>
+                </div>
+
+                <!-- Graphique pages visitées -->
+                <div class="mt-4">
+                    <p class="text-sm font-semibold text-gray-600 mb-3">📈 Pages les plus visitées</p>
+                    <div id="stat-pages" class="space-y-2"></div>
                 </div>
             </div>
 
@@ -279,6 +302,10 @@
                             class="w-full bg-yellow-50 text-yellow-700 p-3 rounded-lg font-medium hover:bg-yellow-100 transition-all">
                         🔄 Remettre la carte par défaut
                     </button>
+                    <button onclick="resetVisitors()" 
+                            class="w-full bg-indigo-50 text-indigo-600 p-3 rounded-lg font-medium hover:bg-indigo-100 transition-all">
+                        🔄 Remettre les compteurs à zéro
+                    </button>
                 </div>
             </div>
 
@@ -306,6 +333,104 @@
                         class="w-full mt-4 border-2 border-dashed border-purple-300 text-purple-500 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-all">
                     ➕ Ajouter une catégorie
                 </button>
+            </div>
+
+            <!-- Section bandeau d'annonce -->
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-gray-800 mb-1">📢 Bandeau d'annonce</h3>
+                <p class="text-xs text-gray-400 mb-4">Affiche un message en haut du site pour tous les visiteurs</p>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <span class="font-semibold text-gray-700 text-sm">Activer le bandeau</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="annonce-toggle" onchange="toggleAnnonce(this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-500 font-semibold mb-1 block">Message</label>
+                        <input type="text" id="annonce-input" placeholder="Ex : Fermé ce mercredi 🎄 Joyeux Noël !"
+                               class="w-full p-3 border border-gray-200 rounded-xl text-sm"
+                               oninput="updateAnnonce()"/>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-500 font-semibold mb-2 block">Emoji</label>
+                        <div class="flex gap-2 flex-wrap" id="emoji-picker">
+                            <button onclick="setAnnonceEmoji('📢')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">📢</button>
+                            <button onclick="setAnnonceEmoji('⚠️')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">⚠️</button>
+                            <button onclick="setAnnonceEmoji('🎉')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">🎉</button>
+                            <button onclick="setAnnonceEmoji('🔴')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">🔴</button>
+                            <button onclick="setAnnonceEmoji('✅')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">✅</button>
+                            <button onclick="setAnnonceEmoji('🍺')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">🍺</button>
+                            <button onclick="setAnnonceEmoji('❄️')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">❄️</button>
+                            <button onclick="setAnnonceEmoji('🎄')" class="emoji-btn text-2xl p-1 rounded-lg hover:bg-gray-100">🎄</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-500 font-semibold mb-2 block">Couleur</label>
+                        <div class="flex gap-2">
+                            <button onclick="setAnnonceCouleur('orange')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-orange-100 text-orange-700 hover:bg-orange-200">🟠 Orange</button>
+                            <button onclick="setAnnonceCouleur('red')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-red-100 text-red-700 hover:bg-red-200">🔴 Rouge</button>
+                            <button onclick="setAnnonceCouleur('green')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-green-100 text-green-700 hover:bg-green-200">🟢 Vert</button>
+                            <button onclick="setAnnonceCouleur('purple')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-purple-100 text-purple-700 hover:bg-purple-200">🟣 Violet</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Prévisualisation -->
+                <div id="annonce-preview" class="hidden mt-4 rounded-xl px-4 py-3 flex items-center gap-3">
+                    <span id="preview-emoji" class="text-2xl">📢</span>
+                    <p id="preview-texte" class="text-sm font-semibold flex-1">Aperçu du message</p>
+                </div>
+            </div>
+
+            <!-- Section événements admin -->
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-gray-800 mb-1">🎉 Gérer les événements</h3>
+                <p class="text-xs text-gray-400 mb-4">Ajoutez des soirées et événements spéciaux</p>
+
+                <!-- Formulaire ajout -->
+                <div class="bg-purple-50 rounded-2xl p-4 mb-4 space-y-3">
+                    <input type="text" id="event-titre" placeholder="Titre (ex : Soirée Quiz 🎤)"
+                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    <input type="date" id="event-date"
+                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    <input type="text" id="event-heure" placeholder="Heure (ex : 19h00)"
+                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    <textarea id="event-desc" placeholder="Description de l'événement..."
+                              class="w-full p-3 border border-gray-200 rounded-xl text-sm h-20"></textarea>
+                    <div class="flex gap-2">
+                        <input type="text" id="event-emoji" placeholder="Emoji (ex: 🎤)" maxlength="4"
+                               class="w-20 p-3 border border-gray-200 rounded-xl text-sm text-center text-xl"/>
+                        <button onclick="ajouterEvent()"
+                                class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold text-sm">
+                            ➕ Ajouter l'événement
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Liste des événements admin -->
+                <div id="events-container-admin" class="space-y-2"></div>
+            </div>
+
+            <!-- Section sondages admin -->
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <h3 class="text-xl font-bold text-gray-800 mb-1">📊 Gérer les sondages</h3>
+                <p class="text-xs text-gray-400 mb-4">Créez des sondages pour vos clients</p>
+                <div class="bg-purple-50 rounded-2xl p-4 mb-4 space-y-3">
+                    <input type="text" id="sondage-question" placeholder="Question (ex: Quel est votre plat préféré ?)"
+                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    <div id="sondage-options-admin" class="space-y-2">
+                        <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 1"/>
+                        <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 2"/>
+                        <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 3 (optionnel)"/>
+                        <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 4 (optionnel)"/>
+                    </div>
+                    <button onclick="ajouterSondage()"
+                            class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold text-sm">
+                        ➕ Publier le sondage
+                    </button>
+                </div>
+                <div id="sondages-admin" class="space-y-2"></div>
             </div>
 
             <!-- Section visibilité des pages -->
@@ -352,6 +477,48 @@
                         </div>
                         <label class="toggle-switch">
                             <input type="checkbox" checked onchange="togglePageVisibility('reviews', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">📊</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Sondage</p>
+                                <p class="text-xs text-gray-400">Sondages clients</p>
+                            </div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked onchange="togglePageVisibility('sondage', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🥂</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Calculateur Groupe</p>
+                                <p class="text-xs text-gray-400">Estimation budget groupe</p>
+                            </div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked onchange="togglePageVisibility('calcul', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🎉</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Événements</p>
+                                <p class="text-xs text-gray-400">Soirées & événements</p>
+                            </div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked onchange="togglePageVisibility('events', this.checked)">
                             <span class="toggle-slider"></span>
                         </label>
                     </div>
@@ -798,6 +965,129 @@ function switchMenuTab(tab) {
         </div>
         <!-- ==================== FIN PAGE JEUX ==================== -->
 
+        <!-- Page Événements -->
+        <div id="page-events" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Événements</h2>
+            <div id="events-container-public"></div>
+            <div id="events-empty" class="text-center py-16 text-gray-400">
+                <div class="text-6xl mb-4">🎉</div>
+                <p class="font-semibold">Aucun événement pour le moment</p>
+                <p class="text-sm mt-2">Revenez bientôt !</p>
+            </div>
+            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">
+                🏠 Retour à l'accueil
+            </button>
+        </div>
+
+        <!-- Page Chat -->
+        <div id="page-chat" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">💬 Nous contacter</h2>
+
+            <div class="bg-white rounded-2xl p-5 shadow-md">
+                <p class="text-sm text-gray-500 mb-4 text-center">Envoyez-nous un message, nous vous répondrons dès que possible !</p>
+
+                <!-- Fil de conversation -->
+                <div id="chat-thread" class="space-y-3 mb-4 max-h-80 overflow-y-auto pr-1"></div>
+
+                <!-- Formulaire envoi -->
+                <div id="chat-form" class="space-y-3">
+                    <input type="text" id="chat-nom" placeholder="Votre prénom"
+                           class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    <div class="flex gap-2">
+                        <textarea id="chat-msg" placeholder="Votre message…"
+                                  class="flex-1 p-3 border border-gray-200 rounded-xl text-sm resize-none h-20"></textarea>
+                        <button onclick="envoyerMessage()"
+                                class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 rounded-xl font-bold text-xl self-end pb-3 pt-3">➤</button>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">
+                🏠 Retour à l'accueil
+            </button>
+        </div>
+
+        <!-- Page Sondage -->
+        <div id="page-sondage" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">📊 Sondages</h2>
+            <div id="sondages-public"></div>
+            <div id="sondages-empty" class="text-center py-16 text-gray-400">
+                <div class="text-6xl mb-4">📊</div>
+                <p class="font-semibold">Aucun sondage en cours</p>
+                <p class="text-sm mt-2">Revenez bientôt !</p>
+            </div>
+            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
+        </div>
+
+        <!-- Page Calculateur Groupe -->
+        <div id="page-calcul" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">🥂 Calculateur Groupe</h2>
+
+            <div class="bg-white rounded-2xl p-5 shadow-md space-y-4">
+                <p class="text-sm text-gray-500 text-center">Estimez le budget pour votre groupe en quelques secondes !</p>
+
+                <div>
+                    <label class="text-xs font-bold text-gray-600 mb-1 block">Nombre de personnes</label>
+                    <input type="number" id="calc-personnes" value="10" min="1" max="200"
+                           oninput="calculerGroupe()"
+                           class="w-full p-3 border border-gray-200 rounded-xl text-lg font-bold text-center"/>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-gray-600 block">Formule choisie</label>
+                    <div class="space-y-2" id="calc-formules">
+                        <label class="flex items-center justify-between p-3 bg-purple-50 rounded-xl cursor-pointer">
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="formule" value="18.9" onchange="calculerGroupe()" checked class="accent-purple-600"/>
+                                <span class="text-sm font-semibold text-gray-800">Entrée + Plat ou Plat + Dessert</span>
+                            </div>
+                            <span class="text-pink-600 font-bold text-sm">18,90€/pers</span>
+                        </label>
+                        <label class="flex items-center justify-between p-3 bg-purple-50 rounded-xl cursor-pointer">
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="formule" value="22.9" onchange="calculerGroupe()" class="accent-purple-600"/>
+                                <span class="text-sm font-semibold text-gray-800">Formule gourmande complète</span>
+                            </div>
+                            <span class="text-pink-600 font-bold text-sm">22,90€/pers</span>
+                        </label>
+                        <label class="flex items-center justify-between p-3 bg-purple-50 rounded-xl cursor-pointer">
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="formule" value="17" onchange="calculerGroupe()" class="accent-purple-600"/>
+                                <span class="text-sm font-semibold text-gray-800">Plat seul (burger / salade)</span>
+                            </div>
+                            <span class="text-pink-600 font-bold text-sm">~17€/pers</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                    <label class="text-xs font-bold text-gray-600">Boissons incluses ?</label>
+                    <label class="toggle-switch ml-auto">
+                        <input type="checkbox" id="calc-boissons" onchange="calculerGroupe()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="text-xs text-gray-400">+5€/pers</span>
+                </div>
+
+                <!-- Résultat -->
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-5 text-white text-center">
+                    <p class="text-sm opacity-80 mb-1">Estimation totale</p>
+                    <p class="text-5xl font-black" id="calc-total">—</p>
+                    <p class="text-sm opacity-80 mt-1" id="calc-detail"></p>
+                </div>
+
+                <p class="text-xs text-gray-400 text-center italic">* Estimation indicative, prix pouvant varier selon les plats choisis.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-5 shadow-md text-center">
+                <p class="text-sm text-gray-600 mb-3">Pour réserver votre groupe 👇</p>
+                <button onclick="goToPage('reservation')" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">📅 Réserver une table</button>
+                <a href="tel:0160202401" class="block mt-2 w-full bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold">📞 Appeler directement</a>
+            </div>
+
+            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
+        </div>
+
     </div>
 
     <!-- Navigation Bottom -->
@@ -828,6 +1118,21 @@ function switchMenuTab(tab) {
                 <span class="text-2xl">🎮</span>
                 <span class="text-xs font-medium">Jeux</span>
             </button>
+            <button onclick="goToPage('events')" id="nav-events" 
+                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
+                <span class="text-2xl">🎉</span>
+                <span class="text-xs font-medium">Événements</span>
+            </button>
+            <button onclick="goToPage('sondage')" id="nav-sondage" 
+                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
+                <span class="text-2xl">📊</span>
+                <span class="text-xs font-medium">Sondage</span>
+            </button>
+            <button onclick="goToPage('calcul')" id="nav-calcul" 
+                    class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
+                <span class="text-2xl">🥂</span>
+                <span class="text-xs font-medium">Groupe</span>
+            </button>
             <button onclick="goToPage('contact')" id="nav-contact" 
                     class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500">
                 <span class="text-2xl">📞</span>
@@ -848,13 +1153,13 @@ function switchMenuTab(tab) {
             bugReports: [],
             currentRating: 5,
             currentAdminMenuTab: 'semaine',
+            events: [],
+            sondages: [],
+            annonce: { active: false, texte: '', couleur: 'orange', emoji: '📢' },
             pageVisibility: {
-                menu: true,
-                gallery: true,
-                reviews: true,
-                jeux: true,
-                reservation: true,
-                contact: true
+                menu: true, gallery: true, reviews: true, jeux: true,
+                events: true, sondage: true, calcul: true,
+                reservation: true, contact: true
             },
             menu: {
                 semaine: [
@@ -1118,28 +1423,288 @@ function switchMenuTab(tab) {
 
         // ===== SAUVEGARDE LOCALE =====
         const STORAGE_KEY = 'brasserie_menu_v1';
+        const STORAGE_ANNONCE = 'brasserie_annonce_v1';
+        const STORAGE_EVENTS = 'brasserie_events_v1';
+        const STORAGE_VISITORS = 'brasserie_visitors_v1';
 
         function saveMenu() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.menu));
-            } catch(e) { console.warn('Sauvegarde échouée', e); }
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.menu)); } catch(e) {}
+        }
+        function loadMenu() {
+            try { const s = localStorage.getItem(STORAGE_KEY); if (s) appState.menu = JSON.parse(s); } catch(e) {}
+        }
+        function saveAnnonce() {
+            try { localStorage.setItem(STORAGE_ANNONCE, JSON.stringify(appState.annonce)); } catch(e) {}
+        }
+        function loadAnnonce() {
+            try { const s = localStorage.getItem(STORAGE_ANNONCE); if (s) appState.annonce = JSON.parse(s); } catch(e) {}
+        }
+        function saveEvents() {
+            try { localStorage.setItem(STORAGE_EVENTS, JSON.stringify(appState.events)); } catch(e) {}
+        }
+        function loadEvents() {
+            try { const s = localStorage.getItem(STORAGE_EVENTS); if (s) appState.events = JSON.parse(s); } catch(e) {}
         }
 
-        function loadMenu() {
+        // ===== COMPTEUR VISITEURS =====
+        let visitorData = { total: 0, today: 0, lastDate: '', pages: {} };
+
+        function loadVisitors() {
             try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    appState.menu = JSON.parse(saved);
+                const s = localStorage.getItem(STORAGE_VISITORS);
+                if (s) visitorData = JSON.parse(s);
+            } catch(e) {}
+        }
+
+        function saveVisitors() {
+            try { localStorage.setItem(STORAGE_VISITORS, JSON.stringify(visitorData)); } catch(e) {}
+        }
+
+        function trackVisit() {
+            const today = new Date().toLocaleDateString('fr-FR');
+            if (visitorData.lastDate !== today) {
+                visitorData.today = 0;
+                visitorData.lastDate = today;
+            }
+            // Ne compter qu'une fois par session
+            if (!sessionStorage.getItem('brasserie_visited')) {
+                visitorData.total++;
+                visitorData.today++;
+                sessionStorage.setItem('brasserie_visited', '1');
+                saveVisitors();
+            }
+        }
+
+        function trackPage(page) {
+            if (!visitorData.pages[page]) visitorData.pages[page] = 0;
+            visitorData.pages[page]++;
+            saveVisitors();
+        }
+
+        function renderVisitorStats() {
+            document.getElementById('stat-visitors').textContent = visitorData.total.toLocaleString('fr-FR');
+            document.getElementById('stat-visitors-today').textContent = visitorData.today.toLocaleString('fr-FR');
+
+            const pagesEl = document.getElementById('stat-pages');
+            if (!pagesEl) return;
+            const pages = visitorData.pages;
+            const sorted = Object.entries(pages).sort((a, b) => b[1] - a[1]).slice(0, 6);
+            if (sorted.length === 0) { pagesEl.innerHTML = '<p class="text-xs text-gray-400">Aucune donnée</p>'; return; }
+            const max = sorted[0][1] || 1;
+            const labels = { home: '🏠 Accueil', menu: '📋 Carte', gallery: '📸 Photos', reviews: '⭐ Avis', jeux: '🎮 Jeux', events: '🎉 Événements', contact: '📞 Contact', reservation: '📅 Réservation' };
+            pagesEl.innerHTML = sorted.map(([page, count]) => `
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-gray-500 w-28 truncate">${labels[page] || page}</span>
+                    <div class="flex-1 bg-gray-100 rounded-full h-3 overflow-hidden">
+                        <div class="h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all"
+                             style="width:${Math.round((count/max)*100)}%"></div>
+                    </div>
+                    <span class="text-xs font-bold text-gray-600 w-6 text-right">${count}</span>
+                </div>
+            `).join('');
+        }
+
+        function resetVisitors() {
+            if (!confirm('⚠️ Remettre les compteurs à zéro ?')) return;
+            visitorData = { total: 0, today: 0, lastDate: '', pages: {} };
+            saveVisitors();
+            renderVisitorStats();
+            updateStats();
+            alert('✅ Compteurs remis à zéro');
+        }
+
+        // ===== BANDEAU ANNONCE =====
+        const couleurs = {
+            orange: { bg: 'bg-orange-100', text: 'text-orange-800', border: 'border-orange-300' },
+            red:    { bg: 'bg-red-100',    text: 'text-red-800',    border: 'border-red-300' },
+            green:  { bg: 'bg-green-100',  text: 'text-green-800',  border: 'border-green-300' },
+            purple: { bg: 'bg-purple-100', text: 'text-purple-800', border: 'border-purple-300' }
+        };
+
+        function renderAnnonce() {
+            const a = appState.annonce;
+            const bandeau = document.getElementById('annonce-bandeau');
+            if (!a.active || !a.texte.trim()) { bandeau.classList.add('hidden'); return; }
+            const c = couleurs[a.couleur] || couleurs.orange;
+            const box = document.getElementById('annonce-box');
+            box.className = `rounded-2xl px-4 py-3 flex items-center gap-3 shadow-md border ${c.bg} ${c.border}`;
+            document.getElementById('annonce-emoji').textContent = a.emoji || '📢';
+            document.getElementById('annonce-texte').className = `text-sm font-semibold flex-1 ${c.text}`;
+            document.getElementById('annonce-texte').textContent = a.texte;
+            bandeau.classList.remove('hidden');
+        }
+
+        function fermerAnnonce() {
+            document.getElementById('annonce-bandeau').classList.add('hidden');
+        }
+
+        function toggleAnnonce(checked) {
+            appState.annonce.active = checked;
+            saveAnnonce();
+            renderAnnonce();
+            updateAnnoncePreview();
+        }
+
+        function updateAnnonce() {
+            appState.annonce.texte = document.getElementById('annonce-input').value;
+            saveAnnonce();
+            renderAnnonce();
+            updateAnnoncePreview();
+        }
+
+        function setAnnonceEmoji(emoji) {
+            appState.annonce.emoji = emoji;
+            saveAnnonce();
+            renderAnnonce();
+            updateAnnoncePreview();
+        }
+
+        function setAnnonceCouleur(couleur) {
+            appState.annonce.couleur = couleur;
+            saveAnnonce();
+            renderAnnonce();
+            updateAnnoncePreview();
+        }
+
+        function updateAnnoncePreview() {
+            const a = appState.annonce;
+            const preview = document.getElementById('annonce-preview');
+            if (!a.texte.trim()) { preview.classList.add('hidden'); return; }
+            const c = couleurs[a.couleur] || couleurs.orange;
+            preview.className = `mt-4 rounded-xl px-4 py-3 flex items-center gap-3 border ${c.bg} ${c.border}`;
+            document.getElementById('preview-emoji').textContent = a.emoji || '📢';
+            const pt = document.getElementById('preview-texte');
+            pt.className = `text-sm font-semibold flex-1 ${c.text}`;
+            pt.textContent = a.texte || 'Aperçu du message';
+            preview.classList.remove('hidden');
+        }
+
+        function syncAnnonceAdmin() {
+            const a = appState.annonce;
+            const toggle = document.getElementById('annonce-toggle');
+            const input = document.getElementById('annonce-input');
+            if (toggle) toggle.checked = a.active;
+            if (input) input.value = a.texte || '';
+            updateAnnoncePreview();
+        }
+
+        // ===== ÉVÉNEMENTS =====
+        function ajouterEvent() {
+            const titre = document.getElementById('event-titre').value.trim();
+            const date  = document.getElementById('event-date').value;
+            const heure = document.getElementById('event-heure').value.trim();
+            const desc  = document.getElementById('event-desc').value.trim();
+            const emoji = document.getElementById('event-emoji').value.trim() || '🎉';
+            if (!titre || !date) { alert('Remplis au moins le titre et la date !'); return; }
+            const ev = { id: Date.now(), titre, date, heure, desc, emoji };
+            appState.events.push(ev);
+            appState.events.sort((a, b) => new Date(a.date) - new Date(b.date));
+            saveEvents();
+            document.getElementById('event-titre').value = '';
+            document.getElementById('event-date').value = '';
+            document.getElementById('event-heure').value = '';
+            document.getElementById('event-desc').value = '';
+            document.getElementById('event-emoji').value = '';
+            renderEvents();
+            alert('✅ Événement ajouté !');
+        }
+
+        function supprimerEvent(id) {
+            if (!confirm('Supprimer cet événement ?')) return;
+            appState.events = appState.events.filter(e => e.id !== id);
+            saveEvents();
+            renderEvents();
+        }
+
+        function renderEvents() {
+            const evs = appState.events;
+            const today = new Date(); today.setHours(0,0,0,0);
+
+            // Page publique
+            const pub = document.getElementById('events-container-public');
+            const empty = document.getElementById('events-empty');
+            const futurs = evs.filter(e => new Date(e.date) >= today);
+            const passes = evs.filter(e => new Date(e.date) < today);
+
+            if (pub) {
+                if (evs.length === 0) {
+                    pub.innerHTML = '';
+                    if (empty) empty.classList.remove('hidden');
+                } else {
+                    if (empty) empty.classList.add('hidden');
+                    let html = '';
+                    if (futurs.length > 0) {
+                        html += `<h3 class="font-bold text-gray-700 text-lg mb-3">📅 À venir</h3>`;
+                        html += futurs.map(e => renderEventCard(e, false)).join('');
+                    }
+                    if (passes.length > 0) {
+                        html += `<h3 class="font-bold text-gray-400 text-base mb-3 mt-4">🗂️ Passés</h3>`;
+                        html += passes.map(e => renderEventCard(e, true)).join('');
+                    }
+                    pub.innerHTML = html;
                 }
-            } catch(e) { console.warn('Chargement échoué', e); }
+            }
+
+            // Admin
+            const adm = document.getElementById('events-container-admin');
+            if (adm) {
+                if (evs.length === 0) {
+                    adm.innerHTML = '<p class="text-gray-400 text-sm text-center py-4">Aucun événement</p>';
+                } else {
+                    adm.innerHTML = evs.map(e => `
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                            <div class="flex items-center gap-2 min-w-0">
+                                <span class="text-xl">${e.emoji}</span>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-gray-800 text-sm truncate">${e.titre}</p>
+                                    <p class="text-xs text-gray-400">${formatDate(e.date)}${e.heure ? ' · ' + e.heure : ''}</p>
+                                </div>
+                            </div>
+                            <button onclick="supprimerEvent(${e.id})" class="ml-2 text-red-400 hover:text-red-600 text-lg flex-shrink-0">🗑️</button>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+
+        function renderEventCard(e, passe) {
+            const dateStr = formatDate(e.date);
+            return `
+                <div class="bg-white rounded-2xl p-5 shadow-md mb-3 ${passe ? 'opacity-50' : ''} border-l-4 ${passe ? 'border-gray-300' : 'border-purple-500'}">
+                    <div class="flex items-start gap-3">
+                        <span class="text-4xl">${e.emoji}</span>
+                        <div class="flex-1">
+                            <h4 class="font-black text-gray-800 text-lg leading-tight">${e.titre}</h4>
+                            <div class="flex items-center gap-2 mt-1 flex-wrap">
+                                <span class="text-xs font-semibold px-2 py-1 rounded-full ${passe ? 'bg-gray-100 text-gray-500' : 'bg-purple-100 text-purple-700'}">📅 ${dateStr}</span>
+                                ${e.heure ? `<span class="text-xs font-semibold px-2 py-1 rounded-full bg-pink-100 text-pink-700">🕐 ${e.heure}</span>` : ''}
+                            </div>
+                            ${e.desc ? `<p class="text-sm text-gray-600 mt-2 leading-relaxed">${e.desc}</p>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatDate(dateStr) {
+            const d = new Date(dateStr + 'T00:00:00');
+            return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
         }
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', () => {
             loadMenu();
+            loadAnnonce();
+            loadEvents();
+            loadVisitors();
+            loadSondages();
+            trackVisit();
             updateUI();
             updateStats();
             renderMenus();
+            renderAnnonce();
+            renderEvents();
+            renderSondages();
         });
 
         // Navigation
@@ -1169,6 +1734,7 @@ function switchMenuTab(tab) {
             }
             
             updateUI();
+            if (page !== 'admin') trackPage(page);
         }
 
         // Admin
@@ -1193,6 +1759,9 @@ function switchMenuTab(tab) {
                 goToPage('admin');
                 document.getElementById('adminIcon').textContent = '🔓';
                 renderAdminMenuEditor();
+                syncAnnonceAdmin();
+                renderEvents();
+                renderSondages();
                 alert('✅ Connexion réussie Bonjour Ethan');
             } else {
                 alert('❌ Code incorrect');
@@ -1457,6 +2026,7 @@ function switchMenuTab(tab) {
                 ? (appState.reviews.reduce((sum, r) => sum + r.rating, 0) / appState.reviews.length).toFixed(1)
                 : '0.0';
             document.getElementById('stat-rating').textContent = avgRating + '⭐';
+            renderVisitorStats();
         }
 
         function updateUI() {
@@ -1502,6 +2072,7 @@ function openLightbox(src, caption) {
     }
 }
 
+
 function closeLightbox() {
     const lb = document.getElementById('lightbox');
     if (lb) {
@@ -1509,6 +2080,191 @@ function closeLightbox() {
         document.body.style.overflow = 'auto';
     }
 }
+
+// ===== CALCULATEUR GROUPE =====
+function calculerGroupe() {
+    const nb = parseInt(document.getElementById('calc-personnes').value) || 0;
+    const formule = parseFloat(document.querySelector('input[name="formule"]:checked')?.value || 18.9);
+    const boissons = document.getElementById('calc-boissons')?.checked ? 5 : 0;
+    const prixPerso = formule + boissons;
+    const total = nb * prixPerso;
+    document.getElementById('calc-total').textContent = total.toFixed(0) + ' €';
+    document.getElementById('calc-detail').textContent = `${nb} pers × ${prixPerso.toFixed(2)}€/pers`;
+}
+
+// ===== SONDAGES =====
+const STORAGE_SONDAGES = 'brasserie_sondages_v1';
+
+function saveSondages() {
+    try { localStorage.setItem(STORAGE_SONDAGES, JSON.stringify(appState.sondages)); } catch(e) {}
+}
+function loadSondages() {
+    try { const s = localStorage.getItem(STORAGE_SONDAGES); if (s) appState.sondages = JSON.parse(s); } catch(e) {}
+}
+
+function ajouterSondage() {
+    const question = document.getElementById('sondage-question').value.trim();
+    const opts = [...document.querySelectorAll('.sondage-opt')].map(i => i.value.trim()).filter(Boolean);
+    if (!question || opts.length < 2) { alert('Question et au moins 2 options requises !'); return; }
+    const s = { id: Date.now(), question, options: opts, votes: opts.map(() => 0) };
+    appState.sondages.push(s);
+    saveSondages();
+    document.getElementById('sondage-question').value = '';
+    document.querySelectorAll('.sondage-opt').forEach(i => i.value = '');
+    renderSondages();
+    alert('✅ Sondage publié !');
+}
+
+function voterSondage(sondageId, optionIdx) {
+    const s = appState.sondages.find(s => s.id === sondageId);
+    if (!s) return;
+    const key = 'voted_' + sondageId;
+    if (sessionStorage.getItem(key)) { alert('Vous avez déjà voté pour ce sondage !'); return; }
+    s.votes[optionIdx]++;
+    sessionStorage.setItem(key, '1');
+    saveSondages();
+    renderSondages();
+}
+
+function supprimerSondage(id) {
+    if (!confirm('Supprimer ce sondage ?')) return;
+    appState.sondages = appState.sondages.filter(s => s.id !== id);
+    saveSondages();
+    renderSondages();
+}
+
+function renderSondages() {
+    const pub = document.getElementById('sondages-public');
+    const empty = document.getElementById('sondages-empty');
+    const adm = document.getElementById('sondages-admin');
+
+    if (pub) {
+        if (appState.sondages.length === 0) {
+            pub.innerHTML = '';
+            if (empty) empty.classList.remove('hidden');
+        } else {
+            if (empty) empty.classList.add('hidden');
+            pub.innerHTML = appState.sondages.map(s => {
+                const totalVotes = s.votes.reduce((a, b) => a + b, 0);
+                const voted = sessionStorage.getItem('voted_' + s.id);
+                return `
+                <div class="bg-white rounded-2xl p-5 shadow-md">
+                    <h3 class="font-bold text-gray-800 mb-4">${s.question}</h3>
+                    <div class="space-y-2">
+                        ${s.options.map((opt, i) => {
+                            const pct = totalVotes > 0 ? Math.round((s.votes[i]/totalVotes)*100) : 0;
+                            return voted ? `
+                                <div class="rounded-xl overflow-hidden border border-gray-100">
+                                    <div class="flex justify-between px-3 py-2 text-sm">
+                                        <span class="font-medium text-gray-700">${opt}</span>
+                                        <span class="font-bold text-purple-600">${pct}%</span>
+                                    </div>
+                                    <div class="h-2 bg-gray-100"><div class="h-2 bg-gradient-to-r from-purple-500 to-pink-500" style="width:${pct}%"></div></div>
+                                </div>` : `
+                                <button onclick="voterSondage(${s.id}, ${i})"
+                                        class="w-full text-left p-3 rounded-xl border-2 border-gray-100 hover:border-purple-400 hover:bg-purple-50 transition-all text-sm font-semibold text-gray-700">
+                                    ${opt}
+                                </button>`;
+                        }).join('')}
+                    </div>
+                    <p class="text-xs text-gray-400 mt-3 text-right">${totalVotes} vote${totalVotes !== 1 ? 's' : ''}</p>
+                </div>`;
+            }).join('');
+        }
+    }
+
+    if (adm) {
+        adm.innerHTML = appState.sondages.length === 0
+            ? '<p class="text-gray-400 text-sm text-center py-4">Aucun sondage</p>'
+            : appState.sondages.map(s => {
+                const total = s.votes.reduce((a,b) => a+b, 0);
+                return `
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                    <div class="min-w-0">
+                        <p class="font-semibold text-gray-800 text-sm truncate">${s.question}</p>
+                        <p class="text-xs text-gray-400">${total} vote${total !== 1 ? 's' : ''} · ${s.options.length} options</p>
+                    </div>
+                    <button onclick="supprimerSondage(${s.id})" class="ml-2 text-red-400 hover:text-red-600 text-lg">🗑️</button>
+                </div>`;
+            }).join('');
+    }
+}
+
+// ===== TRADUCTION =====
+const langues = [
+    { code: 'fr', flag: '🇫🇷', label: 'Français' },
+    { code: 'en', flag: '🇬🇧', label: 'English' },
+    { code: 'es', flag: '🇪🇸', label: 'Español' },
+    { code: 'de', flag: '🇩🇪', label: 'Deutsch' },
+    { code: 'it', flag: '🇮🇹', label: 'Italiano' },
+    { code: 'pt', flag: '🇵🇹', label: 'Português' },
+    { code: 'ar', flag: '🇸🇦', label: 'العربية' },
+    { code: 'zh', flag: '🇨🇳', label: '中文' },
+    { code: 'ja', flag: '🇯🇵', label: '日本語' },
+    { code: 'ru', flag: '🇷🇺', label: 'Русский' },
+    { code: 'nl', flag: '🇳🇱', label: 'Nederlands' },
+    { code: 'pl', flag: '🇵🇱', label: 'Polski' },
+    { code: 'tr', flag: '🇹🇷', label: 'Türkçe' },
+    { code: 'ro', flag: '🇷🇴', label: 'Română' },
+    { code: 'uk', flag: '🇺🇦', label: 'Українська' },
+];
+
+let langMenuOpen = false;
+let currentLang = 'fr';
+
+function initLangMenu() {
+    const list = document.getElementById('lang-list');
+    list.innerHTML = langues.map(l => `
+        <button onclick="setLangue('${l.code}', '${l.flag}', '${l.label}')"
+                class="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-purple-50 text-sm font-medium text-gray-700 transition-all ${l.code === currentLang ? 'bg-purple-50 text-purple-700' : ''}">
+            <span class="text-xl">${l.flag}</span>
+            <span>${l.label}</span>
+        </button>
+    `).join('');
+}
+
+function toggleLangMenu() {
+    langMenuOpen = !langMenuOpen;
+    const menu = document.getElementById('lang-menu');
+    if (langMenuOpen) {
+        initLangMenu();
+        menu.classList.remove('hidden');
+    } else {
+        menu.classList.add('hidden');
+    }
+}
+
+function setLangue(code, flag, label) {
+    currentLang = code;
+    document.getElementById('lang-flag').textContent = flag;
+    document.getElementById('lang-label').textContent = code.toUpperCase();
+    document.getElementById('lang-menu').classList.add('hidden');
+    langMenuOpen = false;
+
+    if (code === 'fr') {
+        // Retirer la traduction Google si elle était active
+        const frame = document.getElementById('google-translate-frame');
+        if (frame) frame.remove();
+        return;
+    }
+
+    // Utiliser Google Translate via meta redirect trick
+    const pageUrl = encodeURIComponent(window.location.href.split('?')[0]);
+    const gtUrl = `https://translate.google.com/translate?sl=fr&tl=${code}&u=${pageUrl}`;
+    
+    // Ouvrir dans un nouvel onglet car Google Translate ne fonctionne pas en iframe cross-origin
+    if (confirm(`Ouvrir la page traduite en ${label} dans un nouvel onglet ?`)) {
+        window.open(gtUrl, '_blank');
+    }
+}
+
+// Init calculateur au chargement
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(calculerGroupe, 100);
+    loadSondages();
+    renderSondages();
+});
+
     </script>
 
 <footer class="bg-white border-t border-gray-200 pt-8 pb-24 mt-10">
