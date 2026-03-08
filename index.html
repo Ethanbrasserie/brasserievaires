@@ -114,9 +114,7 @@
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">📊 Statistiques</h3>
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-purple-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-purple-600" id="stat-reviews">0</p><p class="text-sm text-gray-600 mt-1">Avis clients</p></div>
                     <div class="bg-pink-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-pink-600" id="stat-photos">0</p><p class="text-sm text-gray-600 mt-1">Photos</p></div>
-                    <div class="bg-blue-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-blue-600" id="stat-rating">0.0⭐</p><p class="text-sm text-gray-600 mt-1">Note moyenne</p></div>
                     <div class="bg-green-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-green-600" id="stat-reports">0</p><p class="text-sm text-gray-600 mt-1">Signalements</p></div>
                     <div class="bg-indigo-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-indigo-600" id="stat-visitors">0</p><p class="text-sm text-gray-600 mt-1">Visiteurs total</p></div>
                     <div class="bg-teal-50 p-4 rounded-lg text-center"><p class="text-3xl font-bold text-teal-600" id="stat-visitors-today">0</p><p class="text-sm text-gray-600 mt-1">Visiteurs aujourd'hui</p></div>
@@ -130,7 +128,6 @@
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">🛠️ Actions rapides</h3>
                 <div class="space-y-3">
-                    <button onclick="goToPage('reviews')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between"><span>💬 Gérer les avis</span><span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-reviews-count">0</span></button>
                     <button onclick="goToPage('gallery')" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between"><span>📸 Gérer les photos</span><span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-photos-count">0</span></button>
                     <button onclick="viewReports()" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl font-semibold flex items-center justify-between"><span>🚨 Voir les signalements</span><span class="bg-white/20 px-3 py-1 rounded-full text-sm" id="btn-reports-count">0</span></button>
                 </div>
@@ -139,7 +136,6 @@
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">⚙️ Paramètres</h3>
                 <div class="space-y-3">
-                    <button onclick="deleteAllReviews()" class="w-full bg-red-50 text-red-600 p-3 rounded-lg font-medium hover:bg-red-100">🗑️ Supprimer tous les avis</button>
                     <button onclick="deleteAllPhotos()" class="w-full bg-red-50 text-red-600 p-3 rounded-lg font-medium hover:bg-red-100">🗑️ Supprimer toutes les photos</button>
                     <button onclick="deleteAllReports()" class="w-full bg-orange-50 text-orange-600 p-3 rounded-lg font-medium hover:bg-orange-100">🗑️ Effacer les signalements</button>
                     <button onclick="resetMenuToDefault()" class="w-full bg-yellow-50 text-yellow-700 p-3 rounded-lg font-medium hover:bg-yellow-100">🔄 Remettre la carte par défaut</button>
@@ -214,22 +210,6 @@
                 <div id="events-container-admin" class="space-y-2"></div>
             </div>
 
-            <!-- Sondages admin -->
-            <div class="bg-white rounded-2xl p-6 shadow-md">
-                <h3 class="text-xl font-bold text-gray-800 mb-1">📊 Gérer les sondages</h3>
-                <div class="bg-purple-50 rounded-2xl p-4 mb-4 space-y-3">
-                    <input type="text" id="sondage-question" placeholder="Question du sondage" class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
-                    <div id="sondage-options-admin" class="space-y-2">
-                        <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 1"/>
-                        <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 2"/>
-                        <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 3 (optionnel)"/>
-                        <input type="text" class="sondage-opt w-full p-2 border border-gray-200 rounded-lg text-sm" placeholder="Option 4 (optionnel)"/>
-                    </div>
-                    <button onclick="ajouterSondage()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold text-sm">➕ Publier le sondage</button>
-                </div>
-                <div id="sondages-admin" class="space-y-2"></div>
-            </div>
-
             <!-- Visibilité pages -->
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="text-xl font-bold text-gray-800 mb-1">👁️ Visibilité des pages</h3>
@@ -237,10 +217,9 @@
                 <div class="space-y-3">
                     <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📋</span><div><p class="font-semibold text-gray-800 text-sm">Carte</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('menu', this.checked)"><span class="toggle-slider"></span></label></div>
                     <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📸</span><div><p class="font-semibold text-gray-800 text-sm">Photos</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('gallery', this.checked)"><span class="toggle-slider"></span></label></div>
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">⭐</span><div><p class="font-semibold text-gray-800 text-sm">Avis</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('reviews', this.checked)"><span class="toggle-slider"></span></label></div>
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📊</span><div><p class="font-semibold text-gray-800 text-sm">Sondage</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('sondage', this.checked)"><span class="toggle-slider"></span></label></div>
+
                     <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">🥂</span><div><p class="font-semibold text-gray-800 text-sm">Calculateur Groupe</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('calcul', this.checked)"><span class="toggle-slider"></span></label></div>
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">🎉</span><div><p class="font-semibold text-gray-800 text-sm">Événements</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('events', this.checked)"><span class="toggle-slider"></span></label></div>
+
                     <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">🎮</span><div><p class="font-semibold text-gray-800 text-sm">Jeux</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('jeux', this.checked)"><span class="toggle-slider"></span></label></div>
                     <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📅</span><div><p class="font-semibold text-gray-800 text-sm">Réservation</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('reservation', this.checked)"><span class="toggle-slider"></span></label></div>
                     <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-3"><span class="text-xl">📞</span><div><p class="font-semibold text-gray-800 text-sm">Contact</p></div></div><label class="toggle-switch"><input type="checkbox" checked onchange="togglePageVisibility('contact', this.checked)"><span class="toggle-slider"></span></label></div>
@@ -263,9 +242,8 @@
                 <p class="text-center text-gray-700 leading-relaxed">Bienvenue à la Brasserie de la Gare, votre adresse gourmande à Vaires-sur-Marne. Découvrez une cuisine traditionnelle revisitée dans une ambiance conviviale et moderne.</p>
             </div>
             <button onclick="goToPage('menu')" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold shadow-lg">Découvrir notre carte</button>
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 gap-4">
                 <button onclick="goToPage('reservation')" class="bg-pink-100 text-pink-700 py-3 rounded-xl font-medium">Réserver</button>
-                <button onclick="goToPage('reviews')" class="bg-purple-100 text-purple-700 py-3 rounded-xl font-medium">Avis clients</button>
             </div>
         </div>
 
@@ -316,28 +294,7 @@
             <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
         </div>
 
-        <!-- Page Avis -->
-        <div id="page-reviews" class="hidden space-y-4">
-            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Avis Clients</h2>
-            <div id="admin-notice-reviews" class="hidden bg-green-50 border-l-4 border-green-400 p-4 rounded-lg"><p class="text-sm text-green-800">✅ Mode admin actif</p></div>
-            <div class="bg-white rounded-2xl p-6 shadow-md">
-                <h3 class="font-bold text-lg mb-4 text-gray-800">Voir tous nos avis</h3>
-                <div class="space-y-3">
-                    <a href="https://www.tripadvisor.fr/Restaurant_Review-g2587180-d20123264-Reviews-Restaurant_Brasserie_De_La_Gare-Vaires_sur_Marne_Seine_et_Marne_Ile_de_France.html" target="_blank" class="block bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-xl font-semibold text-center">📍 Voir sur TripAdvisor</a>
-                    <a href="https://www.google.com/search?q=BRASSERIE+DE+LA+GARE+Avis" target="_blank" class="block bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-xl font-semibold text-center">⭐ Voir sur Google</a>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-md">
-                <h3 class="font-bold text-lg mb-4 text-gray-800">Laisser un avis</h3>
-                <div class="space-y-4">
-                    <input type="text" id="review-name" placeholder="Votre nom" class="w-full p-3 border border-gray-300 rounded-lg">
-                    <div><p class="text-sm text-gray-600 mb-2">Note</p><div class="flex gap-2" id="rating-stars"><span onclick="setRating(1)" class="cursor-pointer text-3xl">⭐</span><span onclick="setRating(2)" class="cursor-pointer text-3xl">⭐</span><span onclick="setRating(3)" class="cursor-pointer text-3xl">⭐</span><span onclick="setRating(4)" class="cursor-pointer text-3xl">⭐</span><span onclick="setRating(5)" class="cursor-pointer text-3xl">⭐</span></div></div>
-                    <textarea id="review-comment" placeholder="Votre avis" class="w-full p-3 border border-gray-300 rounded-lg h-32"></textarea>
-                    <button onclick="submitReview()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold">Publier mon avis</button>
-                </div>
-            </div>
-            <div id="reviews-container"></div>
-        </div>
+
 
         <!-- Page Réservation -->
         <div id="page-reservation" class="hidden space-y-4">
@@ -353,11 +310,111 @@
         </div>
         <script>(function(d,t){var e=d.createElement(t),s=d.getElementsByTagName(t)[0];e.src="https://reservation.dish.co/widget.js";s.parentNode.insertBefore(e,s);}(document,'script'));</script>
 
+        <!-- Page Click & Collect -->
+        <div id="page-order" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">📦 Click & Collect</h2>
+
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl p-5 shadow-lg">
+                <div class="flex items-center gap-3">
+                    <span class="text-4xl">🛍️</span>
+                    <div>
+                        <p class="font-bold text-lg">Commandez à l'avance !</p>
+                        <p class="text-sm opacity-90">Préparez votre commande, on s'occupe du reste.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infos retrait -->
+            <div class="bg-orange-50 border-l-4 border-orange-400 rounded-r-2xl p-4">
+                <p class="text-sm font-bold text-orange-800 mb-1">⏰ Retrait en caisse</p>
+                <p class="text-xs text-orange-700">Votre commande sera préparée pour l'heure choisie. Présentez-vous à la caisse en mentionnant votre prénom.</p>
+            </div>
+
+            <!-- Formulaire -->
+            <div class="bg-white rounded-2xl p-5 shadow-md space-y-4">
+                <h3 class="font-bold text-gray-800 text-lg">Vos informations</h3>
+                <div class="space-y-3">
+                    <div>
+                        <label class="text-xs font-bold text-gray-500 mb-1 block">Prénom *</label>
+                        <input type="text" id="order-prenom" placeholder="Votre prénom" class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-gray-500 mb-1 block">Téléphone *</label>
+                        <input type="tel" id="order-tel" placeholder="06 XX XX XX XX" class="w-full p-3 border border-gray-200 rounded-xl text-sm"/>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-gray-500 mb-1 block">Heure de retrait *</label>
+                        <select id="order-heure" class="w-full p-3 border border-gray-200 rounded-xl text-sm bg-white">
+                            <option value="">-- Choisir une heure --</option>
+                            <option>12h00</option><option>12h15</option><option>12h30</option><option>12h45</option>
+                            <option>13h00</option><option>13h15</option><option>13h30</option><option>13h45</option>
+                            <option>14h00</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sélection des plats -->
+            <div class="bg-white rounded-2xl p-5 shadow-md space-y-3">
+                <h3 class="font-bold text-gray-800 text-lg">Votre commande</h3>
+                <div class="flex gap-2">
+                    <button onclick="switchOrderTab('semaine')" id="order-tab-semaine"
+                            class="flex-1 py-2 rounded-xl text-sm font-bold bg-purple-600 text-white transition-all">📋 Semaine</button>
+                    <button onclick="switchOrderTab('samedi')" id="order-tab-samedi"
+                            class="flex-1 py-2 rounded-xl text-sm font-bold bg-gray-100 text-gray-500 transition-all">⭐ Samedi</button>
+                </div>
+                <div id="order-plats-list" class="space-y-3"></div>
+            </div>
+
+            <!-- Note spéciale -->
+            <div class="bg-white rounded-2xl p-5 shadow-md">
+                <label class="text-xs font-bold text-gray-500 mb-2 block">💬 Note / Allergies / Instructions</label>
+                <textarea id="order-note" placeholder="Ex : sans oignons, allergie aux noix..." class="w-full p-3 border border-gray-200 rounded-xl text-sm h-20 resize-none"></textarea>
+            </div>
+
+            <!-- Récap & Total -->
+            <div id="order-recap-box" class="hidden bg-white rounded-2xl p-5 shadow-md">
+                <h3 class="font-bold text-gray-800 mb-3">🧾 Récapitulatif</h3>
+                <div id="order-recap-list" class="space-y-1 text-sm mb-3"></div>
+                <div class="border-t border-gray-100 pt-3 flex justify-between font-black text-lg">
+                    <span>Total estimé</span>
+                    <span class="text-purple-600" id="order-total">0 €</span>
+                </div>
+            </div>
+
+            <!-- Bouton valider -->
+            <button id="order-validate-btn" onclick="validerCommande()"
+                    class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-2xl font-black text-lg shadow-xl">
+                ✅ Valider ma commande
+            </button>
+
+            <!-- Confirmation -->
+            <div id="order-confirmation" class="hidden bg-green-50 border-2 border-green-400 rounded-2xl p-6 text-center">
+                <div class="text-5xl mb-3">✅</div>
+                <h3 class="font-black text-green-800 text-xl mb-2">Commande envoyée !</h3>
+                <p class="text-green-700 text-sm" id="order-confirm-text"></p>
+                <button onclick="nouvelleCommande()" class="mt-4 w-full bg-green-500 text-white py-3 rounded-xl font-bold">Nouvelle commande</button>
+            </div>
+
+            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
+        </div>
+
         <!-- Page Contact -->
         <div id="page-contact" class="hidden space-y-4">
             <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Contact</h2>
             <div class="bg-white rounded-2xl p-6 shadow-md space-y-4">
-                <a href="tel:0160202401" class="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl"><div class="bg-purple-600 p-3 rounded-full text-white text-2xl">📞</div><div><p class="text-sm text-gray-600">Téléphone</p><p class="font-semibold text-purple-700">01 60 20 24 01</p></div></a>
+                <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
+                    <div class="bg-purple-600 p-3 rounded-full text-white text-2xl">📞</div>
+                    <div>
+                        <p class="text-sm text-gray-600">Téléphone</p>
+                        <p class="font-semibold text-purple-700">01 60 20 24 01</p>
+                    </div>
+                </div>
+                <a href="tel:0160202401"
+                   onclick="window.location.href='tel:0160202401'; return false;"
+                   style="display:block; width:100%; background:linear-gradient(to right,#7c3aed,#ec4899); color:white; padding:16px; border-radius:12px; font-weight:800; text-align:center; font-size:18px; text-decoration:none; margin-top:4px;">
+                    📞 Appeler le 01 60 20 24 01
+                </a>
                 <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl"><div class="bg-pink-600 p-3 rounded-full text-white text-2xl">📍</div><div><p class="text-sm text-gray-600">Adresse</p><p class="font-semibold text-pink-700">3 Place du Général de Gaulle</p><p class="text-sm text-gray-600">77360 Vaires-sur-Marne</p></div></div>
             </div>
             <div class="bg-white rounded-2xl p-6 shadow-md">
@@ -372,6 +429,20 @@
                     <div class="flex justify-between py-2"><span class="font-semibold text-gray-800">Dimanche</span><span class="text-red-600 font-semibold">Fermé</span></div>
                 </div>
             </div>
+            <div class="bg-white rounded-2xl p-4 shadow-md overflow-hidden">
+                <h3 class="font-semibold text-gray-800 mb-3">📍 Nous trouver</h3>
+                <div class="rounded-xl overflow-hidden">
+                    <iframe src="https://www.google.com/maps?q=3+Place+du+General+de+Gaulle,+77360+Vaires-sur-Marne&output=embed"
+                        width="100%" height="220" style="border:0;display:block;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=3+Place+du+G%C3%A9n%C3%A9ral+de+Gaulle,+77360+Vaires-sur-Marne"
+                   target="_blank" rel="noopener noreferrer"
+                   class="block mt-3 w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold text-center text-sm">
+                    🗺️ Ouvrir dans Google Maps
+                </a>
+            </div>
+
             <div class="bg-white rounded-2xl p-6 shadow-md">
                 <h3 class="font-semibold text-gray-800 mb-4">Suivez-nous</h3>
                 <div class="grid grid-cols-2 gap-4">
@@ -411,21 +482,7 @@
             <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
         </div>
 
-        <!-- Page Événements -->
-        <div id="page-events" class="hidden space-y-4">
-            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Événements</h2>
-            <div id="events-container-public"></div>
-            <div id="events-empty" class="text-center py-16 text-gray-400"><div class="text-6xl mb-4">🎉</div><p class="font-semibold">Aucun événement pour le moment</p><p class="text-sm mt-2">Revenez bientôt !</p></div>
-            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
-        </div>
 
-        <!-- Page Sondage -->
-        <div id="page-sondage" class="hidden space-y-4">
-            <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">📊 Sondages</h2>
-            <div id="sondages-public"></div>
-            <div id="sondages-empty" class="text-center py-16 text-gray-400"><div class="text-6xl mb-4">📊</div><p class="font-semibold">Aucun sondage en cours</p></div>
-            <button onclick="goToPage('home')" class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold">🏠 Retour</button>
-        </div>
 
         <!-- ===== PAGE CALCULATEUR GROUPE (NOUVEAU) ===== -->
         <div id="page-calcul" class="hidden space-y-4">
@@ -490,11 +547,9 @@
             <button onclick="goToPage('home')" id="nav-home" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-purple-600 bg-purple-50"><span class="text-2xl">🏠</span><span class="text-xs font-medium">Accueil</span></button>
             <button onclick="goToPage('menu')" id="nav-menu" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">📋</span><span class="text-xs font-medium">Carte</span></button>
             <button onclick="goToPage('gallery')" id="nav-gallery" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">📸</span><span class="text-xs font-medium">Photos</span></button>
-            <button onclick="goToPage('reviews')" id="nav-reviews" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">⭐</span><span class="text-xs font-medium">Avis</span></button>
             <button onclick="goToPage('jeux')" id="nav-jeux" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">🎮</span><span class="text-xs font-medium">Jeux</span></button>
-            <button onclick="goToPage('events')" id="nav-events" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">🎉</span><span class="text-xs font-medium">Événements</span></button>
-            <button onclick="goToPage('sondage')" id="nav-sondage" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">📊</span><span class="text-xs font-medium">Sondage</span></button>
             <button onclick="goToPage('calcul')" id="nav-calcul" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">🥂</span><span class="text-xs font-medium">Groupe</span></button>
+            <button onclick="goToPage('order')" id="nav-order" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">📦</span><span class="text-xs font-medium">Commander</span></button>
             <button onclick="goToPage('contact')" id="nav-contact" class="flex flex-col items-center gap-1 p-2 rounded-lg transition-all text-gray-500"><span class="text-2xl">📞</span><span class="text-xs font-medium">Contact</span></button>
         </div>
     </nav>
@@ -504,14 +559,10 @@
             currentPage: 'home',
             adminMode: false,
             photos: [], myPhotoIds: [],
-            reviews: [], myReviewIds: [],
             bugReports: [],
-            currentRating: 5,
             currentAdminMenuTab: 'semaine',
-            events: [],
-            sondages: [],
-            annonce: { active: false, texte: '', couleur: 'orange', emoji: '📢' },
-            pageVisibility: { menu: true, gallery: true, reviews: true, jeux: true, events: true, sondage: true, calcul: true, reservation: true, contact: true },
+            sondages: [],            annonce: { active: false, texte: '', couleur: 'orange', emoji: '📢' },
+            pageVisibility: { menu: true, gallery: true, jeux: true, calcul: true, reservation: true, contact: true },
             menu: {
                 semaine: [
                     { id: 's1', titre: '🥗 Entrées', plats: [
@@ -581,6 +632,128 @@
                 ]
             }
         };
+
+        // ===== CLICK & COLLECT =====
+        let orderTab = 'semaine';
+        let orderQuantites = {};
+
+        function switchOrderTab(tab) {
+            orderTab = tab;
+            document.getElementById('order-tab-semaine').className = 'flex-1 py-2 rounded-xl text-sm font-bold transition-all ' + (tab === 'semaine' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-500');
+            document.getElementById('order-tab-samedi').className = 'flex-1 py-2 rounded-xl text-sm font-bold transition-all ' + (tab === 'samedi' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-500');
+            renderOrderPlats();
+        }
+
+        function renderOrderPlats() {
+            const cats = appState.menu[orderTab];
+            const container = document.getElementById('order-plats-list');
+            if (!container) return;
+            container.innerHTML = cats.map(cat => {
+                const plats = cat.plats.filter(p => p.dispo && parsePrix(p.prix) > 0);
+                if (!plats.length) return '';
+                return `<div class="border border-gray-100 rounded-2xl overflow-hidden">
+                    <div class="bg-purple-50 px-4 py-2"><p class="font-bold text-purple-700 text-sm">${cat.titre}</p></div>
+                    <div class="divide-y divide-gray-50">
+                        ${plats.map(p => {
+                            const qty = orderQuantites[p.id] || 0;
+                            return '<div class="flex items-center gap-2 px-3 py-2">'
+                                + '<div class="flex-1 min-w-0"><p class="text-sm font-semibold text-gray-800 truncate">' + p.nom + '</p><p class="text-xs text-pink-600 font-bold">' + p.prix + '</p></div>'
+                                + '<div class="flex items-center gap-1 flex-shrink-0">'
+                                + '<button onclick="changeOrderQty(\'' + p.id + '\', -1)" class="w-7 h-7 rounded-lg bg-gray-100 font-bold text-lg flex items-center justify-center">−</button>'
+                                + '<span class="w-6 text-center font-bold text-sm ' + (qty > 0 ? 'text-purple-600' : 'text-gray-400') + '">' + qty + '</span>'
+                                + '<button onclick="changeOrderQty(\'' + p.id + '\', 1)" class="w-7 h-7 rounded-lg bg-gray-100 font-bold text-lg flex items-center justify-center">+</button>'
+                                + '</div></div>';
+                        }).join('')}
+                    </div>
+                </div>`;
+            }).join('');
+            updateOrderRecap();
+        }
+
+        function changeOrderQty(platId, delta) {
+            orderQuantites[platId] = Math.max(0, (orderQuantites[platId] || 0) + delta);
+            renderOrderPlats();
+        }
+
+        function updateOrderRecap() {
+            const recap = [];
+            let total = 0;
+            [...appState.menu.semaine, ...appState.menu.samedi].forEach(cat => {
+                cat.plats.forEach(p => {
+                    const qty = orderQuantites[p.id] || 0;
+                    if (qty > 0) { const prix = parsePrix(p.prix); total += prix * qty; recap.push({ nom: p.nom, qty, total: prix * qty }); }
+                });
+            });
+            const box = document.getElementById('order-recap-box');
+            const list = document.getElementById('order-recap-list');
+            const totalEl = document.getElementById('order-total');
+            if (recap.length === 0) { if (box) box.classList.add('hidden'); return; }
+            if (box) box.classList.remove('hidden');
+            if (list) list.innerHTML = recap.map(r => '<div class="flex justify-between text-gray-700"><span>' + r.qty + '× ' + r.nom + '</span><span class="font-bold">' + r.total.toFixed(2).replace('.', ',') + '€</span></div>').join('');
+            if (totalEl) totalEl.textContent = total.toFixed(2).replace('.', ',') + ' €';
+        }
+
+        function validerCommande() {
+            const prenom = document.getElementById('order-prenom').value.trim();
+            const tel = document.getElementById('order-tel').value.trim();
+            const heure = document.getElementById('order-heure').value;
+            const note = document.getElementById('order-note').value.trim();
+            if (!prenom) { alert('Merci d\'indiquer votre prénom !'); return; }
+            if (!tel) { alert('Merci d\'indiquer votre numéro de téléphone !'); return; }
+            if (!heure) { alert('Merci de choisir une heure de retrait !'); return; }
+
+            const recap = [];
+            let total = 0;
+            [...appState.menu.semaine, ...appState.menu.samedi].forEach(cat => {
+                cat.plats.forEach(p => {
+                    const qty = orderQuantites[p.id] || 0;
+                    if (qty > 0) {
+                        const prix = parsePrix(p.prix);
+                        total += prix * qty;
+                        recap.push(qty + '× ' + p.nom + ' (' + p.prix + ')');
+                    }
+                });
+            });
+            if (recap.length === 0) { alert('Merci de sélectionner au moins un plat !'); return; }
+
+            // Calcul heure de retrait (+10 min)
+            const parts = heure.replace('h', ':').split(':');
+            const d = new Date();
+            d.setHours(parseInt(parts[0]), parseInt(parts[1]) + 10, 0);
+            const hRetrait = d.getHours() + 'h' + String(d.getMinutes()).padStart(2, '0');
+
+            // Construction du message WhatsApp
+            let msg = '🛍️ *Nouvelle commande Click & Collect*\n\n';
+            msg += '👤 *Prénom :* ' + prenom + '\n';
+            msg += '📞 *Téléphone :* ' + tel + '\n';
+            msg += '⏰ *Commande passée à :* ' + heure + '\n';
+            msg += '🕐 *Heure de retrait estimée :* ' + hRetrait + '\n\n';
+            msg += '🍽️ *Commande :*\n';
+            recap.forEach(r => { msg += '  • ' + r + '\n'; });
+            msg += '\n💰 *Total estimé :* ' + total.toFixed(2).replace('.', ',') + ' €';
+            if (note) msg += '\n\n💬 *Note :* ' + note;
+
+            // Envoi WhatsApp
+            const waUrl = 'https://wa.me/33682118566?text=' + encodeURIComponent(msg);
+            window.open(waUrl, '_blank');
+
+            // Confirmation
+            document.getElementById('order-confirmation').classList.remove('hidden');
+            document.getElementById('order-confirm-text').textContent = 'Merci ' + prenom + ' ! Nous préparons votre commande à emporter. Vous pouvez venir la récupérer à partir de ' + hRetrait + ' 🙂';
+            document.getElementById('order-recap-box').classList.add('hidden');
+            document.getElementById('order-validate-btn').classList.add('hidden');
+        }
+
+        function nouvelleCommande() {
+            orderQuantites = {};
+            document.getElementById('order-prenom').value = '';
+            document.getElementById('order-tel').value = '';
+            document.getElementById('order-heure').value = '';
+            document.getElementById('order-note').value = '';
+            document.getElementById('order-confirmation').classList.add('hidden');
+            document.getElementById('order-validate-btn').classList.remove('hidden');
+            renderOrderPlats();
+        }
 
         // ===== CALCULATEUR GROUPE (NOUVEAU) =====
         let calcTab = 'semaine';
@@ -762,18 +935,12 @@
         // Storage
         const STORAGE_KEY = 'brasserie_menu_v1';
         const STORAGE_ANNONCE = 'brasserie_annonce_v1';
-        const STORAGE_EVENTS = 'brasserie_events_v1';
         const STORAGE_VISITORS = 'brasserie_visitors_v1';
-        const STORAGE_SONDAGES = 'brasserie_sondages_v1';
-
         function saveMenu() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.menu)); } catch(e) {} }
         function loadMenu() { try { const s = localStorage.getItem(STORAGE_KEY); if (s) appState.menu = JSON.parse(s); } catch(e) {} }
         function saveAnnonce() { try { localStorage.setItem(STORAGE_ANNONCE, JSON.stringify(appState.annonce)); } catch(e) {} }
         function loadAnnonce() { try { const s = localStorage.getItem(STORAGE_ANNONCE); if (s) appState.annonce = JSON.parse(s); } catch(e) {} }
-        function saveEvents() { try { localStorage.setItem(STORAGE_EVENTS, JSON.stringify(appState.events)); } catch(e) {} }
-        function loadEvents() { try { const s = localStorage.getItem(STORAGE_EVENTS); if (s) appState.events = JSON.parse(s); } catch(e) {} }
-        function saveSondages() { try { localStorage.setItem(STORAGE_SONDAGES, JSON.stringify(appState.sondages)); } catch(e) {} }
-        function loadSondages() { try { const s = localStorage.getItem(STORAGE_SONDAGES); if (s) appState.sondages = JSON.parse(s); } catch(e) {} }
+        
 
         // Visiteurs
         let visitorData = { total: 0, today: 0, lastDate: '', pages: {} };
@@ -849,108 +1016,12 @@
             updateAnnoncePreview();
         }
 
-        // Événements
-        function ajouterEvent() {
-            const titre = document.getElementById('event-titre').value.trim();
-            const date = document.getElementById('event-date').value;
-            const heure = document.getElementById('event-heure').value.trim();
-            const desc = document.getElementById('event-desc').value.trim();
-            const emoji = document.getElementById('event-emoji').value.trim() || '🎉';
-            if (!titre || !date) { alert('Remplis au moins le titre et la date !'); return; }
-            appState.events.push({ id: Date.now(), titre, date, heure, desc, emoji });
-            appState.events.sort((a, b) => new Date(a.date) - new Date(b.date));
-            saveEvents();
-            document.getElementById('event-titre').value = '';
-            document.getElementById('event-date').value = '';
-            document.getElementById('event-heure').value = '';
-            document.getElementById('event-desc').value = '';
-            document.getElementById('event-emoji').value = '';
-            renderEvents();
-            alert('✅ Événement ajouté !');
-        }
-        function supprimerEvent(id) { if (!confirm('Supprimer cet événement ?')) return; appState.events = appState.events.filter(e => e.id !== id); saveEvents(); renderEvents(); }
-        function formatDate(dateStr) { return new Date(dateStr + 'T00:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); }
-        function renderEvents() {
-            const today = new Date(); today.setHours(0,0,0,0);
-            const futurs = appState.events.filter(e => new Date(e.date) >= today);
-            const passes = appState.events.filter(e => new Date(e.date) < today);
-            const pub = document.getElementById('events-container-public');
-            const empty = document.getElementById('events-empty');
-            if (pub) {
-                if (appState.events.length === 0) { pub.innerHTML = ''; if (empty) empty.classList.remove('hidden'); }
-                else {
-                    if (empty) empty.classList.add('hidden');
-                    let html = '';
-                    if (futurs.length > 0) { html += '<h3 class="font-bold text-gray-700 text-lg mb-3">📅 À venir</h3>'; html += futurs.map(e => renderEventCard(e, false)).join(''); }
-                    if (passes.length > 0) { html += '<h3 class="font-bold text-gray-400 text-base mb-3 mt-4">🗂️ Passés</h3>'; html += passes.map(e => renderEventCard(e, true)).join(''); }
-                    pub.innerHTML = html;
-                }
-            }
-            const adm = document.getElementById('events-container-admin');
-            if (adm) {
-                adm.innerHTML = appState.events.length === 0
-                    ? '<p class="text-gray-400 text-sm text-center py-4">Aucun événement</p>'
-                    : appState.events.map(e => `<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div class="flex items-center gap-2 min-w-0"><span class="text-xl">${e.emoji}</span><div><p class="font-semibold text-gray-800 text-sm truncate">${e.titre}</p><p class="text-xs text-gray-400">${formatDate(e.date)}${e.heure ? ' · ' + e.heure : ''}</p></div></div><button onclick="supprimerEvent(${e.id})" class="ml-2 text-red-400 text-lg">🗑️</button></div>`).join('');
-            }
-        }
-        function renderEventCard(e, passe) {
-            return `<div class="bg-white rounded-2xl p-5 shadow-md mb-3 ${passe ? 'opacity-50' : ''} border-l-4 ${passe ? 'border-gray-300' : 'border-purple-500'}"><div class="flex items-start gap-3"><span class="text-4xl">${e.emoji}</span><div class="flex-1"><h4 class="font-black text-gray-800 text-lg">${e.titre}</h4><div class="flex items-center gap-2 mt-1 flex-wrap"><span class="text-xs font-semibold px-2 py-1 rounded-full ${passe ? 'bg-gray-100 text-gray-500' : 'bg-purple-100 text-purple-700'}">📅 ${formatDate(e.date)}</span>${e.heure ? `<span class="text-xs font-semibold px-2 py-1 rounded-full bg-pink-100 text-pink-700">🕐 ${e.heure}</span>` : ''}</div>${e.desc ? `<p class="text-sm text-gray-600 mt-2">${e.desc}</p>` : ''}</div></div></div>`;
-        }
-
-        // Sondages
-        function ajouterSondage() {
-            const question = document.getElementById('sondage-question').value.trim();
-            const opts = [...document.querySelectorAll('.sondage-opt')].map(i => i.value.trim()).filter(Boolean);
-            if (!question || opts.length < 2) { alert('Question et au moins 2 options requises !'); return; }
-            appState.sondages.push({ id: Date.now(), question, options: opts, votes: opts.map(() => 0) });
-            saveSondages();
-            document.getElementById('sondage-question').value = '';
-            document.querySelectorAll('.sondage-opt').forEach(i => i.value = '');
-            renderSondages();
-            alert('✅ Sondage publié !');
-        }
-        function voterSondage(sondageId, optionIdx) {
-            const s = appState.sondages.find(s => s.id === sondageId);
-            if (!s) return;
-            const key = 'voted_' + sondageId;
-            if (sessionStorage.getItem(key)) { alert('Vous avez déjà voté !'); return; }
-            s.votes[optionIdx]++;
-            sessionStorage.setItem(key, '1');
-            saveSondages();
-            renderSondages();
-        }
-        function supprimerSondage(id) { if (!confirm('Supprimer ce sondage ?')) return; appState.sondages = appState.sondages.filter(s => s.id !== id); saveSondages(); renderSondages(); }
-        function renderSondages() {
-            const pub = document.getElementById('sondages-public');
-            const empty = document.getElementById('sondages-empty');
-            const adm = document.getElementById('sondages-admin');
-            if (pub) {
-                if (appState.sondages.length === 0) { pub.innerHTML = ''; if (empty) empty.classList.remove('hidden'); }
-                else {
-                    if (empty) empty.classList.add('hidden');
-                    pub.innerHTML = appState.sondages.map(s => {
-                        const totalVotes = s.votes.reduce((a, b) => a + b, 0);
-                        const voted = sessionStorage.getItem('voted_' + s.id);
-                        return `<div class="bg-white rounded-2xl p-5 shadow-md"><h3 class="font-bold text-gray-800 mb-4">${s.question}</h3><div class="space-y-2">${s.options.map((opt, i) => {
-                            const pct = totalVotes > 0 ? Math.round((s.votes[i]/totalVotes)*100) : 0;
-                            return voted ? `<div class="rounded-xl overflow-hidden border border-gray-100"><div class="flex justify-between px-3 py-2 text-sm"><span class="font-medium text-gray-700">${opt}</span><span class="font-bold text-purple-600">${pct}%</span></div><div class="h-2 bg-gray-100"><div class="h-2 bg-gradient-to-r from-purple-500 to-pink-500" style="width:${pct}%"></div></div></div>` : `<button onclick="voterSondage(${s.id}, ${i})" class="w-full text-left p-3 rounded-xl border-2 border-gray-100 hover:border-purple-400 hover:bg-purple-50 transition-all text-sm font-semibold text-gray-700">${opt}</button>`;
-                        }).join('')}</div><p class="text-xs text-gray-400 mt-3 text-right">${totalVotes} vote${totalVotes !== 1 ? 's' : ''}</p></div>`;
-                    }).join('');
-                }
-            }
-            if (adm) {
-                adm.innerHTML = appState.sondages.length === 0
-                    ? '<p class="text-gray-400 text-sm text-center py-4">Aucun sondage</p>'
-                    : appState.sondages.map(s => { const total = s.votes.reduce((a,b)=>a+b,0); return `<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl"><div><p class="font-semibold text-gray-800 text-sm truncate">${s.question}</p><p class="text-xs text-gray-400">${total} vote(s)</p></div><button onclick="supprimerSondage(${s.id})" class="ml-2 text-red-400 text-lg">🗑️</button></div>`; }).join('');
-            }
-        }
-
         // Initialisation
         document.addEventListener('DOMContentLoaded', () => {
-            loadMenu(); loadAnnonce(); loadEvents(); loadVisitors(); loadSondages();
+            loadMenu(); loadAnnonce(); loadVisitors();
             trackVisit();
             updateUI(); updateStats();
-            renderMenus(); renderAnnonce(); renderEvents(); renderSondages();
+            renderMenus(); renderAnnonce();
             renderCalcPlats(); calculerGroupe();
         });
 
@@ -970,6 +1041,7 @@
             updateUI();
             if (page !== 'admin') trackPage(page);
             if (page === 'calcul') { renderCalcPlats(); calculerGroupe(); }
+            if (page === 'order') { renderOrderPlats(); }
         }
 
         // Admin
@@ -982,8 +1054,6 @@
                 goToPage('admin');
                 renderAdminMenuEditor();
                 syncAnnonceAdmin();
-                renderEvents();
-                renderSondages();
                 alert('✅ Connexion réussie Bonjour Ethan');
             } else { alert('❌ Code incorrect'); document.getElementById('adminPasswordInput').value = ''; }
         }
@@ -1022,50 +1092,18 @@
             }).join('');
         }
 
-        // Avis
-        function setRating(rating) { appState.currentRating = rating; const stars = document.getElementById('rating-stars').children; for (let i=0;i<stars.length;i++) stars[i].style.opacity = i < rating ? '1' : '0.3'; }
-        function submitReview() {
-            const name = document.getElementById('review-name').value.trim();
-            const comment = document.getElementById('review-comment').value.trim();
-            if (!name || !comment) { alert('Veuillez remplir tous les champs'); return; }
-            const reviewId = Date.now();
-            appState.reviews.push({ id: reviewId, name, rating: appState.currentRating, comment, date: new Date().toLocaleDateString('fr-FR') });
-            appState.myReviewIds.push(reviewId);
-            document.getElementById('review-name').value = '';
-            document.getElementById('review-comment').value = '';
-            setRating(5); renderReviews(); updateStats();
-            alert('✅ Merci pour votre avis !');
-        }
-        function deleteReview(reviewId) { if (!confirm('Supprimer cet avis ?')) return; appState.reviews = appState.reviews.filter(r => r.id !== reviewId); appState.myReviewIds = appState.myReviewIds.filter(id => id !== reviewId); renderReviews(); updateStats(); }
-        function deleteAllReviews() { if (confirm('⚠️ Supprimer TOUS les avis ?')) { appState.reviews = []; appState.myReviewIds = []; renderReviews(); updateStats(); alert('✅ Supprimés'); } }
-        function renderReviews() {
-            const container = document.getElementById('reviews-container');
-            if (appState.reviews.length === 0) { container.innerHTML = ''; return; }
-            container.innerHTML = `<div class="space-y-3"><h3 class="font-bold text-lg text-gray-800">Avis récents</h3>${[...appState.reviews].reverse().map(review => {
-                const canDelete = appState.myReviewIds.includes(review.id) || appState.adminMode;
-                const stars = '⭐'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
-                return `<div class="bg-white rounded-2xl p-4 shadow-md"><div class="flex justify-between items-start mb-2"><p class="font-semibold text-gray-800">${review.name}</p><div class="flex gap-2 items-center"><span>${stars}</span>${canDelete ? `<button onclick="deleteReview(${review.id})" class="text-red-500 text-xs ml-2">🗑️</button>` : ''}</div></div><p class="text-gray-600 text-sm mb-2">${review.comment}</p><p class="text-xs text-gray-400">${review.date}</p></div>`;
-            }).join('')}</div>`;
-        }
-
         function updateStats() {
-            document.getElementById('stat-reviews').textContent = appState.reviews.length;
             document.getElementById('stat-photos').textContent = appState.photos.length;
             document.getElementById('stat-reports').textContent = appState.bugReports.length;
-            document.getElementById('btn-reviews-count').textContent = appState.reviews.length;
             document.getElementById('btn-photos-count').textContent = appState.photos.length;
             document.getElementById('btn-reports-count').textContent = appState.bugReports.length;
-            const avgRating = appState.reviews.length > 0 ? (appState.reviews.reduce((sum,r) => sum + r.rating, 0) / appState.reviews.length).toFixed(1) : '0.0';
-            document.getElementById('stat-rating').textContent = avgRating + '⭐';
             renderVisitorStats();
         }
 
         function updateUI() {
             const anrg = document.getElementById('admin-notice-gallery');
-            const anrr = document.getElementById('admin-notice-reviews');
             if (anrg) anrg.classList.toggle('hidden', !appState.adminMode);
-            if (anrr) anrr.classList.toggle('hidden', !appState.adminMode);
-            renderPhotos(); renderReviews();
+            renderPhotos();
         }
 
         document.getElementById('adminPasswordInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') loginAdmin(); });
